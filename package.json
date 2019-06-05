@@ -1,0 +1,23 @@
+{
+  "author": "opensource@nativecode.com",
+  "description": "Clients for Media Services",
+  "keywords": [
+    "radarr",
+    "sonarr"
+  ],
+  "license": "MIT",
+  "name": "media-clients",
+  "version": "0.0.0",
+  "devDependencies": {
+    "lerna": "^3.14.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.nativecode.net:nativecode/media-clients.git"
+  },
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "build": "lerna run build",
+    "release": "lerna publish"
+  }
+}
