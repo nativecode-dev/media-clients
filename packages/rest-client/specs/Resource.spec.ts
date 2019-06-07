@@ -42,12 +42,12 @@ class RestApiResource extends Resource {
 describe('when using Resource type', () => {
   const resource: RestApiResource = new RestApiResource()
 
-  it('should GET all employess', async () => {
+  it('should GET all employees', async () => {
     const employees = await resource.all()
     expect(employees).not.empty
   })
 
-  it('should GET single employess', async () => {
+  it('should GET single employee', async () => {
     const employees = await resource.all()
     const employee = await resource.id(String(employees[0].id))
     expect(employee).not.empty
