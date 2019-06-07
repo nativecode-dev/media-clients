@@ -1,26 +1,12 @@
 {
-  "name": "@nativecode/sonarr",
-  "version": "0.0.0",
+  "author": "opensource@nativecode.com",
   "description": "Sonarr REST client",
-  "keywords": [
-    "sonarr"
-  ],
-  "author": "Mike Pham <mike.pham@proplogix.com>",
   "license": "MIT",
   "main": "lib/sonarr.js",
-  "directories": {
-    "lib": "lib",
-    "test": "specs"
-  },
-  "files": [
-    "lib"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git@git.nativecode.net:nativecode/media-clients.git"
-  },
-  "scripts": {},
+  "name": "@nativecode/sonarr",
+  "version": "0.0.0",
   "dependencies": {
+    "@nativecode/rest-client": "^0.0.0",
     "isomorphic-fetch": "^2.2.1"
   },
   "devDependencies": {
@@ -39,5 +25,20 @@
     "tslint": "^5.17.0",
     "tslint-config-standard": "^8.0.1",
     "typescript": "^3.5.1"
-  }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "specs"
+  },
+  "files": [
+    "lib"
+  ],
+  "keywords": [
+    "sonarr"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@git.nativecode.net:nativecode/media-clients.git"
+  },
+  "scripts": {}
 }

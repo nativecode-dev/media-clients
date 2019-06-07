@@ -25,13 +25,8 @@ class RestApiResource extends Resource {
     return this.post('create', employee)
   }
 
-  id(id: string): Promise<Employee> {
-    return this.get<Employee>('employee/{:id}', [
-      {
-        key: 'id',
-        value: id,
-      },
-    ])
+  id(id: number): Promise<Employee> {
+    return this.get<Employee>('employee/{:id}', [{ key: 'id', value: id }])
   }
 
   update(employee: Employee): Promise<Employee> {
@@ -49,7 +44,7 @@ describe('when using Resource type', () => {
 
   it('should GET single employee', async () => {
     const employees = await resource.all()
-    const employee = await resource.id(String(employees[0].id))
+    const employee = await resource.id(employees[0].id)
     expect(employee).not.empty
   })
 })

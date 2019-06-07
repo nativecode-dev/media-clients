@@ -1,21 +1,10 @@
 {
-  "name": "@nativecode/rest-client",
-  "version": "0.0.0",
+  "author": "opensource@nativecode.com",
   "description": "REST client",
-  "keywords": [
-    "rest"
-  ],
-  "author": "Mike Pham <mike.pham@proplogix.com>",
-  "homepage": "",
   "license": "MIT",
   "main": "lib/rest-client.js",
-  "directories": {
-    "lib": "lib",
-    "test": "specs"
-  },
-  "files": [
-    "lib"
-  ],
+  "name": "@nativecode/rest-client",
+  "version": "0.0.0",
   "dependencies": {
     "blob-util": "^2.0.2",
     "isomorphic-fetch": "^2.2.1"
@@ -38,6 +27,16 @@
     "tslint-config-standard": "^8.0.1",
     "typescript": "^3.5.1"
   },
+  "directories": {
+    "lib": "lib",
+    "test": "specs"
+  },
+  "files": [
+    "lib"
+  ],
+  "keywords": [
+    "rest"
+  ],
   "repository": {
     "type": "git",
     "url": "git@git.nativecode.net:nativecode/media-clients.git"
