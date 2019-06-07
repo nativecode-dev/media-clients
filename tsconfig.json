@@ -1,0 +1,7 @@
+{
+  "references": [
+      { "path": "packages/radarr" },
+      { "path": "packages/rest-client" },
+      { "path": "packages/sonarr" }
+  ]
+}

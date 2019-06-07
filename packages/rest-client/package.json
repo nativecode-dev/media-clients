@@ -2,8 +2,9 @@
   "author": "opensource@nativecode.com",
   "description": "REST client",
   "license": "MIT",
-  "main": "lib/rest-client.js",
+  "main": "lib/index.js",
   "name": "@nativecode/rest-client",
+  "types": "lib/index.d.ts",
   "version": "0.0.0",
   "dependencies": {
     "blob-util": "^2.0.2",
@@ -37,11 +38,17 @@
   "keywords": [
     "rest"
   ],
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git@git.nativecode.net:nativecode/media-clients.git"
   },
   "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "clean": "rimraf lib",
     "test": "cross-env DEBUG= nyc mocha --opts ./mocha.opts"
   }
 }

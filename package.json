@@ -7,6 +7,7 @@
   ],
   "license": "MIT",
   "name": "media-clients",
+  "private": true,
   "version": "0.0.0",
   "devDependencies": {
     "lerna": "^3.14.1"
@@ -18,6 +19,9 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
-    "release": "lerna publish"
+    "clean": "lerna run clean",
+    "link": "lerna link",
+    "release": "lerna publish",
+    "test": "lerna run test"
   }
 }

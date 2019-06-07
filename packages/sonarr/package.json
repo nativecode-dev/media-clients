@@ -2,8 +2,9 @@
   "author": "opensource@nativecode.com",
   "description": "Sonarr REST client",
   "license": "MIT",
-  "main": "lib/sonarr.js",
+  "main": "lib/index.js",
   "name": "@nativecode/sonarr",
+  "types": "lib/index.d.ts",
   "version": "0.0.0",
   "dependencies": {
     "@nativecode/rest-client": "^0.0.0",
@@ -36,9 +37,16 @@
   "keywords": [
     "sonarr"
   ],
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git@git.nativecode.net:nativecode/media-clients.git"
   },
-  "scripts": {}
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "clean": "rimraf lib"
+  }
 }

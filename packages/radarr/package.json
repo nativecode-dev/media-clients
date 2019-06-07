@@ -2,8 +2,9 @@
   "author": "opensource@nativecode.com",
   "description": "Radarr REST client",
   "license": "MIT",
-  "main": "lib/radarr.js",
+  "main": "lib/index.js",
   "name": "@nativecode/radarr",
+  "types": "lib/index.d.ts",
   "version": "0.0.0",
   "dependencies": {
     "@nativecode/rest-client": "^0.0.0",
@@ -36,9 +37,16 @@
   "keywords": [
     "radarr"
   ],
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git@git.nativecode.net:nativecode/media-clients.git"
   },
-  "scripts": {}
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "clean": "rimraf lib"
+  }
 }

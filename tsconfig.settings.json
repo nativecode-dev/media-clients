@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "lib": [],
+    "sourceMap": true,
+    "strict": true,
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node"
+  }
+}

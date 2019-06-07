@@ -3,6 +3,7 @@ import 'mocha'
 import expect from './expect'
 
 import { Resource } from '../src/Resource'
+import { ResourceRouteParamType } from '../src/ResourceRouteParamType'
 
 export interface Employee {
   id: number
@@ -26,11 +27,13 @@ class RestApiResource extends Resource {
   }
 
   id(id: number): Promise<Employee> {
-    return this.get<Employee>('employee/{:id}', [{ key: 'id', value: id }])
+    return this.get<Employee>('employee/{:id}', [{ key: 'id', type: ResourceRouteParamType.RouteParameter, value: id }])
   }
 
   update(employee: Employee): Promise<Employee> {
-    return this.put('update/{:id}', employee, [{ key: 'id', value: employee.id }])
+    return this.put('update/{:id}', employee, [
+      { key: 'id', type: ResourceRouteParamType.RouteParameter, value: employee.id },
+    ])
   }
 }
 

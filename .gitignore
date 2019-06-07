@@ -2,6 +2,7 @@
 bin
 dist
 lib
+*.tsbuildinfo
 
 # Logs
 logs

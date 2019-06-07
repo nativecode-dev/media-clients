@@ -1,4 +1,13 @@
 {
+  "command": {
+    "bootstrap": {
+      "loglevel": "silent"
+    },
+    "run": {
+      "loglevel": "silent",
+      "stream": true
+    }
+  },
   "packages": [
     "packages/*"
   ],
