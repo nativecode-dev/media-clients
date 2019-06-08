@@ -1,8 +1,11 @@
 #!/bin/bash
 
+if [ ! -d node_modules ]; then
+  npm install
+fi
+
 npm run bootstrap
 npm run clean -- $@
 npm run format
 npm run lint
 npm run build -- $@
-# npm run test

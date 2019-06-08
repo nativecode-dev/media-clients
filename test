@@ -1,4 +1,7 @@
 #!/bin/bash
 
-./build
+if [ ! -d node_modules ]; then
+  ./build
+fi
+
 npm run test
