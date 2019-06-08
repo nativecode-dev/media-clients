@@ -4,9 +4,10 @@
     "declaration": true,
     "declarationMap": true,
     "esModuleInterop": true,
-    "lib": [],
+    "lib": ["dom"],
     "sourceMap": true,
     "strict": true,
+    "strictNullChecks": true,
     "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node"

@@ -1,0 +1,14 @@
+{
+  "extends": [
+    "tslint-config-standard"
+  ],
+  "rules": {
+    "await-promise": true,
+    "no-floating-promises": true,
+    "no-unnecessary-qualifier": true,
+    "no-unused-expression": true,
+    "return-undefined": false,
+    "space-before-function-paren": false,
+    "trailing-comma": true
+  }
+}

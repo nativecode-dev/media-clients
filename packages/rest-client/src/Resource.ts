@@ -1,6 +1,8 @@
 import 'isomorphic-fetch'
 
+import { URL } from 'url'
 import { base64StringToBlob } from 'blob-util'
+
 import { ResourceHeader } from './ResourceHeader'
 import { ResourceRouteParam, ResourceRouteParams } from './ResourceRouteParam'
 import { ResourceRouteParamType } from './ResourceRouteParamType'

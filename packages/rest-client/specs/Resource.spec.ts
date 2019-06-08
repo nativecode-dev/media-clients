@@ -2,6 +2,8 @@ import 'mocha'
 
 import expect from './expect'
 
+import { URL } from 'url'
+
 import { Resource } from '../src/Resource'
 import { ResourceRouteParamType } from '../src/ResourceRouteParamType'
 

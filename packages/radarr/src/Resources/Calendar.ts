@@ -1,4 +1,5 @@
-import { Resource } from '@nativecode/rest-client'
+import { URL } from 'url'
+import { Resource, ResourceRouteParamType } from '@nativecode/rest-client'
 
 import { Calendar } from '../Models/Calendar'
 
@@ -9,6 +10,17 @@ export class CalendarResource extends Resource {
   }
 
   all(start?: Date, end?: Date): Promise<Calendar[]> {
-    return this.get<Calendar[]>('calendar')
+    return this.get<Calendar[]>('calendar', [
+      {
+        key: 'start',
+        type: ResourceRouteParamType.Query,
+        value: start,
+      },
+      {
+        key: 'end',
+        type: ResourceRouteParamType.Query,
+        value: end,
+      },
+    ])
   }
 }

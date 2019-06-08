@@ -1,4 +1,8 @@
 {
+  "extends": "./tsconfig.settings.json",
+  "include": [
+    "packages/*/src/**/*.ts"
+  ],
   "references": [
       { "path": "packages/radarr" },
       { "path": "packages/rest-client" },

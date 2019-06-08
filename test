@@ -1,0 +1,4 @@
+#!/bin/bash
+
+./build
+npm run test

@@ -10,7 +10,23 @@
   "private": true,
   "version": "0.0.0",
   "devDependencies": {
-    "lerna": "^3.14.1"
+    "@types/chai": "^4.1.7",
+    "@types/chai-as-promised": "^7.1.0",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.0.4",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "cross-env": "^5.2.0",
+    "lerna": "^3.14.1",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.1",
+    "prettier": "^1.17.1",
+    "rimraf": "^2.6.3",
+    "source-map-support": "^0.5.12",
+    "ts-node": "^8.2.0",
+    "tslint": "^5.17.0",
+    "tslint-config-standard": "^8.0.1",
+    "typescript": "^3.5.1"
   },
   "repository": {
     "type": "git",
@@ -20,8 +36,10 @@
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
     "clean": "lerna run clean",
+    "format": "prettier --write \"packages/*/src/**/*.ts\"",
     "link": "lerna link",
+    "lint": "tslint -c tslint.json --project tsconfig.json",
     "release": "lerna publish",
-    "test": "lerna run test"
+    "test": "cross-env DEBUG= nyc mocha --opts ./mocha.opts"
   }
 }

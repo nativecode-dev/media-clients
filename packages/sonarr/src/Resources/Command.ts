@@ -1,3 +1,4 @@
+import { URL } from 'url'
 import { Resource } from '@nativecode/rest-client'
 
 export class CommandResource extends Resource {
