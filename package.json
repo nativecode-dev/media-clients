@@ -27,7 +27,27 @@
     "ts-node": "^8.2.0",
     "tslint": "^5.17.0",
     "tslint-config-standard": "^8.0.1",
-    "typescript": "^3.5.1"
+    "tslint-no-unused-expression-chai": "^0.1.4",
+    "typescript": "^3.5.1",
+    "typescript-eslint-parser": "^22.0.0"
+  },
+  "nyc": {
+    "all": true,
+    "exclude": [
+      "node_modules",
+      "packages/*/src/**/*.spec.ts"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "include": [
+      "packages/*/src/**/*.ts"
+    ],
+    "instrument": true,
+    "report-dir": ".cache/coverage",
+    "reporter": "text",
+    "sourceMap": true,
+    "temp-directory": ".cache/nyc"
   },
   "repository": {
     "type": "git",

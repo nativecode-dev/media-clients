@@ -1,14 +1,14 @@
 import { Image } from './Image'
 import { Rating } from './Rating'
 
-export interface Calendar {
+export interface Movie {
+  physicalRelease?: Date
   title: string
   sortTitle: string
   sizeOnDisk: number
   status: string
   overview: string
   inCinemas: Date
-  physicalRelease: Date
   images: Image[]
   website: string
   downloaded: boolean
@@ -19,6 +19,7 @@ export interface Calendar {
   path: string
   profileId: number
   monitored: boolean
+  minimumAvailability: string
   runtime: number
   lastInfoSync: Date
   cleanTitle: string
@@ -26,7 +27,7 @@ export interface Calendar {
   tmdbId: number
   titleSlug: string
   genres: string[]
-  tags: any[]
+  tags: string[]
   added: Date
   ratings: Rating
   alternativeTitles: string[]
