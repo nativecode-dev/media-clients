@@ -1,19 +1,23 @@
-import expect, { TIMEOUT_LONG } from './expect'
+import expect from './expect'
+import Logger from './logging'
 
 import { URL } from 'url'
 
 import { MovieResource } from '../src/Resources/MovieResource'
 
-const radarrUrl = new URL('http://radarr.in.nativecode.com/api')
-const radarrApiKey: string = process.env.RADARR_APIKEY || 'invalid_key'
+const url = new URL('http://test-radarr.in.nativecode.com/api')
+const apikey: string = process.env.RADARR_APIKEY || 'invalid_key'
 
 describe('when using MovieResource', () => {
-  const movieResource = new MovieResource(radarrUrl, radarrApiKey)
+  const movieResource = new MovieResource(url, apikey, Logger.extend('movie-resource'))
 
-  // Can't use arrow functions when setting timeouts in Typescript - MP
-  it('should get list of movies', async function() {
-    this.timeout(TIMEOUT_LONG)
+  it('should get list of movies', async () => {
     const movies = await movieResource.list()
-    expect(movies).to.not.be.empty
+    expect(movies.length).to.equal(1)
+  })
+
+  it('should get single movie', async () => {
+    const movie = await movieResource.id(1)
+    expect(movie.title).to.equal('Banana')
   })
 })

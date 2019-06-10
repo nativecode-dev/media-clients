@@ -1,6 +1,7 @@
 import 'mocha'
 
 import expect from './expect'
+import Logger from './logging'
 
 import { URL } from 'url'
 
@@ -17,7 +18,7 @@ export interface Employee {
 
 class RestApiResource extends Resource {
   constructor() {
-    super(new URL('http://dummy.restapiexample.com/api/v1'))
+    super(new URL('http://dummy.restapiexample.com/api/v1'), Logger.extend('rsource'))
   }
 
   all(): Promise<Employee[]> {

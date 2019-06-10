@@ -1,16 +1,18 @@
 import { Image } from './Image'
 import { Rating } from './Rating'
+import { MovieFile } from './MovieFile'
+import { AlternativeTitle } from './AlternativeTitle'
 
 export interface Movie {
-  physicalRelease?: Date
   title: string
+  alternativeTitles: AlternativeTitle[]
+  secondaryYearSourceId: number
   sortTitle: string
   sizeOnDisk: number
   status: string
   overview: string
   inCinemas: Date
   images: Image[]
-  website: string
   downloaded: boolean
   year: number
   hasFile: boolean
@@ -18,19 +20,22 @@ export interface Movie {
   studio: string
   path: string
   profileId: number
+  pathState: string
   monitored: boolean
   minimumAvailability: string
+  isAvailable: boolean
+  folderName: string
   runtime: number
   lastInfoSync: Date
   cleanTitle: string
   imdbId: string
   tmdbId: number
   titleSlug: string
-  genres: string[]
-  tags: string[]
+  genres: any[]
+  tags: any[]
   added: Date
   ratings: Rating
-  alternativeTitles: string[]
+  movieFile: MovieFile
   qualityProfileId: number
   id: number
 }

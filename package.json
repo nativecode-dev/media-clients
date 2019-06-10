@@ -35,7 +35,8 @@
     "all": true,
     "exclude": [
       "node_modules",
-      "packages/*/src/**/*.spec.ts"
+      "packages/*/src/**/*.spec.ts",
+      "packages/**/index.ts"
     ],
     "extension": [
       ".ts"
