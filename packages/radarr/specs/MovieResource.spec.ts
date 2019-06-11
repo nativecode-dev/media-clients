@@ -6,16 +6,16 @@ import { step } from 'mocha-steps'
 import { APIKEY, ENDPOINT } from './env'
 import { Movie } from '../src/Models/Movie'
 import { MovieInfo } from '../src/Models/MovieInfo'
-import { MovieResource } from '../src/Resources/MovieResource'
+import { RadarrClient } from '../src/RadarrClient'
 
 describe('when using the MovieResource class', () => {
-  const sut = new MovieResource(ENDPOINT, APIKEY, Logger.extend('movie-resource'))
+  const sut = new RadarrClient(ENDPOINT, APIKEY, Logger.extend('movie-resource'))
 
   let movie: Movie
   let movies: Movie[]
 
   it('should fail to find movie', () => {
-    expect(sut.id(0)).to.eventually.be.rejected
+    expect(sut.movie.id(0)).to.eventually.be.rejected
   })
 
   it('should fail to add movie', () => {
@@ -29,28 +29,28 @@ describe('when using the MovieResource class', () => {
       year: 1900,
     }
 
-    expect(sut.add(add)).to.eventually.be.rejected
+    expect(sut.movie.add(add)).to.eventually.be.rejected
   })
 
   step('should get movie by IMDb ID', async () => {
-    expect(sut.imdb('tt1814643')).to.eventually.not.be.empty
+    expect(sut.movie.imdb('tt1814643')).to.eventually.not.be.empty
   })
 
   step('should get movie by TMDB ID', async () => {
-    expect(sut.tmdb(535292)).to.eventually.not.be.empty
+    expect(sut.movie.tmdb(535292)).to.eventually.not.be.empty
   })
 
   step('should get movie by lookup', async () => {
-    expect(sut.lookup('21 Bridges')).to.eventually.not.be.empty
+    expect(sut.movie.lookup('21 Bridges')).to.eventually.not.be.empty
   })
 
   step('should get list of movies', async () => {
-    movies = await sut.list()
+    movies = await sut.movie.list()
     expect(movies).to.not.be.empty
   })
 
   step('should get single movie', async () => {
-    const movie = await sut.id(1)
+    const movie = await sut.movie.id(1)
     expect(movie.title).to.equal('Banana')
   })
 
@@ -68,7 +68,7 @@ describe('when using the MovieResource class', () => {
     const existing = movies.find(movie => movie.title === add.title)
 
     if (existing === undefined) {
-      movie = await sut.add(add)
+      movie = await sut.movie.add(add)
 
       expect(movie.id).does.not.equal(0)
       expect(movie.title).to.equal(add.title)
@@ -78,6 +78,6 @@ describe('when using the MovieResource class', () => {
   })
 
   step('should delete added movie', () => {
-    expect(sut.remove(movie.id)).to.eventually.not.be.rejected
+    expect(sut.movie.remove(movie.id)).to.eventually.not.be.rejected
   })
 })

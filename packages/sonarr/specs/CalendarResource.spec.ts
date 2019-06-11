@@ -2,17 +2,17 @@ import expect from './expect'
 import Logger from './logging'
 
 import { APIKEY, ENDPOINT } from './env'
-import { CalendarResource } from '../src/Resources/CalendarResource'
+import { SonarrClient } from '../src/SonarrClient'
 
 describe('when using CalendarResource', () => {
-  const sut = new CalendarResource(ENDPOINT, APIKEY, Logger.extend('calendar-resource'))
+  const sut = new SonarrClient(ENDPOINT, APIKEY, Logger.extend('calendar-resource'))
 
   it('should return no episodes', () => {
-    expect(sut.list()).eventually.to.be.empty
+    expect(sut.calendar.list()).eventually.to.be.empty
   })
 
   it('should find first episode of the first season of 24', async () => {
-    const episodes = await sut.list('11/06/2001', '11/06/2001')
+    const episodes = await sut.calendar.list('11/06/2001', '11/06/2001')
     const found = episodes.filter(episode => episode.series.title === '24')
     expect(found.length).to.equal(1)
   })
