@@ -1,8 +1,9 @@
 import { Movie } from './Movie'
 import { Quality } from './Quality'
 import { HistoryData } from './HistoryData'
+import { RestResource } from './RestResource'
 
-export interface HistoryRecord {
+export interface HistoryRecord extends RestResource {
   episodeId: number
   movieId: number
   seriesId: number
@@ -14,5 +15,4 @@ export interface HistoryRecord {
   eventType: string
   data: HistoryData
   movie: Movie
-  id: number
 }
