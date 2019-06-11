@@ -1,7 +1,6 @@
 stages:
+- build
 - test
-
-image: node:latest
 
 cache:
   paths:
@@ -16,8 +15,14 @@ services:
 - name: nativecode/test-sonarr:latest
   alias: test-sonarr
 
+build:
+  stage: build
+  script:
+  - ./build
+
 test:
   stage: test
+  image: node:latest
   script:
   - ./wait-for test-radarr 7878
   - ./wait-for test-sonarr 8989
