@@ -1,30 +1,29 @@
 image: node:latest
 
 stages:
-- test
-- publish
+  - test
+  - publish
 
 cache:
   paths:
-  - node_modules
-
-services:
-- docker.io/nativecode/test-radarr:latest
-- docker.io/nativecode/test-sonarr:latest
+    - node_modules
 
 before_script:
-- npm install
+  - npm install
 
 test:
   stage: test
+  services:
+    - docker.io/nativecode/test-radarr:latest
+    - docker.io/nativecode/test-sonarr:latest
   script:
-  - cat /etc/hosts
-  - ./wait-for nativecode-test-radarr 7878
-  - ./wait-for nativecode-test-sonarr 8989
-  - ./test
+    - cat /etc/hosts
+    - ./wait-for nativecode-test-radarr 7878
+    - ./wait-for nativecode-test-sonarr 8989
+    - ./test
 
 publish:
   stage: publish
   script:
-  - ./build
-  - ./publish
+    - ./build
+    - ./publish
