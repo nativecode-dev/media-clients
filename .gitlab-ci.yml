@@ -1,3 +1,5 @@
+image: node:latest
+
 stages:
 - build
 - test
@@ -22,7 +24,6 @@ build:
 
 test:
   stage: test
-  image: node:latest
   script:
   - ./wait-for test-radarr 7878
   - ./wait-for test-sonarr 8989

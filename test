@@ -5,7 +5,3 @@ if [ -z ${CI} ]; then
 fi
 
 npm run test
-
-if [ ${CI} ]; then
-  npm run coverage
-fi
