@@ -50,7 +50,12 @@ export class MovieResource extends Resource {
   }
 
   remove(id: number, deleteFiles: boolean = false): Promise<void> {
-    return this._delete('movie/{:id}', { deleteFiles }, [
+    return this._delete('movie/{:id}', [
+      {
+        key: 'deleteFiles',
+        type: ResourceRouteParamType.Query,
+        value: deleteFiles,
+      },
       {
         key: 'id',
         type: ResourceRouteParamType.RouteParameter,

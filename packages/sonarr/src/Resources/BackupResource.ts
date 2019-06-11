@@ -1,6 +1,6 @@
 import { URL } from 'url'
 import { Lincoln } from '@nofrills/lincoln'
-import { Resource } from '@nativecode/rest-client'
+import { Resource, ResourceRouteParamType } from '@nativecode/rest-client'
 
 import { Backup } from '../Models/Backup'
 
@@ -12,5 +12,15 @@ export class BackupResource extends Resource {
 
   list(): Promise<Backup[]> {
     return this._get<Backup[]>('system/backup')
+  }
+
+  async remove(id: number): Promise<void> {
+    await this._delete('v3/system/backup/{:id}', [
+      {
+        key: 'id',
+        type: ResourceRouteParamType.RouteParameter,
+        value: id,
+      },
+    ])
   }
 }

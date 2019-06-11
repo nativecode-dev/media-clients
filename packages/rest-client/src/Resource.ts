@@ -58,7 +58,7 @@ export class Resource {
     }
   }
 
-  protected async _delete<T, R>(route: string, resource: T, params?: ResourceRouteParam[]): Promise<R> {
+  protected async _delete<R>(route: string, params?: ResourceRouteParam[]): Promise<R> {
     try {
       const url = this.getFormattedUrl(route, params).href
       const request: RequestInfo = new Request(url, {
