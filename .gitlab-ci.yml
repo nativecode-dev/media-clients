@@ -8,17 +8,18 @@ cache:
   paths:
   - node_modules
 
+services:
+- nativecode/test-radarr:latest
+- nativecode/test-sonarr:latest
+
 before_script:
 - npm install
 
 test:
   stage: test
-  services:
-  - nativecode/test-radarr:latest
-  - nativecode/test-sonarr:latest
   script:
-  - ./wait-for test-radarr 7878
-  - ./wait-for test-sonarr 8989
+  - ./wait-for nativecode-test-radarr 7878
+  - ./wait-for nativecode-test-sonarr 8989
   - ./test
 
 publish:
