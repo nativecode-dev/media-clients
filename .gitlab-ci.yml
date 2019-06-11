@@ -1,0 +1,15 @@
+image: node:latest
+
+services:
+  - name: nativecode/test-radarr:latest
+    alias: test-radarr
+  - name: nativecode/test-sonarr:latest
+    alias: test-sonarr
+
+cache:
+  paths:
+    - node_modules
+
+test:
+  script:
+    - ./test
