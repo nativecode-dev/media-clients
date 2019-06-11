@@ -18,6 +18,7 @@ before_script:
 test:
   stage: test
   script:
+  - cat /etc/hosts
   - ./wait-for nativecode-test-radarr 7878
   - ./wait-for nativecode-test-sonarr 8989
   - ./test
