@@ -1,7 +1,6 @@
 image: node:latest
 
 stages:
-- build
 - test
 - publish
 
@@ -12,18 +11,11 @@ cache:
 before_script:
 - npm install
 
-build:
-  stage: build
-  script:
-  - ./build
-
 test:
   stage: test
   services:
-  - name: nativecode/test-radarr:latest
-    alias: test-radarr
-  - name: nativecode/test-sonarr:latest
-    alias: test-sonarr
+  - nativecode/test-radarr:latest
+  - nativecode/test-sonarr:latest
   script:
   - ./wait-for test-radarr 7878
   - ./wait-for test-sonarr 8989
@@ -32,4 +24,5 @@ test:
 publish:
   stage: publish
   script:
+  - ./build
   - ./publish
