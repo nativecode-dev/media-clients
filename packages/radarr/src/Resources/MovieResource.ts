@@ -4,7 +4,6 @@ import { Resource, ResourceRouteParamType } from '@nativecode/rest-client'
 
 import { Movie } from '../Models/Movie'
 import { MovieInfo } from '../Models/MovieInfo'
-import { emitKeypressEvents } from 'readline'
 
 export class MovieResource extends Resource {
   constructor(url: URL, apikey: string, logger: Lincoln) {
