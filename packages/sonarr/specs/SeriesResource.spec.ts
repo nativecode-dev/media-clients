@@ -9,15 +9,15 @@ const url = new URL('http://test-sonarr.in.nativecode.com/api')
 const apikey: string = process.env.SONARR_APIKEY || 'invalid_key'
 
 describe('when using SeriesResource', () => {
-  const seriesResource = new SeriesResource(url, apikey, Logger.extend('series-resource'))
+  const sut = new SeriesResource(url, apikey, Logger.extend('series-resource'))
 
   it('should get list of series', async () => {
-    const series = await seriesResource.list()
-    expect(series.length).to.equal(1)
+    const series = await sut.list()
+    expect(series).to.not.be.empty
   })
 
   it('should get single series', async () => {
-    const series = await seriesResource.id(1)
+    const series = await sut.id(1)
     expect(series.title).to.equal('Transformers')
   })
 })

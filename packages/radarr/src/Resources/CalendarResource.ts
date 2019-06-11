@@ -11,16 +11,16 @@ export class CalendarResource extends Resource {
   }
 
   list(start?: Date, end?: Date): Promise<Movie[]> {
-    return this.get<Movie[]>('calendar', [
+    return this._get<Movie[]>('calendar', [
       {
         key: 'start',
         type: ResourceRouteParamType.Query,
-        value: start,
+        value: start || '',
       },
       {
         key: 'end',
         type: ResourceRouteParamType.Query,
-        value: end,
+        value: end || '',
       },
     ])
   }

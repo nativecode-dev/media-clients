@@ -1,7 +1,6 @@
 import 'isomorphic-fetch'
 
 import { URL } from 'url'
-import { base64StringToBlob } from 'blob-util'
 import { Lincoln } from '@nofrills/lincoln'
 
 import { ResourceHeader } from './ResourceHeader'
@@ -38,7 +37,7 @@ export class Resource {
     return this.url
   }
 
-  protected async get<T>(route: string, params?: ResourceRouteParam[]): Promise<T> {
+  protected async _get<T>(route: string, params?: ResourceRouteParam[]): Promise<T> {
     try {
       const url = this.getFormattedUrl(route, params).href
       const request: RequestInfo = new Request(url, {
@@ -48,18 +47,18 @@ export class Resource {
       const response = await fetch(request)
 
       if (response.ok === false) {
-        this.logger.debug(JSON.stringify(request, null, 2))
-        throw new Error(`${response.status}: ${response.statusText}`)
+        this.logger.error(JSON.stringify(request, null, 2))
+        return Promise.reject(new Error(`${response.status}: ${response.statusText} @ ${url}`))
       }
 
       return response.json()
     } catch (error) {
       this.logger.error(error)
-      throw error
+      return Promise.reject(error)
     }
   }
 
-  protected async delete<T, R>(route: string, resource: T, params?: ResourceRouteParam[]): Promise<R> {
+  protected async _delete<T, R>(route: string, resource: T, params?: ResourceRouteParam[]): Promise<R> {
     try {
       const url = this.getFormattedUrl(route, params).href
       const request: RequestInfo = new Request(url, {
@@ -69,83 +68,80 @@ export class Resource {
       const response = await fetch(request)
 
       if (response.ok === false) {
-        this.logger.debug(JSON.stringify(request, null, 2))
-        throw new Error(`${response.status}: ${response.statusText}`)
+        this.logger.error(JSON.stringify(request, null, 2))
+        return Promise.reject(new Error(`${response.status}: ${response.statusText} @ ${url}`))
       }
 
       return response.json()
     } catch (error) {
       this.logger.error(error)
-      throw error
+      return Promise.reject(error)
     }
   }
 
-  protected async patch<T, R>(route: string, resource: T, params?: ResourceRouteParam[]): Promise<R> {
+  protected async _patch<T, R>(route: string, resource: T, params?: ResourceRouteParam[]): Promise<R> {
     try {
       const url = this.getFormattedUrl(route, params).href
-      const contents = btoa(JSON.stringify(resource))
       const request: RequestInfo = new Request(url, {
-        body: base64StringToBlob(contents),
+        body: this.json(resource),
         headers: this.headers(),
         method: 'PATCH',
       })
       const response = await fetch(request)
 
       if (response.ok === false) {
-        this.logger.debug(JSON.stringify(request, null, 2))
-        throw new Error(`${response.status}: ${response.statusText}`)
+        this.logger.error(JSON.stringify(request, null, 2))
+        return Promise.reject(new Error(`${response.status}: ${response.statusText} @ ${url}`))
       }
 
       return response.json()
     } catch (error) {
       this.logger.error(error)
-      throw error
+      return Promise.reject(error)
     }
   }
 
-  protected async post<T, R>(route: string, resource: T, params?: ResourceRouteParam[]): Promise<R> {
+  protected async _post<T, R>(route: string, resource: T, params?: ResourceRouteParam[]): Promise<R> {
     try {
       const url = this.getFormattedUrl(route, params).href
-      const contents = btoa(JSON.stringify(resource))
       const request: RequestInfo = new Request(url, {
-        body: base64StringToBlob(contents),
+        body: this.json(resource),
         headers: this.headers(),
         method: 'POST',
       })
       const response = await fetch(request)
 
       if (response.ok === false) {
-        this.logger.debug(JSON.stringify(request, null, 2))
-        throw new Error(`${response.status}: ${response.statusText}`)
+        this.logger.error(JSON.stringify(request, null, 2))
+        return Promise.reject(new Error(`${response.status}: ${response.statusText} @ ${url}`))
       }
 
       return response.json()
     } catch (error) {
       this.logger.error(error)
-      throw error
+      return Promise.reject(error)
     }
   }
 
-  protected async put<T, R>(route: string, resource: T, params?: ResourceRouteParam[]): Promise<R> {
+  protected async _put<T, R>(route: string, resource: T, params?: ResourceRouteParam[]): Promise<R> {
     try {
       const url = this.getFormattedUrl(route, params).href
-      const contents = btoa(JSON.stringify(resource))
       const request: RequestInfo = new Request(url, {
-        body: base64StringToBlob(contents),
+        body: this.json(resource),
         headers: this.headers(),
         method: 'PUT',
       })
       const response = await fetch(request)
 
       if (response.ok === false) {
-        this.logger.debug(JSON.stringify(request, null, 2))
-        throw new Error(`${response.status}: ${response.statusText}`)
+        this.logger.error(JSON.stringify(request, null, 2))
+        return Promise.reject(new Error(`${response.status}: ${response.statusText} @ ${url}`))
       }
 
       return response.json()
     } catch (error) {
       this.logger.error(error)
-      throw error
+      return Promise.reject(error)
     }
   }
 
@@ -169,7 +165,11 @@ export class Resource {
       .filter(param => param.type === ResourceRouteParamType.Query)
       .reduce(
         (result, param) => {
-          result.push(`${param.key}=${param.value}`)
+          const query = `${param.key}=${param.value}`
+          if (result.length === 1) {
+            return result
+          }
+          result.push(query)
           return result
         },
         [queries.length ? '?' : ''],
@@ -195,5 +195,9 @@ export class Resource {
       headers.append(header.name, header.value)
     })
     return headers
+  }
+
+  private json<T>(resource: T): string {
+    return JSON.stringify(resource)
   }
 }

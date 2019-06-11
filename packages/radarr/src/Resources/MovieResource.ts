@@ -3,7 +3,7 @@ import { Lincoln } from '@nofrills/lincoln'
 import { Resource, ResourceRouteParamType } from '@nativecode/rest-client'
 
 import { Movie } from '../Models/Movie'
-import { AddMovie } from '../Models/AddMovie'
+import { MovieInfo } from '../Models/MovieInfo'
 
 export class MovieResource extends Resource {
   constructor(url: URL, apikey: string, logger: Lincoln) {
@@ -11,12 +11,12 @@ export class MovieResource extends Resource {
     this.setHeader('X-Api-Key', apikey)
   }
 
-  add(movie: AddMovie): Promise<Movie> {
-    return this.post('movie', movie)
+  add(movie: MovieInfo): Promise<Movie> {
+    return this._post('movie', movie)
   }
 
   id(id: number): Promise<Movie> {
-    return this.get('movie/{:id}', [
+    return this._get('movie/{:id}', [
       {
         key: 'id',
         type: ResourceRouteParamType.RouteParameter,
@@ -26,14 +26,26 @@ export class MovieResource extends Resource {
   }
 
   list(): Promise<Movie[]> {
-    return this.get('movie')
+    return this._get('movie')
   }
 
-  remove(id: number): Promise<void> {
-    return this.delete('movie/{:id}', id)
+  remove(id: number, deleteFiles: boolean = false): Promise<void> {
+    return this._delete('movie/{:id}', { deleteFiles }, [
+      {
+        key: 'id',
+        type: ResourceRouteParamType.RouteParameter,
+        value: id,
+      },
+    ])
   }
 
   update(movie: Movie): Promise<Movie> {
-    return this.put('movie/{:id}', movie)
+    return this._put('movie/{:id}', movie, [
+      {
+        key: 'id',
+        type: ResourceRouteParamType.RouteParameter,
+        value: movie.id,
+      },
+    ])
   }
 }

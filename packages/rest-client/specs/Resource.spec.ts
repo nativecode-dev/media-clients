@@ -4,6 +4,7 @@ import expect from './expect'
 import Logger from './logging'
 
 import { URL } from 'url'
+import { step } from 'mocha-steps'
 
 import { Resource } from '../src/Resource'
 import { ResourceRouteParamType } from '../src/ResourceRouteParamType'
@@ -22,35 +23,35 @@ class RestApiResource extends Resource {
   }
 
   all(): Promise<Employee[]> {
-    return this.get<Employee[]>('employees')
+    return this._get<Employee[]>('employees')
   }
 
   create(employee: Employee): Promise<Employee> {
-    return this.post('create', employee)
+    return this._post('create', employee)
   }
 
   id(id: number): Promise<Employee> {
-    return this.get<Employee>('employee/{:id}', [{ key: 'id', type: ResourceRouteParamType.RouteParameter, value: id }])
+    return this._get<Employee>('employee/{:id}', [{ key: 'id', type: ResourceRouteParamType.RouteParameter, value: id }])
   }
 
   update(employee: Employee): Promise<Employee> {
-    return this.put('update/{:id}', employee, [
+    return this._put('update/{:id}', employee, [
       { key: 'id', type: ResourceRouteParamType.RouteParameter, value: employee.id },
     ])
   }
 }
 
 describe('when using Resource type', () => {
-  const resource: RestApiResource = new RestApiResource()
+  const sut: RestApiResource = new RestApiResource()
+  let employees: Employee[]
 
-  it('should GET all employees', async () => {
-    const employees = await resource.all()
+  step('should GET all employees', async () => {
+    employees = await sut.all()
     expect(employees).not.empty
   })
 
-  it('should GET single employee', async () => {
-    const employees = await resource.all()
-    const employee = await resource.id(employees[0].id)
+  step('should GET single employee', async () => {
+    const employee = await sut.id(employees[0].id)
     expect(employee).not.empty
   })
 })

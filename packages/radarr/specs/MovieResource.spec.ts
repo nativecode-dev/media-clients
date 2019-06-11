@@ -1,23 +1,71 @@
 import expect from './expect'
 import Logger from './logging'
 
-import { URL } from 'url'
+import { step } from 'mocha-steps'
 
+import { APIKEY, ENDPOINT } from './env'
+import { Movie } from '../src/Models/Movie'
+import { MovieInfo } from '../src/Models/MovieInfo'
 import { MovieResource } from '../src/Resources/MovieResource'
 
-const url = new URL('http://test-radarr.in.nativecode.com/api')
-const apikey: string = process.env.RADARR_APIKEY || 'invalid_key'
+describe('when using the MovieResource class', () => {
+  const sut = new MovieResource(ENDPOINT, APIKEY, Logger.extend('movie-resource'))
 
-describe('when using MovieResource', () => {
-  const movieResource = new MovieResource(url, apikey, Logger.extend('movie-resource'))
+  let movie: Movie
+  let movies: Movie[]
 
-  it('should get list of movies', async () => {
-    const movies = await movieResource.list()
-    expect(movies.length).to.equal(1)
+  it('should fail to find movie', () => {
+    expect(sut.id(0)).to.eventually.be.rejected
   })
 
-  it('should get single movie', async () => {
-    const movie = await movieResource.id(1)
+  it('should fail to add movie', () => {
+    const add: MovieInfo = {
+      images: [],
+      qualityProfileId: 1,
+      path: '/movies/',
+      title: '',
+      titleSlug: '',
+      tmdbId: 0,
+      year: 1900,
+    }
+
+    expect(sut.add(add)).to.eventually.be.rejected
+  })
+
+  step('should get list of movies', async () => {
+    movies = await sut.list()
+    expect(movies).to.not.be.empty
+  })
+
+  step('should get single movie', async () => {
+    const movie = await sut.id(1)
     expect(movie.title).to.equal('Banana')
+  })
+
+  step('should add movie', async () => {
+    const add: MovieInfo = {
+      images: [],
+      qualityProfileId: 1,
+      path: '/movies/21 Bridges (2019)/',
+      title: '21 Bridges',
+      titleSlug: '21 Bridges',
+      tmdbId: 535292,
+      year: 2019,
+    }
+
+    const existing = movies.find(movie => movie.title === add.title)
+
+    if (existing === undefined) {
+      movie = await sut.add(add)
+
+      expect(movie.id).does.not.equal(0)
+      expect(movie.title).to.equal(add.title)
+    } else {
+      movie = existing
+    }
+  })
+
+  step('should delete added movie', () => {
+    expect(sut.remove(movie.id)).to.eventually.not.be.rejected
   })
 })

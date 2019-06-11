@@ -1,6 +1,6 @@
 import { Image } from './Image'
 
-export interface AddMovie {
+export interface MovieInfo {
   title: string
   qualityProfileId: number
   titleSlug: string
