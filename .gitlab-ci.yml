@@ -1,3 +1,5 @@
+image: node:apline
+
 cache:
   paths:
   - node_modules
@@ -6,7 +8,6 @@ before_script:
 - npm install
 
 test:
-  image: node:apline
   services:
   - name: nativecode/test-radarr:latest
     alias: test-radarr
