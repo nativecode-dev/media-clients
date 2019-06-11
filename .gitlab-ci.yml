@@ -1,4 +1,4 @@
-image: node:apline
+image: node:latest
 
 cache:
   paths:
