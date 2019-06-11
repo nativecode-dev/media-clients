@@ -4,6 +4,7 @@ import { Resource, ResourceRouteParamType } from '@nativecode/rest-client'
 
 import { Movie } from '../Models/Movie'
 import { MovieInfo } from '../Models/MovieInfo'
+import { emitKeypressEvents } from 'readline'
 
 export class MovieResource extends Resource {
   constructor(url: URL, apikey: string, logger: Lincoln) {
@@ -25,8 +26,28 @@ export class MovieResource extends Resource {
     ])
   }
 
+  imdb(imdbId: string): Promise<Movie[]> {
+    return this._get('movie/lookup/imdb', [
+      {
+        key: 'imdbId',
+        type: ResourceRouteParamType.Query,
+        value: imdbId,
+      },
+    ])
+  }
+
   list(): Promise<Movie[]> {
     return this._get('movie')
+  }
+
+  lookup(term: string): Promise<Movie[]> {
+    return this._get('movie/lookup', [
+      {
+        key: 'term',
+        type: ResourceRouteParamType.Query,
+        value: term,
+      },
+    ])
   }
 
   remove(id: number, deleteFiles: boolean = false): Promise<void> {
@@ -35,6 +56,16 @@ export class MovieResource extends Resource {
         key: 'id',
         type: ResourceRouteParamType.RouteParameter,
         value: id,
+      },
+    ])
+  }
+
+  tmdb(tmdbId: number): Promise<Movie[]> {
+    return this._get('movie/lookup/tmdb', [
+      {
+        key: 'tmdbId',
+        type: ResourceRouteParamType.Query,
+        value: tmdbId,
       },
     ])
   }

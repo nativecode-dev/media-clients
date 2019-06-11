@@ -32,6 +32,18 @@ describe('when using the MovieResource class', () => {
     expect(sut.add(add)).to.eventually.be.rejected
   })
 
+  step('should get movie by IMDb ID', async () => {
+    expect(sut.imdb('tt1814643')).to.eventually.not.be.empty
+  })
+
+  step('should get movie by TMDB ID', async () => {
+    expect(sut.tmdb(535292)).to.eventually.not.be.empty
+  })
+
+  step('should get movie by lookup', async () => {
+    expect(sut.lookup('21 Bridges')).to.eventually.not.be.empty
+  })
+
   step('should get list of movies', async () => {
     movies = await sut.list()
     expect(movies).to.not.be.empty
