@@ -6,7 +6,7 @@ before_script:
 - npm install
 
 test:
-  image: node:current-apline
+  image: node:apline
   services:
   - name: nativecode/test-radarr:latest
     alias: test-radarr
