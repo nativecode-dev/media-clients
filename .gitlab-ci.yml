@@ -9,8 +9,8 @@ cache:
   - node_modules
 
 services:
-- nativecode/test-radarr:latest
-- nativecode/test-sonarr:latest
+- docker.io/nativecode/test-radarr:latest
+- docker.io/nativecode/test-sonarr:latest
 
 before_script:
 - npm install
