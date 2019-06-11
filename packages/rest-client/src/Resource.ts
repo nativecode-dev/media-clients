@@ -163,18 +163,12 @@ export class Resource {
 
     url.search = params
       .filter(param => param.type === ResourceRouteParamType.Query)
-      .reduce(
-        (result, param) => {
-          const query = `${param.key}=${param.value}`
-          if (result.length === 1) {
-            return result
-          }
-          result.push(query)
-          return result
-        },
-        [queries.length ? '?' : ''],
-      )
-      .join('')
+      .filter(param => param.value)
+      .reduce<string[]>((result, param) => {
+        result.push(`${param.key}=${param.value}`)
+        return result
+      }, [])
+      .join('&')
 
     this.logger.debug(url.href)
 
