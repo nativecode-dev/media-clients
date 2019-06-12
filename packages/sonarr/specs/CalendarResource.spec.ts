@@ -12,7 +12,7 @@ describe('when using CalendarResource', () => {
   })
 
   it('should find first episode of the first season of 24', async () => {
-    const episodes = await sut.calendar.list('11/05/2001', '11/06/2001')
+    const episodes = await sut.calendar.list('11/05/2001', '11/07/2001')
     const found = episodes.filter(episode => episode.series.title === '24')
     expect(found.length).to.equal(1)
   })

@@ -2,4 +2,7 @@
 
 ./build
 npm run test
-# npm run test-coverage
+
+#if [ ${CI} ]; then
+#  npm run test-coverage
+#fi
