@@ -1,3 +1,5 @@
+image: node:latest
+
 stages:
   - test
   - publish
@@ -11,19 +13,20 @@ before_script:
 
 test:
   stage: test
-  image: node:latest
   services:
-    - nativecode/test-radarr:latest
-    - nativecode/test-sonarr:latest
+    - name: nativecode/test-radarr:latest
+      alias: test-radarr
+    - name: nativecode/test-sonarr:latest
+      alias: test-sonarr
   script:
     - cat /etc/hosts
-    - ./wait-for nativecode-test-radarr 7878
-    - ./wait-for nativecode-test-sonarr 8989
+    - getent hosts $HOSTNAME | awk '{ print $1 }'
+    - ./wait-for test-radarr 7878
+    - ./wait-for test-sonarr 8989
     - ./test
 
 publish:
   stage: publish
-  image: node:latest
   script:
     - ./build
     - ./publish
