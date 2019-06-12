@@ -20,9 +20,9 @@ test:
       alias: test-sonarr
   script:
     - cat /etc/hosts
-    - getent hosts $HOSTNAME | awk '{ print $1 }'
-    - ./wait-for test-radarr 7878
-    - ./wait-for test-sonarr 8989
+    - export RUNNER_IPADDRESS=getent hosts $HOSTNAME | awk '{ print $1 }'
+    - ./wait-for ${RUNNER_IPADDRESS} 7878
+    - ./wait-for ${RUNNER_IPADDRESS} 8989
     - ./test
 
 publish:
