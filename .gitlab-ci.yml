@@ -20,7 +20,7 @@ test:
       alias: test-sonarr
   script:
     - cat /etc/hosts
-    - export RUNNER_IPADDRESS=getent hosts $HOSTNAME | awk '{ print $1 }'
+    - export RUNNER_IPADDRESS=$(getent hosts $HOSTNAME | awk '{ print $1 }')
     - ./wait-for ${RUNNER_IPADDRESS} 7878
     - ./wait-for ${RUNNER_IPADDRESS} 8989
     - ./test
