@@ -1,14 +1,14 @@
 #!/bin/bash
 
-echo "** Setting git author"
 git config --global user.email "opensource@nativecode.com"
 git config --global user.name "automaton"
 
-echo "** Set origin url"
 git remote set-url origin git@git.nativecode.net:nativecode/media-clients.git
 
-echo "** Checkout ${CI_COMMIT_REF_NAME}"
-git checkout ${CI_COMMIT_REF_NAME}
-git checkout package.json
+echo " Checkout ${CI_COMMIT_REF_NAME}"
+echo "-------------------------------------------------------------------------------"
+# git checkout ${CI_COMMIT_REF_NAME}
+# git checkout package.json
 
+echo "-------------------------------------------------------------------------------"
 git status
