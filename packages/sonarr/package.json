@@ -1,6 +1,7 @@
 {
   "author": "opensource@nativecode.com",
   "description": "Sonarr REST client",
+  "homepage": "https://github.com/nativecode-dev/media-clients",
   "license": "MIT",
   "main": "lib/index.js",
   "name": "@nativecode/sonarr",
@@ -49,7 +50,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@git.nativecode.net:nativecode/media-clients.git"
+    "url": "https://github.com/nativecode-dev/media-clients"
   },
   "scripts": {
     "build": "tsc --project tsconfig.json",

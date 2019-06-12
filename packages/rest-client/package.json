@@ -1,6 +1,7 @@
 {
   "author": "opensource@nativecode.com",
   "description": "REST client",
+  "homepage": "https://github.com/nativecode-dev/media-clients",
   "license": "MIT",
   "main": "lib/index.js",
   "name": "@nativecode/rest-client",
@@ -44,7 +45,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@git.nativecode.net:nativecode/media-clients.git"
+    "url": "https://github.com/nativecode-dev/media-clients"
   },
   "scripts": {
     "build": "tsc --project tsconfig.json",
