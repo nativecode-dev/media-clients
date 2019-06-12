@@ -9,7 +9,8 @@ cache:
     - node_modules
 
 before_script:
-  - npx git-ssh-env setup
+  - npm install -g git-ssh-key
+  - git-ssh-env setup
   - npm install
 
 test:
