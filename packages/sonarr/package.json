@@ -54,5 +54,8 @@
   "scripts": {
     "build": "tsc --project tsconfig.json",
     "clean": "rimraf lib && rimraf tsconfig.tsbuildinfo"
+  },
+  "sonarr": {
+    "version": "3.0.1.506"
   }
 }

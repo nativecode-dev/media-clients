@@ -1,6 +1,7 @@
 import { URL } from 'url'
 import { Lincoln } from '@nofrills/lincoln'
 import { Resource, ResourceRouteParamType } from '@nativecode/rest-client'
+
 import { Command } from '../Models/Command'
 
 export class CommandResource extends Resource {
