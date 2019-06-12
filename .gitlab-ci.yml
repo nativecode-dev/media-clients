@@ -10,7 +10,7 @@ cache:
 
 before_script:
   - npm install
-  - ./node_modules/.bin/git-ssh-env setup
+  - ./node_modules/.bin/git-ssh-key setup
 
 test:
   stage: test
