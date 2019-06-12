@@ -19,11 +19,11 @@ test:
   script:
     - export RADARR_ENDPOINT="http://${HOSTNAME}:7878/api"
     - export SONARR_ENDPOINT="http://${HOSTNAME}:8989/api"
-    - echo ${RADARR_APIKEY}
-    - echo ${SONARR_APIKEY}
     - ./wait-for ${HOSTNAME} 7878
     - ./wait-for ${HOSTNAME} 8989
     - ./test
+  variables:
+    DEBUG: "nativecode:*"
 
 publish:
   stage: publish
