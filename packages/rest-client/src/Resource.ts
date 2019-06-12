@@ -8,6 +8,7 @@ import { ResourceRouteParam, ResourceRouteParams } from './ResourceRouteParam'
 import { ResourceRouteParamType } from './ResourceRouteParamType'
 
 export interface ResourceOptions {
+  credentials?: RequestCredentials
   headers: ResourceHeader[]
 }
 
@@ -17,7 +18,7 @@ const DefaultOptions: () => ResourceOptions = () => {
   }
 }
 
-export class Resource {
+export abstract class Resource {
   protected readonly logger: Lincoln
   private readonly options: ResourceOptions
   private readonly url: URL
@@ -41,6 +42,7 @@ export class Resource {
     try {
       const url = this.getFormattedUrl(route, params).href
       const request: RequestInfo = new Request(url, {
+        credentials: this.options.credentials,
         headers: this.headers(),
         method: 'GET',
       })
@@ -58,10 +60,11 @@ export class Resource {
     }
   }
 
-  protected async _delete<T, R>(route: string, resource: T, params?: ResourceRouteParam[]): Promise<R> {
+  protected async _delete<R>(route: string, params?: ResourceRouteParam[]): Promise<R> {
     try {
       const url = this.getFormattedUrl(route, params).href
       const request: RequestInfo = new Request(url, {
+        credentials: this.options.credentials,
         headers: this.headers(),
         method: 'DELETE',
       })
@@ -84,6 +87,7 @@ export class Resource {
       const url = this.getFormattedUrl(route, params).href
       const request: RequestInfo = new Request(url, {
         body: this.json(resource),
+        credentials: this.options.credentials,
         headers: this.headers(),
         method: 'PATCH',
       })
@@ -106,6 +110,7 @@ export class Resource {
       const url = this.getFormattedUrl(route, params).href
       const request: RequestInfo = new Request(url, {
         body: this.json(resource),
+        credentials: this.options.credentials,
         headers: this.headers(),
         method: 'POST',
       })
@@ -128,6 +133,7 @@ export class Resource {
       const url = this.getFormattedUrl(route, params).href
       const request: RequestInfo = new Request(url, {
         body: this.json(resource),
+        credentials: this.options.credentials,
         headers: this.headers(),
         method: 'PUT',
       })
@@ -159,22 +165,14 @@ export class Resource {
 
     const url = new URL(routeUrl)
 
-    const queries = params.filter(param => param.type === ResourceRouteParamType.Query)
-
     url.search = params
       .filter(param => param.type === ResourceRouteParamType.Query)
-      .reduce(
-        (result, param) => {
-          const query = `${param.key}=${param.value}`
-          if (result.length === 1) {
-            return result
-          }
-          result.push(query)
-          return result
-        },
-        [queries.length ? '?' : ''],
-      )
-      .join('')
+      .filter(param => param.value)
+      .reduce<string[]>((result, param) => {
+        result.push(`${param.key}=${param.value}`)
+        return result
+      }, [])
+      .join('&')
 
     this.logger.debug(url.href)
 

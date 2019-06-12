@@ -6,6 +6,15 @@
     "run": {
       "loglevel": "silent",
       "stream": true
+    },
+    "publish": {
+      "allowBranch": [
+        "develop",
+        "master"
+      ],
+      "canary": true,
+      "conventionalCommits": true,
+      "message": "chore(release): publish"
     }
   },
   "packages": [

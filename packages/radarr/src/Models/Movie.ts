@@ -1,9 +1,10 @@
 import { Image } from './Image'
 import { Rating } from './Rating'
 import { MovieFile } from './MovieFile'
+import { RestResource } from './RestResource'
 import { AlternativeTitle } from './AlternativeTitle'
 
-export interface Movie {
+export interface Movie extends RestResource {
   title: string
   alternativeTitles: AlternativeTitle[]
   secondaryYearSourceId: number
@@ -37,5 +38,4 @@ export interface Movie {
   ratings: Rating
   movieFile: MovieFile
   qualityProfileId: number
-  id: number
 }

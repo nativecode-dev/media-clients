@@ -25,16 +25,51 @@ export class MovieResource extends Resource {
     ])
   }
 
+  imdb(imdbId: string): Promise<Movie[]> {
+    return this._get('movie/lookup/imdb', [
+      {
+        key: 'imdbId',
+        type: ResourceRouteParamType.Query,
+        value: imdbId,
+      },
+    ])
+  }
+
   list(): Promise<Movie[]> {
     return this._get('movie')
   }
 
+  lookup(term: string): Promise<Movie[]> {
+    return this._get('movie/lookup', [
+      {
+        key: 'term',
+        type: ResourceRouteParamType.Query,
+        value: term,
+      },
+    ])
+  }
+
   remove(id: number, deleteFiles: boolean = false): Promise<void> {
-    return this._delete('movie/{:id}', { deleteFiles }, [
+    return this._delete('movie/{:id}', [
+      {
+        key: 'deleteFiles',
+        type: ResourceRouteParamType.Query,
+        value: deleteFiles,
+      },
       {
         key: 'id',
         type: ResourceRouteParamType.RouteParameter,
         value: id,
+      },
+    ])
+  }
+
+  tmdb(tmdbId: number): Promise<Movie[]> {
+    return this._get('movie/lookup/tmdb', [
+      {
+        key: 'tmdbId',
+        type: ResourceRouteParamType.Query,
+        value: tmdbId,
       },
     ])
   }

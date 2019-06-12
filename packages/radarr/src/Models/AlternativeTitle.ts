@@ -1,4 +1,6 @@
-export interface AlternativeTitle {
+import { RestResource } from './RestResource'
+
+export interface AlternativeTitle extends RestResource {
   sourceType: string
   movieId: number
   title: string
@@ -6,5 +8,4 @@ export interface AlternativeTitle {
   votes: number
   voteCount: number
   language: string
-  id: number
 }

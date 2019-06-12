@@ -16,7 +16,9 @@
     "@types/node": "^12.0.4",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
+    "coveralls": "^3.0.4",
     "cross-env": "^5.2.0",
+    "git-ssh-key": "^1.1.0",
     "lerna": "^3.14.1",
     "lerna-update-wizard": "^0.14.0",
     "mocha": "^6.1.4",
@@ -58,10 +60,10 @@
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
     "clean": "lerna run clean",
-    "format": "prettier --write \"packages/*/src/**/*.ts\"",
+    "coverage": "cross-env DEBUG= nyc report --reporter=text-lcov | coveralls",
+    "format": "prettier --loglevel silent --write \"packages/*/src/**/*.ts\"",
     "link": "lerna link",
     "lint": "tslint -c tslint.json --project tsconfig.json",
-    "release": "lerna publish",
-    "test": "cross-env DEBUG= nyc mocha --opts ./mocha.opts"
+    "test": "nyc mocha --opts ./mocha.opts"
   }
 }

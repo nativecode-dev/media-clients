@@ -10,17 +10,17 @@ export class CalendarResource extends Resource {
     this.setHeader('X-Api-Key', apikey)
   }
 
-  list(start?: Date, end?: Date): Promise<Movie[]> {
+  list(start?: string, end?: string): Promise<Movie[]> {
     return this._get<Movie[]>('calendar', [
-      {
-        key: 'start',
-        type: ResourceRouteParamType.Query,
-        value: start || '',
-      },
       {
         key: 'end',
         type: ResourceRouteParamType.Query,
         value: end || '',
+      },
+      {
+        key: 'start',
+        type: ResourceRouteParamType.Query,
+        value: start || '',
       },
     ])
   }

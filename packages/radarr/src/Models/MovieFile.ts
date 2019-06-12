@@ -1,7 +1,8 @@
 import { Quality } from './Quality'
 import { MediaInfo } from './MediaInfo'
+import { RestResource } from './RestResource'
 
-export interface MovieFile {
+export interface MovieFile extends RestResource {
   movieId: number
   relativePath: string
   size: number
@@ -9,5 +10,4 @@ export interface MovieFile {
   quality: Quality
   edition: string
   mediaInfo: MediaInfo
-  id: number
 }
