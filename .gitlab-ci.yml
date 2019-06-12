@@ -32,7 +32,7 @@ pre-publish:
   script:
     - git checkout ${CI_COMMIT_REF_NAME}
     - ./build
-    - ./lerna version --canary --yes
+    - ./lerna version --yes
     - ./lerna publish --canary --yes
 
 publish:
