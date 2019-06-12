@@ -2,8 +2,9 @@ import { Image } from './Image'
 import { Season } from './Season'
 import { Rating } from './Rating'
 import { AlternateTitle } from './AlternateTitle'
+import { RestResource } from './RestResource'
 
-export interface Series {
+export interface Series extends RestResource {
   title: string
   alternateTitles: AlternateTitle[]
   sortTitle: string
@@ -41,5 +42,4 @@ export interface Series {
   added: Date
   ratings: Rating
   qualityProfileId: number
-  id: number
 }
