@@ -1,5 +1,3 @@
-image: node:latest
-
 stages:
   - test
   - publish
@@ -13,9 +11,10 @@ before_script:
 
 test:
   stage: test
+  image: node:latest
   services:
-    - docker.io/nativecode/test-radarr:latest
-    - docker.io/nativecode/test-sonarr:latest
+    - nativecode/test-radarr:latest
+    - nativecode/test-sonarr:latest
   script:
     - cat /etc/hosts
     - ./wait-for nativecode-test-radarr 7878
@@ -24,6 +23,7 @@ test:
 
 publish:
   stage: publish
+  image: node:latest
   script:
     - ./build
     - ./publish
