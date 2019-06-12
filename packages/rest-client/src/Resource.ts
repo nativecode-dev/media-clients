@@ -8,6 +8,7 @@ import { ResourceRouteParam, ResourceRouteParams } from './ResourceRouteParam'
 import { ResourceRouteParamType } from './ResourceRouteParamType'
 
 export interface ResourceOptions {
+  credentials?: RequestCredentials
   headers: ResourceHeader[]
 }
 
@@ -17,7 +18,7 @@ const DefaultOptions: () => ResourceOptions = () => {
   }
 }
 
-export class Resource {
+export abstract class Resource {
   protected readonly logger: Lincoln
   private readonly options: ResourceOptions
   private readonly url: URL
@@ -41,6 +42,7 @@ export class Resource {
     try {
       const url = this.getFormattedUrl(route, params).href
       const request: RequestInfo = new Request(url, {
+        credentials: this.options.credentials,
         headers: this.headers(),
         method: 'GET',
       })
@@ -62,6 +64,7 @@ export class Resource {
     try {
       const url = this.getFormattedUrl(route, params).href
       const request: RequestInfo = new Request(url, {
+        credentials: this.options.credentials,
         headers: this.headers(),
         method: 'DELETE',
       })
@@ -84,6 +87,7 @@ export class Resource {
       const url = this.getFormattedUrl(route, params).href
       const request: RequestInfo = new Request(url, {
         body: this.json(resource),
+        credentials: this.options.credentials,
         headers: this.headers(),
         method: 'PATCH',
       })
@@ -106,6 +110,7 @@ export class Resource {
       const url = this.getFormattedUrl(route, params).href
       const request: RequestInfo = new Request(url, {
         body: this.json(resource),
+        credentials: this.options.credentials,
         headers: this.headers(),
         method: 'POST',
       })
@@ -128,6 +133,7 @@ export class Resource {
       const url = this.getFormattedUrl(route, params).href
       const request: RequestInfo = new Request(url, {
         body: this.json(resource),
+        credentials: this.options.credentials,
         headers: this.headers(),
         method: 'PUT',
       })

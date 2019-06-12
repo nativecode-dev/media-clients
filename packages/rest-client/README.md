@@ -1,11 +1,37 @@
 # `rest-client`
 
-> TODO: description
+Provides an abstract REST compatible resource class using `isomorphic-fetch` to perform operations.
+
+## Installation
+
+```sh
+npm install @nativecode/rest-client
+```
 
 ## Usage
 
-```
-const restClient = require('rest-client');
+```typescript
+import { Resource } from '@nativecode/rest-client'
 
-// TODO: DEMONSTRATE API
+export class RestResource extends Resource {
+  constructor(endpoint: URL, apikey: string, logger: Lincoln) {
+    super(endpoint, logger)
+    this.setHeader('x-api-key', apikey)
+  }
+
+  all(): Promise<Model[]> {
+    return this._get('models')
+  }
+
+  byId(id: number): Promise<Model> {
+    return this._get('models/{:id}', [
+      {
+        key: 'id',
+        type: RestResourceParamType.RouteParameter,
+        value: id,
+      }
+    ])
+  }
+}
+
 ```
