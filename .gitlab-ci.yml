@@ -28,5 +28,4 @@ publish:
   only:
     - master
   script:
-    - ./build
     - ./publish
