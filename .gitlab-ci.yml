@@ -41,4 +41,4 @@ publish:
   script:
     - ./scripts/setup-git
     - ./build
-    - ./lerna publish --yes --dist-tag latest
+    - ./lerna publish from-package --yes --dist-tag latest

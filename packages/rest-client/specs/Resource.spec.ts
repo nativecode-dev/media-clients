@@ -9,7 +9,7 @@ import { step } from 'mocha-steps'
 import { Resource } from '../src/Resource'
 import { ResourceRouteParamType } from '../src/ResourceRouteParamType'
 
-export interface Employee {
+interface Employee {
   id: number
   employee_name: string
   employee_salary: number
