@@ -32,7 +32,7 @@ pre-publish:
   script:
     - ./scripts/setup-git
     - ./build
-    - ./lerna publish --yes --canary --dist-tag next --preid next
+    - ./lerna publish --yes --canary --dist-tag next
 
 publish:
   stage: publish
