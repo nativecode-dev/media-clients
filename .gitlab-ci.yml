@@ -31,7 +31,6 @@ pre-publish:
     - develop
   script:
     - ./scripts/setup-git
-    - ./scripts/setup-ssh
     - ./build
     - ./lerna version --yes --preid next
     - ./lerna publish --yes --canary
@@ -42,7 +41,6 @@ publish:
     - tags
   script:
     - ./scripts/setup-git
-    - ./scripts/setup-ssh
     - ./build
     - ./lerna version --yes
     - ./lerna publish --yes
