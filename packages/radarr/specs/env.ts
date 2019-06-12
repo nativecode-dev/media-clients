@@ -10,4 +10,3 @@ function endpoint(): string {
 
 export const APIKEY: string = process.env.RADARR_APIKEY || 'invalid_key'
 export const ENDPOINT = new URL(endpoint())
-console.log(APIKEY)

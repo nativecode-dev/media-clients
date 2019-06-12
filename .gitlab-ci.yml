@@ -17,7 +17,6 @@ test:
     - nativecode/test-radarr:latest
     - nativecode/test-sonarr:latest
   script:
-    - export DEBUG="nativecode:*"
     - export RADARR_ENDPOINT="http://${HOSTNAME}:7878/api"
     - export SONARR_ENDPOINT="http://${HOSTNAME}:8989/api"
     - ./wait-for ${HOSTNAME} 7878
