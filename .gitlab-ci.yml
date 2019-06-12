@@ -28,6 +28,7 @@ pre-publish:
   stage: publish
   only:
     - develop
+    - master
   script:
     - git checkout ${CI_COMMIT_REF_NAME}
     - ./build

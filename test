@@ -3,6 +3,6 @@
 ./build
 npm run test
 
-#if [ ${CI} ]; then
-#  npm run test-coverage
-#fi
+if [ ${CI} ]; then
+  npm run coverage
+fi
