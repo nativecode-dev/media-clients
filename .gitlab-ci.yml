@@ -33,7 +33,7 @@ pre-publish:
   script:
     - ./scripts/setup-git
     - ./build
-    - ./lerna version --yes --preid next
+    - ./lerna version --yes --preid next --no-push
     - ./lerna publish --yes --canary
 
 publish:
