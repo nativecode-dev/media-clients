@@ -6,10 +6,6 @@
     "run": {
       "loglevel": "silent",
       "stream": true
-    },
-    "version": {
-      "conventionalCommits": true,
-      "message": "chore(publish): publish"
     }
   },
   "packages": [
