@@ -159,8 +159,6 @@ export class Resource {
 
     const url = new URL(routeUrl)
 
-    const queries = params.filter(param => param.type === ResourceRouteParamType.Query)
-
     url.search = params
       .filter(param => param.type === ResourceRouteParamType.Query)
       .filter(param => param.value)
