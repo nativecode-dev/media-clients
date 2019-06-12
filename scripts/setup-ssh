@@ -5,4 +5,7 @@ if [ ! -d ~/.ssh ]; then
   chmod 0700 ~/.ssh
 fi
 
-echo "${SSH_PRIVATE_KEY}" | tr -d '\r' | ssh-add - > /dev/null
+# echo "${SSH_PRIVATE_KEY}" | tr -d '\r' | ssh-add - > /dev/null
+echo "${SSH_PUBLIC_KEY}" > ~/.ssh/id_rsa.pub
+echo "${SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
+chmod 0600 ~/.ssh/id_rsa*
