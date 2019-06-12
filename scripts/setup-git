@@ -3,6 +3,7 @@
 git config --global user.email "opensource@nativecode.com"
 git config --global user.name "automaton"
 
-git remote add origin git@git.nativecode.net:nativecode/media-clients.git
+npx ssh-remote
+
 git checkout ${CI_COMMIT_REF_NAME}
 git checkout package.json
