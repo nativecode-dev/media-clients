@@ -17,11 +17,10 @@ test:
     - nativecode/test-radarr:latest
     - nativecode/test-sonarr:latest
   script:
-    - export RUNNER_IPADDRESS=$(getent hosts $HOSTNAME | awk '{ print $1 }')
-    - export RADARR_ENDPOINT="http://${RUNNER_IPADDRESS}:7878/api"
-    - export SONARR_ENDPOINT="http://${RUNNER_IPADDRESS}:8989/api"
-    - ./wait-for ${RUNNER_IPADDRESS} 7878
-    - ./wait-for ${RUNNER_IPADDRESS} 8989
+    - export RADARR_ENDPOINT="http://${HOSTNAME}:7878/api"
+    - export SONARR_ENDPOINT="http://${HOSTNAME}:8989/api"
+    - ./wait-for ${HOSTNAME} 7878
+    - ./wait-for ${HOSTNAME} 8989
     - ./test
 
 publish:
