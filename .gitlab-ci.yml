@@ -14,13 +14,12 @@ before_script:
 test:
   stage: test
   services:
-    - name: nativecode/test-radarr:latest
-      alias: test-radarr
-    - name: nativecode/test-sonarr:latest
-      alias: test-sonarr
+    - nativecode/test-radarr:latest
+    - nativecode/test-sonarr:latest
   script:
-    - cat /etc/hosts
     - export RUNNER_IPADDRESS=$(getent hosts $HOSTNAME | awk '{ print $1 }')
+    - export RADARR_ENDPOINT="http://${RUNNER_IPADDRESS}:7878/api"
+    - export SONARR_ENDPOINT="http://${RUNNER_IPADDRESS}:8989/api"
     - ./wait-for ${RUNNER_IPADDRESS} 7878
     - ./wait-for ${RUNNER_IPADDRESS} 8989
     - ./test
