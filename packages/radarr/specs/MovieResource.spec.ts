@@ -54,30 +54,32 @@ describe('when using the MovieResource class', () => {
     expect(movie.title).to.equal('Banana')
   })
 
-  step('should add movie', async () => {
-    const add: MovieInfo = {
-      images: [],
-      qualityProfileId: 1,
-      path: '/movies/21 Bridges (2019)/',
-      title: '21 Bridges',
-      titleSlug: '21 Bridges',
-      tmdbId: 535292,
-      year: 2019,
-    }
+  if (!process.env.CI) {
+    step('should add movie', async () => {
+      const add: MovieInfo = {
+        images: [],
+        qualityProfileId: 1,
+        path: '/movies/21 Bridges (2019)/',
+        title: '21 Bridges',
+        titleSlug: '21 Bridges',
+        tmdbId: 535292,
+        year: 2019,
+      }
 
-    const existing = movies.find(movie => movie.title === add.title)
+      const existing = movies.find(movie => movie.title === add.title)
 
-    if (existing === undefined) {
-      movie = await sut.movie.add(add)
+      if (existing === undefined) {
+        movie = await sut.movie.add(add)
 
-      expect(movie.id).does.not.equal(0)
-      expect(movie.title).to.equal(add.title)
-    } else {
-      movie = existing
-    }
-  })
+        expect(movie.id).does.not.equal(0)
+        expect(movie.title).to.equal(add.title)
+      } else {
+        movie = existing
+      }
+    })
 
-  step('should delete added movie', () => {
-    expect(sut.movie.remove(movie.id)).to.eventually.not.be.rejected
-  })
+    step('should delete added movie', () => {
+      expect(sut.movie.remove(movie.id)).to.eventually.not.be.rejected
+    })
+  }
 })
