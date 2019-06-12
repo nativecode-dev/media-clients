@@ -31,7 +31,8 @@ pre-publish:
   script:
     - git checkout ${CI_COMMIT_REF_NAME}
     - ./build
-    - ./scripts/publish-staged
+    - ./lerna version
+    - ./lerna publish --canary
 
 publish:
   stage: publish
@@ -40,4 +41,5 @@ publish:
   script:
     - git checkout ${CI_COMMIT_REF_NAME}
     - ./build
-    - ./scripts/publish
+    - ./lerna version
+    - ./lerna publish
