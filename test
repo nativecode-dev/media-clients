@@ -1,7 +1,4 @@
 #!/bin/bash
 
-if [ -z ${CI} ]; then
-  ./build
-fi
-
+./build
 npm run test
