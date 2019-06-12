@@ -25,6 +25,8 @@ test:
 
 publish:
   stage: publish
+  only:
+    - master
   script:
     - ./build
     - ./publish
