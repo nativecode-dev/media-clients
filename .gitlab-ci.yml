@@ -34,8 +34,7 @@ pre-publish:
   script:
     - ./scripts/setup-git
     - ./build
-    - ./lerna version --yes --preid next -m 'bump'
-    - ./lerna publish --yes --dist-tag next -m 'publish'
+    - ./lerna publish --yes --dist-tag next --preid next -m 'publish'
 
 publish:
   stage: publish
@@ -44,5 +43,4 @@ publish:
   script:
     - ./scripts/setup-git
     - ./build
-    - ./lerna version --yes -m 'bump'
     - ./lerna publish --yes -m 'publish'
