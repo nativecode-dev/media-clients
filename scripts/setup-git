@@ -4,8 +4,4 @@ git config --global user.email "opensource@nativecode.com"
 git config --global user.name "automaton"
 
 git remote set-url origin git@git.nativecode.net:nativecode/media-clients.git
-
-echo " BRANCH: ${CI_COMMIT_REF_NAME}"
-echo "-------------------------------------------------------------------------------"
 git checkout ${CI_COMMIT_REF_NAME}
-git status
