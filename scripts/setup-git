@@ -6,6 +6,7 @@ git config --global user.name "automaton"
 
 echo "** ssh-remote"
 npx ssh-remote
+git remote get-url origin
 
 echo "** Checkout ${CI_COMMIT_REF_NAME}"
 git checkout ${CI_COMMIT_REF_NAME}
