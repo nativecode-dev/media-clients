@@ -64,6 +64,6 @@
     "link": "lerna link",
     "lint": "tslint -c tslint.json --project tsconfig.json",
     "release": "lerna publish",
-    "test": "cross-env DEBUG= nyc mocha --opts ./mocha.opts"
+    "test": "nyc mocha --opts ./mocha.opts"
   }
 }
