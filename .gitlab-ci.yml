@@ -10,6 +10,8 @@ cache:
 
 before_script:
   - npm install
+  - ssh-keyscan github.com >> ~/.ssh/known_hosts
+  - chmod 644 ~/.ssh/known_hosts
 
 test:
   stage: test
@@ -27,5 +29,7 @@ publish:
   stage: publish
   only:
     - master
+    - develop
   script:
+    - git checkout ${CI_COMMIT_REF_NAME}
     - ./publish

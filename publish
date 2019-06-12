@@ -3,7 +3,7 @@
 ./build
 
 if [ "$CI_COMMIT_REF_NAME" = "master" ]; then
-  ./lerna publish
+  ./lerna publish --yes
 fi
 
-./lerna publish --canary
+./lerna publish --yes --canary
