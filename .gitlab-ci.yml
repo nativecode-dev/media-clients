@@ -33,7 +33,7 @@ pre-publish:
     - git checkout ${CI_COMMIT_REF_NAME}
     - git checkout package.json
     - ./build
-    - ./lerna version --yes
+    - ./lerna version --yes --preid next
     - ./lerna publish --yes --canary
 
 publish:
@@ -42,7 +42,7 @@ publish:
     - tags
   script:
     - git checkout ${CI_COMMIT_REF_NAME}
-    - git reset --hard
+    - git checkout package.json
     - ./build
     - ./lerna version --yes
     - ./lerna publish --yes
