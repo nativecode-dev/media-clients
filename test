@@ -4,5 +4,5 @@
 npm run test
 
 if [ ${CI} ]; then
-  npm run coverage
+  echo "npm run coverage"
 fi
