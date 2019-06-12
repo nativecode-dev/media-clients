@@ -63,7 +63,6 @@
     "format": "prettier --loglevel silent --write \"packages/*/src/**/*.ts\"",
     "link": "lerna link",
     "lint": "tslint -c tslint.json --project tsconfig.json",
-    "release": "lerna publish",
     "test": "nyc mocha --opts ./mocha.opts"
   }
 }

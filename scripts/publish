@@ -1,7 +1,5 @@
 #!/bin/bash
 
-./build
-
 if [ "$CI_COMMIT_REF_NAME" = "master" ]; then
   ./lerna publish --yes
 fi

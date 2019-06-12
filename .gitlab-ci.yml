@@ -9,6 +9,7 @@ cache:
     - node_modules
 
 before_script:
+  - ./scripts/setup-ssh
   - npm install
 
 test:
@@ -19,8 +20,8 @@ test:
   script:
     - export RADARR_ENDPOINT="http://${HOSTNAME}:7878/api"
     - export SONARR_ENDPOINT="http://${HOSTNAME}:8989/api"
-    - ./wait-for ${HOSTNAME} 7878
-    - ./wait-for ${HOSTNAME} 8989
+    - ./scripts/wait-for ${HOSTNAME} 7878
+    - ./scripts/wait-for ${HOSTNAME} 8989
     - ./test
 
 pre-publish:
@@ -28,12 +29,9 @@ pre-publish:
   only:
     - develop
   script:
-    - mkdir ~/.ssh -p
-    - echo ${SSH_PUBLIC_KEY} > ~/.ssh/id_rsa.pub
-    - echo ${SSH_PRIVATE_KEY} > ~/.ssh/id_rsa
-    - chmod 0600 ~/.ssh/id_rsa*
     - git checkout ${CI_COMMIT_REF_NAME}
-    - ./publish
+    - ./build
+    - ./scripts/publish-staged
 
 publish:
   stage: publish
@@ -41,4 +39,5 @@ publish:
     - tags
   script:
     - git checkout ${CI_COMMIT_REF_NAME}
-    - ./publish
+    - ./build
+    - ./scripts/publish
