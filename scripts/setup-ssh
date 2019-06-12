@@ -1,7 +1,5 @@
 #!/bin/bash
 
-eval $(ssh-agent -s)
-
 if [ ! -d ~/.ssh ]; then
   mkdir -p ~/.ssh
   chmod 0700 ~/.ssh
