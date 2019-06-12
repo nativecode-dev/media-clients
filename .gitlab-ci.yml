@@ -15,8 +15,6 @@ before_script:
 
 test:
   stage: test
-  except:
-    - develop
   services:
     - nativecode/test-radarr:latest
     - nativecode/test-sonarr:latest
