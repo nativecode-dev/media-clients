@@ -10,7 +10,6 @@ cache:
 
 before_script:
   - npm install
-  - ls -lah ~/.ssh
 
 test:
   stage: test
@@ -24,11 +23,22 @@ test:
     - ./wait-for ${HOSTNAME} 8989
     - ./test
 
+pre-publish:
+  stage: publish
+  only:
+    - develop
+  script:
+    - mkdir ~/.ssh -p
+    - echo ${SSH_PUBLIC_KEY} > ~/.ssh/id_rsa.pub
+    - echo ${SSH_PRIVATE_KEY} > ~/.ssh/id_rsa
+    - chmod 0600 ~/.ssh/id_rsa*
+    - git checkout ${CI_COMMIT_REF_NAME}
+    - ./publish
+
 publish:
   stage: publish
   only:
-    - master
-    - develop
+    - tags
   script:
     - git checkout ${CI_COMMIT_REF_NAME}
     - ./publish
