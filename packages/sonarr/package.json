@@ -5,9 +5,9 @@
   "main": "lib/index.js",
   "name": "@nativecode/sonarr",
   "types": "lib/index.d.ts",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "dependencies": {
-    "@nativecode/rest-client": "^0.0.0",
+    "@nativecode/rest-client": "^0.0.1",
     "@nofrills/lincoln": "^3.5.2",
     "isomorphic-fetch": "^2.2.1"
   },
