@@ -10,3 +10,4 @@ function endpoint(): string {
 
 export const APIKEY: string = process.env.SONARR_APIKEY || 'invalid_key'
 export const ENDPOINT = new URL(endpoint())
+console.log(APIKEY)
