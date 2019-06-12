@@ -9,13 +9,12 @@ cache:
     - node_modules
 
 before_script:
-  - ./scripts/setup-ssh
   - npm install
 
 test:
   stage: test
   except:
-    - master
+    - develop
   services:
     - nativecode/test-radarr:latest
     - nativecode/test-sonarr:latest
@@ -30,9 +29,9 @@ pre-publish:
   stage: publish
   only:
     - develop
-    - master
   script:
     - ./scripts/setup-git
+    - ./scripts/setup-ssh
     - ./build
     - ./lerna version --yes --preid next
     - ./lerna publish --yes --canary
@@ -43,6 +42,7 @@ publish:
     - tags
   script:
     - ./scripts/setup-git
+    - ./scripts/setup-ssh
     - ./build
     - ./lerna version --yes
     - ./lerna publish --yes
