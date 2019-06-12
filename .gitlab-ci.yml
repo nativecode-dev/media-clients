@@ -32,13 +32,15 @@ pre-publish:
   script:
     - ./scripts/setup-git
     - ./build
-    - ./lerna publish -c --yes --dist-tag next --preid next -m 'publish'
+    - ./lerna version -c --yes --preid next -m 'bump'
+    - ./lerna publish -c --yes --dist-tag next -m 'publish'
 
 publish:
   stage: publish
   only:
-    - tags
+    - master
   script:
     - ./scripts/setup-git
     - ./build
+    - ./lerna version -c --yes -m 'bump'
     - ./lerna publish -c --yes -m 'publish'
