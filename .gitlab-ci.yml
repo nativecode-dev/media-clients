@@ -9,9 +9,8 @@ cache:
     - node_modules
 
 before_script:
+  - git submodule update --init -- .citools
   - npm install
-  - ./node_modules/.bin/git-ssh-key setup
-  - ssh-keyscan git.nativecode.net >> ~/.ssh/known_hosts
 
 test:
   stage: test
@@ -21,24 +20,22 @@ test:
   script:
     - export RADARR_ENDPOINT="http://${HOSTNAME}:7878/api"
     - export SONARR_ENDPOINT="http://${HOSTNAME}:8989/api"
-    - ./scripts/wait-for ${HOSTNAME} 7878
-    - ./scripts/wait-for ${HOSTNAME} 8989
-    - ./test
+    - ./.citools/wait-for ${HOSTNAME} 7878
+    - ./.citools/wait-for ${HOSTNAME} 8989
+    - npm test
 
 pre-publish:
   stage: publish
   only:
     - develop
   script:
-    - ./scripts/setup-git
-    - ./build
-    - ./lerna publish --yes --canary --dist-tag next
+    - npm test
+    - ./.citools/lernapublish prerelease
 
 publish:
   stage: publish
   only:
     - master
   script:
-    - ./scripts/setup-git
-    - ./build
-    - ./lerna publish from-package --yes --dist-tag latest
+    - npm test
+    - ./.citools/lernapublish release

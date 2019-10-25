@@ -1,8 +1,0 @@
-#!/bin/bash
-
-./build
-npm run test
-
-if [ ${CI} ]; then
-  echo "npm run coverage"
-fi
