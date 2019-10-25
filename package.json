@@ -1,37 +1,26 @@
 {
-  "author": "opensource@nativecode.com",
+  "name": "media-clients",
+  "version": "0.0.0",
   "description": "Clients for Media Services",
+  "license": "MIT",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git@git.nativecode.net:nativecode/media-clients.git"
+  },
+  "author": "opensource@nativecode.com",
   "keywords": [
     "radarr",
     "sonarr"
   ],
-  "license": "MIT",
-  "name": "media-clients",
-  "private": true,
-  "version": "0.0.0",
-  "devDependencies": {
-    "@types/chai": "^4.1.7",
-    "@types/chai-as-promised": "^7.1.0",
-    "@types/mocha": "^5.2.7",
-    "@types/node": "^12.0.4",
-    "chai": "^4.2.0",
-    "chai-as-promised": "^7.1.1",
-    "coveralls": "^3.0.4",
-    "cross-env": "^5.2.0",
-    "git-ssh-key": "^1.1.0",
-    "lerna": "^3.14.1",
-    "lerna-update-wizard": "^0.14.0",
-    "mocha": "^6.1.4",
-    "nyc": "^14.1.1",
-    "prettier": "^1.17.1",
-    "rimraf": "^2.6.3",
-    "source-map-support": "^0.5.12",
-    "ts-node": "^8.2.0",
-    "tslint": "^5.17.0",
-    "tslint-config-standard": "^8.0.1",
-    "tslint-no-unused-expression-chai": "^0.1.4",
-    "typescript": "^3.5.1",
-    "typescript-eslint-parser": "^22.0.0"
+  "scripts": {
+    "build": "cli-tasks build",
+    "clean": "cli-tasks clean",
+    "commit": "git add -A . && npx git-cz",
+    "lerna": "lerna",
+    "tasks": "cli-tasks",
+    "test": "cli-tasks test",
+    "upgrade": "cli-tasks upgrade"
   },
   "nyc": {
     "all": true,
@@ -52,18 +41,31 @@
     "sourceMap": true,
     "temp-directory": ".cache/nyc"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@git.nativecode.net:nativecode/media-clients.git"
-  },
-  "scripts": {
-    "bootstrap": "lerna bootstrap",
-    "build": "lerna run build",
-    "clean": "lerna run clean",
-    "coverage": "cross-env DEBUG= nyc report --reporter=text-lcov | coveralls",
-    "format": "prettier --loglevel silent --write \"packages/*/src/**/*.ts\"",
-    "link": "lerna link",
-    "lint": "tslint -c tslint.json --project tsconfig.json",
-    "test": "nyc mocha --opts ./mocha.opts"
+  "devDependencies": {
+    "@nofrills/tasks": "^9.0.2",
+    "@types/chai": "^4.2.4",
+    "@types/chai-as-promised": "^7.1.2",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.11.7",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "coveralls": "^3.0.7",
+    "cross-env": "^6.0.3",
+    "git-ssh-key": "^1.1.0",
+    "json-sort-cli": "^1.14.5",
+    "lerna": "^3.18.3",
+    "lerna-update-wizard": "^0.16.0",
+    "mocha": "^6.2.2",
+    "npm-check": "^5.9.0",
+    "nyc": "^14.1.1",
+    "prettier": "^1.17.1",
+    "rimraf": "^3.0.0",
+    "source-map-support": "^0.5.13",
+    "ts-node": "^8.4.1",
+    "tslint": "^5.20.0",
+    "tslint-config-standard": "^8.0.1",
+    "tslint-no-unused-expression-chai": "^0.1.4",
+    "typescript": "^3.6.4",
+    "typescript-eslint-parser": "^22.0.0"
   }
 }
