@@ -2,17 +2,29 @@ image: node:latest
 
 stages:
   - test
-  - publish
+  - prerelease
+  - release
 
 cache:
   paths:
     - node_modules
+
+.testsetup: &testsetup
+  services:
+    - nativecode/test-radarr:latest
+    - nativecode/test-sonarr:latest
+  script:
+    - export RADARR_ENDPOINT="http://${HOSTNAME}:7878/api"
+    - export SONARR_ENDPOINT="http://${HOSTNAME}:8989/api"
+    - .citools/wait-for ${HOSTNAME} 7878
+    - .citools/wait-for ${HOSTNAME} 8989
 
 before_script:
   - git submodule update --init -- .citools
   - npm install
 
 test:
+  <<: *testsetup
   stage: test
   services:
     - nativecode/test-radarr:latest
@@ -20,22 +32,24 @@ test:
   script:
     - export RADARR_ENDPOINT="http://${HOSTNAME}:7878/api"
     - export SONARR_ENDPOINT="http://${HOSTNAME}:8989/api"
-    - ./.citools/wait-for ${HOSTNAME} 7878
-    - ./.citools/wait-for ${HOSTNAME} 8989
+    - .citools/wait-for ${HOSTNAME} 7878
+    - .citools/wait-for ${HOSTNAME} 8989
     - npm test
 
-pre-publish:
-  stage: publish
+prerelease:
+  <<: *testsetup
+  stage: prerelease
   only:
     - develop
   script:
-    - npm test
-    - ./.citools/lernapublish prerelease
+    - npm run build
+    - .citools/lernapublish prerelease
 
-publish:
-  stage: publish
+release:
+  <<: *testsetup
+  stage: release
   only:
     - master
   script:
-    - npm test
-    - ./.citools/lernapublish release
+    - npm run build
+    - .citools/lernapublish release
