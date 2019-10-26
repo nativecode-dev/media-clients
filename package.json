@@ -9,21 +9,21 @@
     "url": "git@git.nativecode.net:nativecode/media-clients.git"
   },
   "author": "opensource@nativecode.com",
+  "keywords": [
+    "radarr",
+    "sonarr"
+  ],
   "scripts": {
     "build": "cli-tasks build",
     "clean": "cli-tasks clean",
     "commit": "git add -A . && npx git-cz",
     "lerna": "lerna",
+    "pre-release": "cli-tasks prerelease",
+    "release": "cli-tasks release",
     "tasks": "cli-tasks",
     "test": "cli-tasks test",
-    "upgrade": "cli-tasks upgrade",
-    "pre-release": "cli-tasks prerelease",
-    "release": "cli-tasks release"
+    "upgrade": "cli-tasks upgrade"
   },
-  "keywords": [
-    "radarr",
-    "sonarr"
-  ],
   "nyc": {
     "all": true,
     "exclude": [

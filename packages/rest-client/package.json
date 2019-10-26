@@ -2,13 +2,13 @@
   "name": "@nativecode/rest-client",
   "version": "0.0.1",
   "description": "REST client",
-  "homepage": "https://github.com/nativecode-dev/media-clients",
   "license": "MIT",
   "private": false,
   "repository": {
     "type": "git",
     "url": "git@git.nativecode.net:nativecode/media-clients.git"
   },
+  "homepage": "https://github.com/nativecode-dev/media-clients",
   "author": "opensource@nativecode.com",
   "keywords": [
     "rest"
