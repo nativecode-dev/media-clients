@@ -35,6 +35,9 @@ test:
     - .citools/wait-for ${HOSTNAME} 7878
     - .citools/wait-for ${HOSTNAME} 8989
     - npm test
+  exclude:
+    - develop
+    - master
 
 prerelease:
   <<: *testsetup
@@ -43,7 +46,7 @@ prerelease:
     - develop
   script:
     - npm run build
-    - .citools/lernapublish prerelease
+    - .citools/lerna-publish prerelease
 
 release:
   <<: *testsetup
@@ -52,4 +55,4 @@ release:
     - master
   script:
     - npm run build
-    - .citools/lernapublish release
+    - .citools/lerna-publish release
