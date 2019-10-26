@@ -44,6 +44,7 @@
     "temp-directory": ".cache/nyc"
   },
   "devDependencies": {
+    "@nofrills/lincoln": "^6.0.0",
     "@nofrills/tasks": "^9.0.2",
     "@types/chai": "^4.2.4",
     "@types/chai-as-promised": "^7.1.2",
