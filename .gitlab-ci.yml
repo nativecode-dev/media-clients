@@ -35,7 +35,7 @@ test:
     - .citools/wait-for ${HOSTNAME} 7878
     - .citools/wait-for ${HOSTNAME} 8989
     - npm test
-  exclude:
+  except:
     - develop
     - master
 
