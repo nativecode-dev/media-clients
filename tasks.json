@@ -15,9 +15,13 @@
       "tslint --project tsconfig.json --config tslint.json"
     ],
     "prerelease": [
+      ".citools/setup-git ${CI_COMMIT_REF_NAME} git@gitssh.nativecode.net:nativecode/media-clients.git",
+      ".citools/setup-ssh",
       ".citools/lerna-publish prerelease"
     ],
     "release": [
+      ".citools/setup-git ${CI_COMMIT_REF_NAME} git@gitssh.nativecode.net:nativecode/media-clients.git",
+      ".citools/setup-ssh",
       ".citools/lerna-publish release"
     ],
     "test": [
