@@ -8,6 +8,10 @@
       "[lint]",
       "lerna run build"
     ],
+    "ci:setup": [
+      ".citools/setup-git ${BUILD_REPO_BRANCH} ${BUILD_REPO_GIT} ${BUILD_REPO_EMAIL}",
+      ".citools/setup-ssh ${BUILD_REPO_DOMAIN} ${BUILD_REPO_SSHKEY_PATH} ${BUILD_REPO_DOMAIN_SSH}"
+    ],
     "lint": [
       "jsonsort *.json",
       "jsonsort packages/**/*.json",
@@ -15,13 +19,11 @@
       "tslint --project tsconfig.json --config tslint.json"
     ],
     "prerelease": [
-      ".citools/setup-git ${CI_COMMIT_REF_NAME} git@gitssh.nativecode.net:nativecode/media-clients.git",
-      ".citools/setup-ssh",
+      "[ci:setup]",
       ".citools/lerna-publish prerelease"
     ],
     "release": [
-      ".citools/setup-git ${CI_COMMIT_REF_NAME} git@gitssh.nativecode.net:nativecode/media-clients.git",
-      ".citools/setup-ssh",
+      "[ci:setup]",
       ".citools/lerna-publish release"
     ],
     "test": [
