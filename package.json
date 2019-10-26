@@ -18,8 +18,8 @@
     "clean": "cli-tasks clean",
     "commit": "git add -A . && npx git-cz",
     "lerna": "lerna",
-    "pre-release": "cli-tasks prerelease",
-    "release": "cli-tasks release",
+    "pre-release": "cli-tasks ci:publish:prerelease",
+    "release": "cli-tasks ci:publish:release",
     "tasks": "cli-tasks",
     "test": "cli-tasks test",
     "upgrade": "cli-tasks upgrade"

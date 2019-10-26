@@ -37,7 +37,6 @@ prerelease:
   only:
     - develop
   script:
-    - npm test
     - npm run pre-release
 
 release:
@@ -46,5 +45,4 @@ release:
   only:
     - master
   script:
-    - npm test
     - npm run release
