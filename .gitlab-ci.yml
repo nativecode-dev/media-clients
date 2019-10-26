@@ -14,10 +14,11 @@ cache:
     - nativecode/test-radarr:latest
     - nativecode/test-sonarr:latest
   script:
-    - export RADARR_ENDPOINT="http://${HOSTNAME}:7878/api"
-    - export SONARR_ENDPOINT="http://${HOSTNAME}:8989/api"
     - .citools/wait-for ${HOSTNAME} 7878
     - .citools/wait-for ${HOSTNAME} 8989
+  variables:
+    RADARR_ENDPOINT: "http://${HOSTNAME}:7878/api"
+    SONARR_ENDPOINT: "http://${HOSTNAME}:8989/api"
 
 before_script:
   - git submodule update --init -- .citools
@@ -27,14 +28,7 @@ before_script:
 test:
   <<: *testsetup
   stage: test
-  services:
-    - nativecode/test-radarr:latest
-    - nativecode/test-sonarr:latest
   script:
-    - export RADARR_ENDPOINT="http://${HOSTNAME}:7878/api"
-    - export SONARR_ENDPOINT="http://${HOSTNAME}:8989/api"
-    - .citools/wait-for ${HOSTNAME} 7878
-    - .citools/wait-for ${HOSTNAME} 8989
     - npm test
   except:
     - develop

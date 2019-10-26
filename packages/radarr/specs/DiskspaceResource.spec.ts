@@ -1,3 +1,5 @@
+import 'mocha'
+
 import expect from './expect'
 import Logger from './logging'
 
