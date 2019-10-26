@@ -9,10 +9,6 @@
     "url": "git@git.nativecode.net:nativecode/media-clients.git"
   },
   "author": "opensource@nativecode.com",
-  "keywords": [
-    "radarr",
-    "sonarr"
-  ],
   "scripts": {
     "build": "cli-tasks build",
     "clean": "cli-tasks clean",
