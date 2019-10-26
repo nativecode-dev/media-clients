@@ -3,10 +3,6 @@
     "bootstrap": {
       "loglevel": "silent"
     },
-    "run": {
-      "loglevel": "silent",
-      "stream": true
-    },
     "publish": {
       "allowBranch": [
         "develop",
@@ -14,6 +10,10 @@
       ],
       "conventionalCommits": true,
       "message": "chore(release): publish"
+    },
+    "run": {
+      "loglevel": "silent",
+      "stream": true
     }
   },
   "packages": [

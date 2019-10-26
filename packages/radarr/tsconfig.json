@@ -1,5 +1,4 @@
 {
-  "extends": "../../tsconfig.settings.json",
   "compilerOptions": {
     "lib": [
       "dom"
@@ -11,10 +10,13 @@
     "node_modules",
     "specs"
   ],
+  "extends": "../../tsconfig.settings.json",
   "include": [
     "src/**/*.ts"
   ],
   "references": [
-    { "path": "../rest-client" }
+    {
+      "path": "../rest-client"
+    }
   ]
 }

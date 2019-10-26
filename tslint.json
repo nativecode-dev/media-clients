@@ -14,8 +14,8 @@
     "no-floating-promises": true,
     "no-unnecessary-qualifier": true,
     "return-undefined": false,
-    "strict-type-predicates": true,
     "space-before-function-paren": false,
+    "strict-type-predicates": true,
     "trailing-comma": true
   }
 }

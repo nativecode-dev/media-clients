@@ -19,7 +19,7 @@ interface Employee {
 
 class RestApiResource extends Resource {
   constructor() {
-    super(new URL('http://dummy.restapiexample.com/api/v1'), Logger.extend('rsource'))
+    super(new URL('http://dummy.restapiexample.com/api/v1'), Logger.extend('resource'))
   }
 
   all(): Promise<Employee[]> {
@@ -31,7 +31,9 @@ class RestApiResource extends Resource {
   }
 
   id(id: number): Promise<Employee> {
-    return this._get<Employee>('employee/{:id}', [{ key: 'id', type: ResourceRouteParamType.RouteParameter, value: id }])
+    return this._get<Employee>('employee/{:id}', [
+      { key: 'id', type: ResourceRouteParamType.RouteParameter, value: id },
+    ])
   }
 
   update(employee: Employee): Promise<Employee> {

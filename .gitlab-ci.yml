@@ -2,18 +2,30 @@ image: node:latest
 
 stages:
   - test
-  - publish
+  - prerelease
+  - release
 
 cache:
   paths:
     - node_modules
 
+.testsetup: &testsetup
+  services:
+    - nativecode/test-radarr:latest
+    - nativecode/test-sonarr:latest
+  script:
+    - export RADARR_ENDPOINT="http://${HOSTNAME}:7878/api"
+    - export SONARR_ENDPOINT="http://${HOSTNAME}:8989/api"
+    - .citools/wait-for ${HOSTNAME} 7878
+    - .citools/wait-for ${HOSTNAME} 8989
+
 before_script:
+  - git submodule update --init -- .citools
   - npm install
-  - ./node_modules/.bin/git-ssh-key setup
-  - ssh-keyscan git.nativecode.net >> ~/.ssh/known_hosts
+  - source .ci-env
 
 test:
+  <<: *testsetup
   stage: test
   services:
     - nativecode/test-radarr:latest
@@ -21,24 +33,27 @@ test:
   script:
     - export RADARR_ENDPOINT="http://${HOSTNAME}:7878/api"
     - export SONARR_ENDPOINT="http://${HOSTNAME}:8989/api"
-    - ./scripts/wait-for ${HOSTNAME} 7878
-    - ./scripts/wait-for ${HOSTNAME} 8989
-    - ./test
+    - .citools/wait-for ${HOSTNAME} 7878
+    - .citools/wait-for ${HOSTNAME} 8989
+    - npm test
+  except:
+    - develop
+    - master
 
-pre-publish:
-  stage: publish
+prerelease:
+  <<: *testsetup
+  stage: prerelease
   only:
     - develop
   script:
-    - ./scripts/setup-git
-    - ./build
-    - ./lerna publish --yes --canary --dist-tag next
+    - npm run build
+    - npm run pre-release
 
-publish:
-  stage: publish
+release:
+  <<: *testsetup
+  stage: release
   only:
     - master
   script:
-    - ./scripts/setup-git
-    - ./build
-    - ./lerna publish from-package --yes --dist-tag latest
+    - npm run build
+    - npm run release

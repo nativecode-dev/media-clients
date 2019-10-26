@@ -1,54 +1,54 @@
 {
-  "author": "opensource@nativecode.com",
+  "name": "@nativecode/rest-client",
+  "version": "0.0.1",
   "description": "REST client",
   "homepage": "https://github.com/nativecode-dev/media-clients",
   "license": "MIT",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git@git.nativecode.net:nativecode/media-clients.git"
+  },
+  "author": "opensource@nativecode.com",
+  "keywords": [
+    "rest"
+  ],
   "main": "lib/index.js",
-  "name": "@nativecode/rest-client",
-  "types": "lib/index.d.ts",
-  "version": "0.0.1",
-  "dependencies": {
-    "@nofrills/lincoln": "^3.5.2",
-    "isomorphic-fetch": "^2.2.1"
-  },
-  "devDependencies": {
-    "@nofrills/lincoln-debug": "^3.6.6",
-    "@types/blob-util": "^1.3.3",
-    "@types/chai": "^4.1.7",
-    "@types/chai-as-promised": "^7.1.0",
-    "@types/isomorphic-fetch": "^0.0.35",
-    "@types/mocha": "^5.2.7",
-    "@types/node": "^12.0.4",
-    "chai": "^4.2.0",
-    "chai-as-promised": "^7.1.1",
-    "cross-env": "^5.2.0",
-    "mocha": "^6.1.4",
-    "mocha-steps": "^1.3.0",
-    "rimraf": "^2.6.3",
-    "source-map-support": "^0.5.12",
-    "ts-node": "^8.2.0",
-    "typescript": "^3.5.1"
-  },
+  "files": [
+    "lib"
+  ],
   "directories": {
     "lib": "lib",
     "test": "specs"
   },
-  "files": [
-    "lib"
-  ],
-  "keywords": [
-    "rest"
-  ],
-  "private": false,
   "publishConfig": {
     "access": "public"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/nativecode-dev/media-clients"
-  },
   "scripts": {
     "build": "tsc --project tsconfig.json",
-    "clean": "rimraf lib && rimraf tsconfig.tsbuildinfo"
+    "upgrade": "npm-check -y"
+  },
+  "types": "lib/index.d.ts",
+  "dependencies": {
+    "@nofrills/lincoln": "^6.0.0",
+    "isomorphic-fetch": "^2.2.1"
+  },
+  "devDependencies": {
+    "@nofrills/lincoln-debug": "^6.0.0",
+    "@types/blob-util": "^1.3.3",
+    "@types/chai": "^4.2.4",
+    "@types/chai-as-promised": "^7.1.2",
+    "@types/isomorphic-fetch": "0.0.35",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.11.7",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "cross-env": "^6.0.3",
+    "mocha": "^6.2.2",
+    "mocha-steps": "^1.3.0",
+    "rimraf": "^3.0.0",
+    "source-map-support": "^0.5.13",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.4"
   }
 }

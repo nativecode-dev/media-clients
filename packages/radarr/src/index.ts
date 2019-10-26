@@ -15,3 +15,4 @@ export * from './Models/SortDirection'
 export * from './Models/SystemStatus'
 
 export * from './RadarrClient'
+export * from './RadarrPackageOptions'

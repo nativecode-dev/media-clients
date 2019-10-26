@@ -1,7 +1,0 @@
-#!/bin/bash
-
-git config --global user.email "opensource@nativecode.com"
-git config --global user.name "automaton"
-
-git remote set-url origin git@git.nativecode.net:nativecode/media-clients.git
-git checkout ${CI_COMMIT_REF_NAME}
