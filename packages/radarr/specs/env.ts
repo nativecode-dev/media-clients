@@ -1,3 +1,5 @@
+import os from 'os'
+
 import { URL } from 'url'
 
 function endpoint(): string {
@@ -5,7 +7,7 @@ function endpoint(): string {
     return process.env.RADARR_ENDPOINT
   }
 
-  return 'http://test-radarr.in.nativecode.com/api'
+  return `http://${os.hostname()}:7878/api`
 }
 
 export const APIKEY: string = process.env.RADARR_APIKEY || 'invalid_key'

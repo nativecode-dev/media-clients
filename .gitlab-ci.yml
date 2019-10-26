@@ -16,9 +16,6 @@ cache:
   script:
     - .citools/wait-for ${HOSTNAME} 7878
     - .citools/wait-for ${HOSTNAME} 8989
-  variables:
-    RADARR_ENDPOINT: "http://${HOSTNAME}:7878/api"
-    SONARR_ENDPOINT: "http://${HOSTNAME}:8989/api"
 
 before_script:
   - git submodule update --init -- .citools

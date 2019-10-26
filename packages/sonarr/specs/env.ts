@@ -1,3 +1,5 @@
+import os from 'os'
+
 import { URL } from 'url'
 
 function endpoint(): string {
@@ -5,7 +7,7 @@ function endpoint(): string {
     return process.env.SONARR_ENDPOINT
   }
 
-  return 'http://test-sonarr.in.nativecode.com/api'
+  return `http://${os.hostname()}:8989/api`
 }
 
 export const APIKEY: string = process.env.SONARR_APIKEY || 'invalid_key'
