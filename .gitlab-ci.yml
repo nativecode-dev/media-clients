@@ -46,7 +46,7 @@ prerelease:
     - develop
   script:
     - npm run build
-    - .citools/lerna-publish prerelease
+    - npm run pre-release
 
 release:
   <<: *testsetup
@@ -55,4 +55,4 @@ release:
     - master
   script:
     - npm run build
-    - .citools/lerna-publish release
+    - npm run release

@@ -20,7 +20,9 @@
     "lerna": "lerna",
     "tasks": "cli-tasks",
     "test": "cli-tasks test",
-    "upgrade": "cli-tasks upgrade"
+    "upgrade": "cli-tasks upgrade",
+    "pre-release": "cli-tasks prerelease",
+    "release": "cli-tasks release"
   },
   "nyc": {
     "all": true,
