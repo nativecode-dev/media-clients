@@ -9,7 +9,8 @@
         "master"
       ],
       "conventionalCommits": true,
-      "message": "chore(release): publish"
+      "message": "[skip ci] chore(release): publish",
+      "yes": true
     },
     "run": {
       "loglevel": "silent",
