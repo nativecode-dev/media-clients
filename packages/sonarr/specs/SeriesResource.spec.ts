@@ -7,15 +7,15 @@ import { APIKEY, ENDPOINT } from './env'
 import { SonarrClient } from '../src/SonarrClient'
 
 describe('when using SeriesResource', () => {
-  const sut = new SonarrClient(ENDPOINT, APIKEY, Logger.extend('series-resource'))
+  const sut = new SonarrClient(ENDPOINT, APIKEY, Logger.extend('shows-resource'))
 
-  it('should get list of series', async () => {
-    const series = await sut.series.list()
-    expect(series).to.not.be.empty
+  it('should get list of shows', async () => {
+    const shows = await sut.shows.list()
+    expect(shows).to.not.be.empty
   }).timeout(5000)
 
-  it('should get single series', async () => {
-    const series = await sut.series.id(1)
-    expect(series.title).to.equal('Transformers')
+  it('should get single shows', async () => {
+    const shows = await sut.shows.id(1)
+    expect(shows.title).to.equal('Transformers')
   }).timeout(5000)
 })

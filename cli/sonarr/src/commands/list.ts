@@ -9,17 +9,17 @@ export interface ListOptions extends Global {
 }
 
 export class ListCommand implements CommandModule<{}, ListOptions> {
-  command = 'list [series]'
+  command = 'list [shows]'
   build = {}
   handler = async (args: Arguments<ListOptions>) => {
     const sonarr = client(args)
 
-    if (args.series) {
-      const seasons = await sonarr.series.list()
+    if (args.shows) {
+      const seasons = await sonarr.shows.list()
       Output(args, seasons, 'seasons', args.compact)
     } else {
-      const series = await sonarr.series.list()
-      Output(args, series, 'series', args.compact)
+      const shows = await sonarr.shows.list()
+      Output(args, shows, 'shows', args.compact)
     }
   }
 }

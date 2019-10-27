@@ -9,7 +9,7 @@ import logger from '../logging'
 import { Global, Output } from '@nativecode/media-cli'
 
 export interface SelectOptions extends Global {
-  series?: string
+  shows?: string
   season?: string
 }
 
