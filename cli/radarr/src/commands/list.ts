@@ -3,8 +3,10 @@ import { URL } from 'url'
 import { CommandModule, Arguments, Argv } from 'yargs'
 import { RadarrClient, Movie } from '@nativecode/radarr'
 
-import { Global } from '../options/global'
 import logger from '../logging'
+
+import { Global } from '../options/global'
+import { createIntFilter } from '../filters'
 
 const log = logger.extend('list')
 
@@ -18,39 +20,13 @@ interface MovieDisplay {
   year: number
 }
 
-type FilterFunction = (value: string) => boolean
-
-function convert(filter: string): FilterFunction {
-  if (filter.startsWith('<=')) {
-    return (value: string) => parseInt(value, 0) <= parseInt(filter.substring(2), 0)
-  }
-
-  if (filter.startsWith('>=')) {
-    return (value: string) => parseInt(value, 0) >= parseInt(filter.substring(2), 0)
-  }
-
-  if (filter.startsWith('>')) {
-    return (value: string) => parseInt(value, 0) > parseInt(filter.substring(1), 0)
-  }
-
-  if (filter.startsWith('<')) {
-    return (value: string) => parseInt(value, 0) < parseInt(filter.substring(1), 0)
-  }
-
-  if (filter.startsWith('=')) {
-    return (value: string) => parseInt(value, 0) === parseInt(filter.substring(1), 0)
-  }
-
-  return () => false
-}
-
 function filter(args: Arguments<ListOptions>, movies: Movie[]): Movie[] {
   if (args.year) {
     const year = args.year
     log.debug('filter', args.year)
 
     movies = movies.filter(movie => {
-      const func = convert(year)
+      const func = createIntFilter(year)
       return func(movie.year.toString())
     })
   }
