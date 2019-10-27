@@ -7,8 +7,6 @@ import { CommandModule, Arguments, Argv } from 'yargs'
 import { Global } from '../options/global'
 import logger from '../logging'
 
-const log = logger
-
 export interface SelectOptions extends Global {
   series?: string
   season?: string
@@ -19,7 +17,7 @@ export class SelectCommand implements CommandModule<{}, SelectOptions> {
   describe = 'view info for movie'
   build = (argv: Argv): Argv => argv
   handler = async (args: Arguments<SelectOptions>) => {
-    const radarr = new RadarrClient(new URL(args.endpoint), args.apikey, log)
+    const radarr = new RadarrClient(new URL(args.endpoint), args.apikey, logger.extend('select'))
     const movies = await radarr.movie.list()
 
     const results = await yargsui().interactive({
