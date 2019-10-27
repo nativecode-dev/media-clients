@@ -1,0 +1,30 @@
+{
+  "name": "@nativecode/sonarr-cli",
+  "version": "0.2.0",
+  "bin": {
+    "radarr-cli": "bin/index.js"
+  },
+  "main": "bin/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "upgrade": "npm-check -y",
+    "watch": "tsc --project tsconfig.json --watch"
+  },
+  "dependencies": {
+    "@nativecode/media-cli": "^0.0.0",
+    "@nativecode/sonarr": "^1.0.0-next.0",
+    "@nofrills/lincoln": "^6.0.0",
+    "@nofrills/lincoln-debug": "^6.0.0",
+    "yargs": "^14.2.0",
+    "yargs-interactive": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.11.7",
+    "@types/yargs": "^13.0.3",
+    "@types/yargs-interactive": "^2.1.0",
+    "typescript": "^3.6.4"
+  }
+}

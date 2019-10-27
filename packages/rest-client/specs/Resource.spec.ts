@@ -50,10 +50,10 @@ describe('when using Resource type', () => {
   step('should GET all employees', async () => {
     employees = await sut.all()
     expect(employees).not.empty
-  })
+  }).timeout(5000)
 
   step('should GET single employee', async () => {
     const employee = await sut.id(employees[0].id)
     expect(employee).not.empty
-  })
+  }).timeout(5000)
 })

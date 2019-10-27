@@ -12,16 +12,12 @@
       "[bootstrap]",
       "lerna run build"
     ],
-    "ci:configure": [
-      ".citools/setup-git ${BUILD_REPO_BRANCH} ${BUILD_REPO_GIT} ${BUILD_REPO_EMAIL}",
-      ".citools/setup-ssh ${BUILD_REPO_DOMAIN} ${BUILD_REPO_SSHKEY_PATH} ${BUILD_REPO_DOMAIN_SSH}"
-    ],
     "ci:build": [
       "[build:compile]"
     ],
-    "ci:test": [
-      "[ci:build]",
-      "nyc mocha --opts .citools/mocha.opts"
+    "ci:configure": [
+      ".citools/setup-git ${BUILD_REPO_BRANCH} ${BUILD_REPO_GIT} ${BUILD_REPO_EMAIL}",
+      ".citools/setup-ssh ${BUILD_REPO_DOMAIN} ${BUILD_REPO_SSHKEY_PATH} ${BUILD_REPO_DOMAIN_SSH}"
     ],
     "ci:install": [
       "npm ci",
@@ -42,6 +38,10 @@
       "[ci:test]",
       ".citools/lerna-publish release"
     ],
+    "ci:test": [
+      "[ci:build]",
+      "nyc mocha --opts .citools/mocha.opts"
+    ],
     "clean": [
       "rimraf .cache",
       "rimraf core/*/lib",
@@ -55,28 +55,36 @@
     "coverage": [
       "nyc report --reporter=text-lcov | coveralls"
     ],
+    "install": [
+      "npm install",
+      "[bootstrap]"
+    ],
     "source": [
       "[source:format]",
       "[source:lint]"
     ],
     "source:format": [
-      "prettier --loglevel silent --write \"*/*/specs/**/*.ts\"",
-      "prettier --loglevel silent --write \"*/*/src/**/*.ts\""
+      "jsonsort *.json",
+      "jsonsort cli/*/*.json",
+      "jsonsort packages/*/*.json",
+      "prettier --loglevel silent --write \"*/*/{specs,src}/**/*.ts\""
     ],
     "source:lint": [
       "tslint --project tsconfig.json --config tslint.json"
     ],
     "test": [
       "[build]",
-      "nyc mocha --opts mocha.opts"
+      "[test:only]"
     ],
-    "install": [
-      "npm install",
-      "[bootstrap]"
+    "test:only": [
+      "nyc mocha --opts mocha.opts"
     ],
     "upgrade": [
       "npm-check -y",
       "lerna run upgrade"
+    ],
+    "watch": [
+      "lerna run --parallel watch"
     ]
   }
 }

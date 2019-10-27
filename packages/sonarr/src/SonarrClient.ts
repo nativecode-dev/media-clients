@@ -12,7 +12,7 @@ export class SonarrClient {
   public readonly calendar: CalendarResource
   public readonly command: CommandResource
   public readonly indexer: IndexerResource
-  public readonly series: SeriesResource
+  public readonly shows: SeriesResource
   public readonly system: SystemResource
 
   constructor(private readonly endpoint: URL, private readonly apikey: string, logger: Lincoln) {
@@ -20,7 +20,7 @@ export class SonarrClient {
     this.calendar = new CalendarResource(endpoint, apikey, logger)
     this.command = new CommandResource(endpoint, apikey, logger)
     this.indexer = new IndexerResource(endpoint, apikey, logger)
-    this.series = new SeriesResource(endpoint, apikey, logger)
+    this.shows = new SeriesResource(endpoint, apikey, logger)
     this.system = new SystemResource(endpoint, apikey, logger)
   }
 }

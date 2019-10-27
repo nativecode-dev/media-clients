@@ -25,7 +25,8 @@
   },
   "scripts": {
     "build": "tsc --project tsconfig.json",
-    "upgrade": "npm-check -y"
+    "upgrade": "npm-check -y",
+    "watch": "tsc --project tsconfig.json --watch"
   },
   "sonarr": {
     "version": "3.0.1.506"

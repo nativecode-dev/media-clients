@@ -2,6 +2,7 @@ image: node:latest
 
 stages:
   - test
+  - canary
   - prerelease
   - release
 
@@ -30,6 +31,18 @@ test:
   except:
     - develop
     - master
+    - /feature\/*/
+
+canary:
+  <<: *testsetup
+  stage: canary
+  script:
+    - npm run canary
+  except:
+    - develop
+    - master
+  only:
+    - /feature\/*/
 
 prerelease:
   <<: *testsetup
