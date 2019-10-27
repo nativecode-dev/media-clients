@@ -1,12 +1,12 @@
 import { CommandModule, Arguments } from 'yargs'
 
 export interface ListOptions {
-  series?: string
-  season?: string
+  movie?: string
+  year?: number
 }
 
 export class ListCommand implements CommandModule<{}, ListOptions> {
-  command = 'list [series] [season]'
+  command = 'list [movie]'
   build = {}
   handler = (args: Arguments<ListOptions>): void => {
     console.log(args)

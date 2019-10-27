@@ -9,6 +9,9 @@
     "build": "tsc --project tsconfig.json"
   },
   "dependencies": {
+    "@nativecode/radarr": "^1.0.0-next.0",
+    "@nofrills/lincoln": "^6.0.0",
+    "@nofrills/lincoln-debug": "^6.0.0",
     "yargs": "^14.2.0",
     "yargs-interactive": "^3.0.0"
   },
