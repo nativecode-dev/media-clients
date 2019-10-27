@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "outDir": "bin",
+    "rootDir": "src"
+  },
+  "exclude": [
+    "node_modules",
+    "specs"
+  ],
+  "extends": "../../tsconfig.settings.json",
+  "include": [
+    "src/**/*.ts"
+  ]
+}

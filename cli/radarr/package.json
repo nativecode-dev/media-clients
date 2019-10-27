@@ -1,0 +1,21 @@
+{
+  "name": "@nativecode/radarr-cli",
+  "version": "0.0.0",
+  "bin": {
+    "radarr-cli": "bin/index.js"
+  },
+  "main": "bin/index.js",
+  "scripts": {
+    "build": "tsc --project tsconfig.json"
+  },
+  "dependencies": {
+    "yargs": "^14.2.0",
+    "yargs-interactive": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.11.7",
+    "@types/yargs": "^13.0.3",
+    "@types/yargs-interactive": "^2.1.0",
+    "typescript": "^3.6.4"
+  }
+}
