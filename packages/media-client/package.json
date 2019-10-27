@@ -2,6 +2,9 @@
   "name": "@nativecode/media-cli",
   "version": "0.1.0-next.0",
   "main": "lib/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc --project tsconfig.json",
     "watch": "tsc --project tsconfig.json --watch"
