@@ -12,7 +12,8 @@ export interface ListOptions extends Global {
   year?: string
 }
 
-interface MovieLite {
+interface MovieDisplay {
+  id: number
   title: string
   year: number
 }
@@ -34,6 +35,10 @@ function convert(filter: string): FilterFunction {
 
   if (filter.startsWith('<')) {
     return (value: string) => parseInt(value, 0) < parseInt(filter.substring(1), 0)
+  }
+
+  if (filter.startsWith('=')) {
+    return (value: string) => parseInt(value, 0) === parseInt(filter.substring(1), 0)
   }
 
   return () => false
@@ -58,8 +63,9 @@ function filter(args: Arguments<ListOptions>, movies: Movie[]): Movie[] {
   return []
 }
 
-function map(movies: Movie[]): MovieLite[] {
+function map(movies: Movie[]): MovieDisplay[] {
   return movies.map(movie => ({
+    id: movie.id,
     title: movie.title,
     year: movie.year,
   }))
