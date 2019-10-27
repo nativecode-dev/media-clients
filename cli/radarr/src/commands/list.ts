@@ -1,8 +1,7 @@
-import { URL } from 'url'
-
+import { Movie } from '@nativecode/radarr'
 import { CommandModule, Arguments, Argv } from 'yargs'
-import { RadarrClient, Movie } from '@nativecode/radarr'
 
+import client from '../client'
 import logger from '../logging'
 
 import { Global } from '../options/global'
@@ -53,8 +52,7 @@ export class ListCommand implements CommandModule<{}, ListOptions> {
   build = (argv: Argv): Argv => argv
   handler = async (args: Arguments<ListOptions>) => {
     try {
-      const url = new URL(args.endpoint)
-      const radarr = new RadarrClient(url, args.apikey, log)
+      const radarr = client(args)
       const movies = await radarr.movie.list()
       const filtered = map(filter(args, movies))
       filtered.forEach(output => console.log(output))
