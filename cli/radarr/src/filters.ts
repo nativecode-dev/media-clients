@@ -1,57 +1,54 @@
-export type FilterFunction = (value: string) => boolean
-
-export function createIntFilter(filter: string): FilterFunction {
-  if (filter.startsWith('<=')) {
-    return (value: string) => parseInt(value, 0) <= parseInt(filter.substring(2), 0)
-  }
-
-  if (filter.startsWith('>=')) {
-    return (value: string) => parseInt(value, 0) >= parseInt(filter.substring(2), 0)
-  }
-
-  if (filter.startsWith('!=')) {
-    return (value: string) => parseInt(value, 0) !== parseInt(filter.substring(2), 0)
-  }
-
-  if (filter.startsWith('>')) {
-    return (value: string) => parseInt(value, 0) > parseInt(filter.substring(1), 0)
-  }
-
-  if (filter.startsWith('<')) {
-    return (value: string) => parseInt(value, 0) < parseInt(filter.substring(1), 0)
-  }
-
-  if (filter.startsWith('=')) {
-    return (value: string) => parseInt(value, 0) === parseInt(filter.substring(1), 0)
-  }
-
-  return () => false
+interface FilterStatement {
+  operation: string
+  value: string
 }
 
-export function createStringFilter(filter: string): FilterFunction {
-  if (filter.startsWith('<=')) {
-    return (value: string) => value <= filter.substring(2)
+function getStatement(value: string): FilterStatement {
+  const regex = /([<>!=]{0,2})([^\n]+)/g
+  const matches = regex.exec(value)
+
+  if (matches) {
+    const operation = matches[1]
+    const value = matches[2]
+
+    return {
+      operation,
+      value,
+    }
   }
 
-  if (filter.startsWith('>=')) {
-    return (value: string) => value >= filter.substring(2)
+  return {
+    operation: '',
+    value: '',
   }
+}
 
-  if (filter.startsWith('!=')) {
-    return (value: string) => value !== filter.substring(1)
+export type FilterConverter = (value: string) => any
+export type FilterFunction = (value: string) => boolean
+
+const DefaultConverter: FilterConverter = value => value
+
+export function createFilter(filter: string, converter: FilterConverter = DefaultConverter): FilterFunction {
+  const statement = getStatement(filter)
+
+  switch (statement.operation) {
+    case '=':
+      return (value: string) => converter(value) === converter(statement.value)
+    case '!=':
+      return (value: string) => converter(value) !== converter(statement.value)
+    case '>':
+      return (value: string) => converter(value) > converter(statement.value)
+    case '>=':
+      return (value: string) => converter(value) >= converter(statement.value)
+    case '<':
+      return (value: string) => converter(value) < converter(statement.value)
+    case '<=':
+      return (value: string) => converter(value) <= converter(statement.value)
+    default:
+      return () => false
   }
+}
 
-  if (filter.startsWith('>')) {
-    return (value: string) => value > filter.substring(1)
-  }
-
-  if (filter.startsWith('<')) {
-    return (value: string) => value < filter.substring(1)
-  }
-
-  if (filter.startsWith('=')) {
-    return (value: string) => value === filter.substring(1)
-  }
-
-  return () => false
+export function createIntFilter(filter: string): FilterFunction {
+  return createFilter(filter, value => parseInt(value, 0))
 }

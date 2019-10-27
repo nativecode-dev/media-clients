@@ -26,8 +26,8 @@ function filter(args: Arguments<ListOptions>, movies: Movie[]): Movie[] {
     log.debug('filter', args.year)
 
     movies = movies.filter(movie => {
-      const func = createIntFilter(year)
-      return func(movie.year.toString())
+      const intFilter = createIntFilter(year)
+      return intFilter(movie.year.toString())
     })
   }
 
@@ -52,9 +52,16 @@ export class ListCommand implements CommandModule<{}, ListOptions> {
   describe = 'show list of available movies'
   build = (argv: Argv): Argv => argv
   handler = async (args: Arguments<ListOptions>) => {
-    const radarr = new RadarrClient(new URL(args.endpoint), args.apikey, log)
-    const movies = await radarr.movie.list()
-    map(filter(args, movies)).forEach(output => console.log(output))
+    try {
+      const url = new URL(args.endpoint)
+      const radarr = new RadarrClient(url, args.apikey, log)
+      const movies = await radarr.movie.list()
+      const filtered = map(filter(args, movies))
+      filtered.forEach(output => console.log(output))
+    } catch (error) {
+      console.error(error.message || 'ERROR')
+      process.exit(-1)
+    }
   }
 }
 

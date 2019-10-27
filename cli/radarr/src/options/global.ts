@@ -1,8 +1,9 @@
-import { Argv, Arguments } from 'yargs'
+import { Argv, Arguments, Options } from 'yargs'
 
 export interface Global extends Arguments {
   apikey: string
   endpoint: string
+  output: 'json' | 'pretty'
 }
 
 export default function(argv: Argv<{}>): Argv<{}> {
@@ -12,6 +13,12 @@ export default function(argv: Argv<{}>): Argv<{}> {
     })
     .option('endpoint', {
       default: 'http://localhost:7878/api',
+      type: 'string',
+    })
+    .option('output', {
+      alias: ['o'],
+      default: 'pretty',
+      choices: ['json', 'pretty'],
       type: 'string',
     })
 }
