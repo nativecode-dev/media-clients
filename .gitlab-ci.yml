@@ -26,7 +26,7 @@ test:
   <<: *testsetup
   stage: test
   script:
-    - npm test
+    - npm run canary
   except:
     - develop
     - master

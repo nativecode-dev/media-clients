@@ -15,6 +15,7 @@
   ],
   "scripts": {
     "build": "cli-tasks build",
+    "canary": "cli-tasks ci:publish:canary",
     "clean": "cli-tasks clean",
     "commit": "git add -A . && npx git-cz",
     "lerna": "lerna",
