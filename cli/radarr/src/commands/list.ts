@@ -4,8 +4,7 @@ import { CommandModule, Arguments, Argv } from 'yargs'
 import client from '../client'
 import logger from '../logging'
 
-import { Global, Output } from '@nativecode/media-cli'
-import { createIntFilter } from '../filters'
+import { CreateIntFilter, Global, Output } from '@nativecode/media-cli'
 
 const log = logger.extend('list')
 
@@ -25,7 +24,7 @@ function filter(args: Arguments<ListOptions>, movies: Movie[]): Movie[] {
     log.debug('filter', args.year)
 
     movies = movies.filter(movie => {
-      const intFilter = createIntFilter(year)
+      const intFilter = CreateIntFilter(year)
       return intFilter(movie.year.toString())
     })
   }

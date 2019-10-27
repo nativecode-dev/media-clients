@@ -28,7 +28,7 @@ export type FilterFunction = (value: string) => boolean
 
 const DefaultConverter: FilterConverter = value => value
 
-export function createFilter(filter: string, converter: FilterConverter = DefaultConverter): FilterFunction {
+export function CreateFilter(filter: string, converter: FilterConverter = DefaultConverter): FilterFunction {
   const statement = getStatement(filter)
 
   switch (statement.operation) {
@@ -49,6 +49,6 @@ export function createFilter(filter: string, converter: FilterConverter = Defaul
   }
 }
 
-export function createIntFilter(filter: string): FilterFunction {
-  return createFilter(filter, value => parseInt(value, 0))
+export function CreateIntFilter(filter: string): FilterFunction {
+  return CreateFilter(filter, value => parseInt(value, 0))
 }

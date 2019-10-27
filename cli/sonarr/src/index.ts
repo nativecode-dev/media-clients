@@ -1,10 +1,22 @@
-import yargs from 'yargs'
-import yargsui from 'yargs-interactive'
+import yargs, { Arguments } from 'yargs'
+
+import { Global } from '@nativecode/media-cli'
+
+import env from './env'
 
 import ListCommand, { ListOptions } from './commands/list'
 
 yargs
+  .scriptName('sonarr-cli')
+  .command('$0 <list>', false)
   .command<ListOptions>(ListCommand)
-  .showHelp()
+  .middleware((args: Arguments<Global>) => {
+    args = env(args)
+
+    if (process.env.DEBUG) {
+      console.log(args)
+    }
+  })
   .showHelpOnFail(true)
+  .help()
   .parse()
