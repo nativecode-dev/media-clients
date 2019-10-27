@@ -79,6 +79,9 @@
     "upgrade": [
       "npm-check -y",
       "lerna run upgrade"
+    ],
+    "watch": [
+      "lerna run --parallel watch"
     ]
   }
 }

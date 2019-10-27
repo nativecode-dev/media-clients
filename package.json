@@ -25,7 +25,8 @@
     "sonarr": "ts-node cli/sonarr/src/index.ts",
     "tasks": "cli-tasks",
     "test": "cli-tasks test",
-    "upgrade": "cli-tasks upgrade"
+    "upgrade": "cli-tasks upgrade",
+    "watch": "cli-tasks watch"
   },
   "nyc": {
     "all": true,

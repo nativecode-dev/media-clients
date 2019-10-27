@@ -45,7 +45,6 @@ function selectProperties(movie: Movie) {
 export class SelectCommand implements CommandModule<{}, SelectOptions> {
   command = 'select'
   describe = 'view info for movie'
-  build = (argv: Argv): Argv => argv
   handler = async (args: Arguments<SelectOptions>) => {
     const radarr = new RadarrClient(new URL(args.endpoint), args.apikey, logger.extend('select'))
     const movies = await radarr.movie.list()

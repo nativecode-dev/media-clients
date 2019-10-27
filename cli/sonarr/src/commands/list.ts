@@ -19,7 +19,13 @@ export class ListCommand implements CommandModule<{}, ListOptions> {
       Output(args, seasons, 'seasons', args.compact)
     } else {
       const shows = await sonarr.shows.list()
-      Output(args, shows, 'shows', args.compact)
+      const mapped = shows.map(show => ({
+        title: show.title,
+        episodeCount: show.episodeCount,
+        seasons: show.seasons,
+      }))
+
+      Output(args, mapped, 'shows', args.compact)
     }
   }
 }

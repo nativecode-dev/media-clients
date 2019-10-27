@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "main": "lib/index.js",
   "scripts": {
-    "build": "tsc --project tsconfig.json"
+    "build": "tsc --project tsconfig.json",
+    "watch": "tsc --project tsconfig.json --watch"
   },
   "dependencies": {
     "@nofrills/lincoln-debug": "^6.0.0",

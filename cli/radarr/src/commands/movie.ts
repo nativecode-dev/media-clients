@@ -1,4 +1,4 @@
-import { CommandModule, Arguments, Argv } from 'yargs'
+import { CommandModule, Arguments } from 'yargs'
 
 import client from '../client'
 
@@ -12,7 +12,6 @@ export interface MovieOptions extends Global {
 export class MovieCommand implements CommandModule<{}, MovieOptions> {
   command = 'movie <id> [property...]'
   describe = 'view info for movie'
-  build = (argv: Argv): Argv => argv
   handler = async (args: Arguments<MovieOptions>) => {
     try {
       const radarr = client(args)

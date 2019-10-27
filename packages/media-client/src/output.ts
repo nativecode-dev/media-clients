@@ -11,21 +11,8 @@ export type ObjectFilter = (name: string) => boolean
 
 export const DefaultObjectFilter = () => true
 
-function fromArray<T extends any>(values: T, compact: boolean = true): Table.Table {
-  const table = new Table({
-    head: Object.keys(values[0]),
-    style: { compact },
-  })
-
-  const data = values.map((val: T) => Object.values(val))
-  table.push(...data)
-  return table
-}
-
-function fromObject<T extends any>(value: T, compact: boolean = false, filter?: ObjectFilter): Table.Table {
-  const table = new Table({
-    style: { compact },
-  })
+function createTable<T extends any>(value: T, compact: boolean, filter?: ObjectFilter): Table.Table {
+  const table = new Table({ style: { compact } })
 
   const rows = Object.keys(value)
     .filter(filter || DefaultObjectFilter)
@@ -35,9 +22,9 @@ function fromObject<T extends any>(value: T, compact: boolean = false, filter?: 
       instance[key] = property
 
       if (Is.array(property)) {
-        instance[key] = property.length > 0 ? fromArray(property).toString() : ''
+        instance[key] = property.length > 0 ? createTable(property, compact).toString() : ''
       } else if (Is.object(property)) {
-        instance[key] = fromObject(property).toString()
+        instance[key] = createTable(property, compact).toString()
       }
 
       return instance
@@ -49,7 +36,7 @@ function fromObject<T extends any>(value: T, compact: boolean = false, filter?: 
 
 export function Output<T extends any>(
   args: Global,
-  value: T,
+  value: T | T[],
   tag: string,
   compact: boolean,
   filter: ObjectFilter = DefaultObjectFilter,
@@ -62,12 +49,7 @@ export function Output<T extends any>(
       return console.log(parse(tag, value))
 
     default:
-      if (value && value.length > 0) {
-        const table = fromArray(value, compact)
-        return console.log(table.toString())
-      } else if (value) {
-        const table = fromObject(value, compact, filter)
-        return console.log(table.toString())
-      }
+      const table = createTable(value, compact, filter)
+      return console.log(table.toString())
   }
 }

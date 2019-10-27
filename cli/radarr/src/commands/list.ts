@@ -48,7 +48,6 @@ function map(movies: Movie[]): MovieDisplay[] {
 export class ListCommand implements CommandModule<{}, ListOptions> {
   command = 'list [year]'
   describe = 'show list of available movies'
-  build = (argv: Argv): Argv => argv
   handler = async (args: Arguments<ListOptions>) => {
     try {
       const radarr = client(args)

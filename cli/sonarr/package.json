@@ -6,7 +6,9 @@
   },
   "main": "bin/index.js",
   "scripts": {
-    "build": "tsc --project tsconfig.json"
+    "build": "tsc --project tsconfig.json",
+    "upgrade": "npm-check -y",
+    "watch": "tsc --project tsconfig.json --watch"
   },
   "dependencies": {
     "@nativecode/media-cli": "^0.0.0",
