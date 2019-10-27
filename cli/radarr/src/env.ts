@@ -1,4 +1,4 @@
-import { Global } from './options/global'
+import { Global } from '@nativecode/media-cli'
 
 export default function(global: Global): Global {
   return Object.assign(global, {

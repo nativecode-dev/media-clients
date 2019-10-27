@@ -1,23 +1,20 @@
 {
-  "name": "@nativecode/sonarr-cli",
+  "name": "@nativecode/media-cli",
   "version": "0.0.0",
-  "bin": {
-    "radarr-cli": "bin/index.js"
-  },
-  "main": "bin/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "build": "tsc --project tsconfig.json"
   },
   "dependencies": {
-    "@nativecode/media-cli": "^0.0.0",
-    "@nativecode/sonarr": "^1.0.0-next.0",
-    "@nofrills/lincoln": "^6.0.0",
     "@nofrills/lincoln-debug": "^6.0.0",
     "@nofrills/types": "^6.0.0",
     "cli-table2": "^0.2.0",
     "js2xmlparser": "^4.0.0",
     "yargs": "^14.2.0",
     "yargs-interactive": "^3.0.0"
+  },
+  "peerDependencies": {
+    "@nofrills/lincoln": "^6.0.0"
   },
   "devDependencies": {
     "@types/cli-table2": "^0.2.2",

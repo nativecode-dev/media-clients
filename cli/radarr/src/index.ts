@@ -3,13 +3,13 @@ import yargs, { Arguments } from 'yargs'
 import env from './env'
 import log from './logging'
 
-import global, { Global } from './options/global'
+import { GlobalOptions, Global } from '@nativecode/media-cli'
 
 import ListCommand, { ListOptions } from './commands/list'
 import SelectCommand, { SelectOptions } from './commands/select'
 import MovieCommand, { MovieOptions } from './commands/movie'
 
-const args = global(yargs)
+const args = GlobalOptions(yargs)
   .scriptName('radarr-cli')
   .command('$0 <list|select>', false)
   .command<ListOptions>(ListCommand)

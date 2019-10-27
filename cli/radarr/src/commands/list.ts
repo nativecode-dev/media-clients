@@ -4,7 +4,7 @@ import { CommandModule, Arguments, Argv } from 'yargs'
 import client from '../client'
 import logger from '../logging'
 
-import { Global } from '../options/global'
+import { Global, Output } from '@nativecode/media-cli'
 import { createIntFilter } from '../filters'
 
 const log = logger.extend('list')
@@ -55,7 +55,7 @@ export class ListCommand implements CommandModule<{}, ListOptions> {
       const radarr = client(args)
       const movies = await radarr.movie.list()
       const filtered = map(filter(args, movies))
-      filtered.forEach(output => console.log(output))
+      Output(args, filtered, 'movie', args.compact)
     } catch (error) {
       console.error(error.message || 'ERROR')
       process.exit(-1)
