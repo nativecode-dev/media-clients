@@ -19,7 +19,7 @@ describe('when using BackupResource', () => {
     backups = await sut.backup.list()
     expect(backups).not.null
     expect(backups).not.undefined
-  })
+  }).timeout(5000)
 
   xstep('should delete all existing backups', function() {
     this.timeout(backups.length * 2000)
@@ -27,5 +27,5 @@ describe('when using BackupResource', () => {
     const limit = plimit(1)
     const promises = backups.map(backup => limit(() => sut.backup.remove(backup.id)))
     expect(Promise.all(promises)).to.eventually.be.fulfilled
-  })
+  }).timeout(5000)
 })

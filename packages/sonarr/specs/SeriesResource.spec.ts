@@ -12,10 +12,10 @@ describe('when using SeriesResource', () => {
   it('should get list of series', async () => {
     const series = await sut.series.list()
     expect(series).to.not.be.empty
-  })
+  }).timeout(5000)
 
   it('should get single series', async () => {
     const series = await sut.series.id(1)
     expect(series.title).to.equal('Transformers')
-  })
+  }).timeout(5000)
 })

@@ -20,12 +20,12 @@
     "commit": "git add -A . && npx git-cz",
     "lerna": "lerna",
     "pre-release": "cli-tasks ci:publish:prerelease",
+    "radarr": "ts-node cli/radarr/src/index.ts",
     "release": "cli-tasks ci:publish:release",
+    "sonarr": "ts-node cli/sonarr/src/index.ts",
     "tasks": "cli-tasks",
     "test": "cli-tasks test",
-    "upgrade": "cli-tasks upgrade",
-    "radarr": "ts-node cli/radarr/src/index.ts",
-    "sonarr": "ts-node cli/sonarr/src/index.ts"
+    "upgrade": "cli-tasks upgrade"
   },
   "nyc": {
     "all": true,

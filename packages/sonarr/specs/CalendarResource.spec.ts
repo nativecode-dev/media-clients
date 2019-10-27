@@ -11,11 +11,11 @@ describe('when using CalendarResource', () => {
 
   it('should return no episodes', () => {
     expect(sut.calendar.list()).eventually.to.be.empty
-  })
+  }).timeout(5000)
 
   it('should find first episode of the first season of 24', async () => {
     const episodes = await sut.calendar.list('11/05/2001', '11/07/2001')
     const found = episodes.filter(episode => episode.series.title === '24')
     expect(found.length).to.equal(1)
-  })
+  }).timeout(5000)
 })
