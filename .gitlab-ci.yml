@@ -31,7 +31,7 @@ test:
   except:
     - develop
     - master
-    - feature/
+    - /feature\/*/
 
 canary:
   <<: *testsetup
@@ -42,7 +42,7 @@ canary:
     - develop
     - master
   only:
-    - feature/
+    - /feature\/*/
 
 prerelease:
   <<: *testsetup
