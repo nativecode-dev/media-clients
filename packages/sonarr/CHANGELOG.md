@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://git.nativecode.net/nativecode/media-clients/compare/@nativecode/sonarr@1.0.0...@nativecode/sonarr@1.0.1) (2019-10-28)
+
+
+### Bug Fixes
+
+* force update ([77b3343](https://git.nativecode.net/nativecode/media-clients/commits/77b33435d5b1a7a1c76d74ad085cf8c9940b0ec8))
+
+
+
+
+
 # [1.0.0](https://git.nativecode.net/nativecode/media-clients/compare/@nativecode/sonarr@1.0.0-next.2...@nativecode/sonarr@1.0.0) (2019-10-28)
 
 **Note:** Version bump only for package @nativecode/sonarr
