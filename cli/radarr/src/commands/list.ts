@@ -46,6 +46,7 @@ function map(movies: Movie[]): MovieDisplay[] {
 }
 
 export class ListCommand implements CommandModule<{}, ListOptions> {
+  aliases = ['ls']
   command = 'list [year]'
   describe = 'show list of available movies'
   handler = async (args: Arguments<ListOptions>) => {
