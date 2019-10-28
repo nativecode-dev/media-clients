@@ -5,18 +5,21 @@ import log from './logging'
 
 import { ConfigureCommand, GlobalOptions, Global } from '@nativecode/media-cli'
 
-import ListCommand, { ListOptions } from './commands/list'
-import SelectCommand, { SelectOptions } from './commands/select'
-import MovieCommand, { MovieOptions } from './commands/movie'
-import CalendarCommand, { CalendarOptions } from './commands/calendar'
 import { Load } from './config'
+
+import CalendarCommand, { CalendarOptions } from './commands/calendar'
+import ListCommand, { ListOptions } from './commands/list'
+import MonitorCommand, { MonitorOptions } from './commands/monitor'
+import MovieCommand, { MovieOptions } from './commands/movie'
+import SelectCommand, { SelectOptions } from './commands/select'
 
 const args = GlobalOptions(yargs)
   .scriptName('radarr-cli')
   .command('$0 <list|select>', false)
-  .command<Global>(new ConfigureCommand())
   .command<CalendarOptions>(CalendarCommand)
+  .command<Global>(new ConfigureCommand())
   .command<ListOptions>(ListCommand)
+  .command<MonitorOptions>(MonitorCommand)
   .command<MovieOptions>(MovieCommand)
   .command<SelectOptions>(SelectCommand)
   .middleware(async (args: Arguments<Global>) => {
