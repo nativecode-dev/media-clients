@@ -1,6 +1,6 @@
 {
   "name": "@nativecode/radarr",
-  "version": "0.1.0",
+  "version": "1.0.0-next.2",
   "description": "Radarr REST client",
   "license": "MIT",
   "private": false,
@@ -25,16 +25,19 @@
   },
   "scripts": {
     "build": "tsc --project tsconfig.json",
-    "upgrade": "npm-check -y"
+    "upgrade": "npm-check -y",
+    "watch": "tsc --project tsconfig.json --watch"
   },
   "radarr": {
     "version": "0.2.0.1344"
   },
   "types": "lib/index.d.ts",
   "dependencies": {
-    "@nativecode/rest-client": "0.0.1",
-    "@nofrills/lincoln": "^6.0.0",
+    "@nativecode/rest-client": "^1.0.0-next.1",
     "isomorphic-fetch": "^2.2.1"
+  },
+  "peerDependencies": {
+    "@nofrills/lincoln": "^6.0.0"
   },
   "devDependencies": {
     "@nofrills/fs": "^7.0.0",

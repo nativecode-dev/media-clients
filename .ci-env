@@ -2,7 +2,7 @@
 
 export BRANCH=${CI_COMMIT_REF_NAME}
 export DOMAIN="nativecode.net"
-export PROJECT="nofrills"
+export PROJECT="media-clients"
 export ORGANIZATION="nativecode"
 export SSH_KEY=${SSH_PRIVATE_KEY}
 

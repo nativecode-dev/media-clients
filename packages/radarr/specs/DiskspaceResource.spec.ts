@@ -1,3 +1,5 @@
+import 'mocha'
+
 import expect from './expect'
 import Logger from './logging'
 
@@ -9,5 +11,5 @@ describe('when using the DiskspaceResource class', () => {
 
   it('should get collection of diskspace instances', () => {
     expect(sut.diskspace.list()).to.eventually.not.be.empty
-  })
+  }).timeout(5000)
 })

@@ -1,3 +1,5 @@
+import 'mocha'
+
 import expect from './expect'
 import Logger from './logging'
 
@@ -15,10 +17,10 @@ describe('when using CommandResource', () => {
   xstep('should perform backup', async () => {
     backup = await sut.command.backup()
     expect(backup.name).to.equal('Backup')
-  })
+  }).timeout(5000)
 
   xstep('should get single command', async () => {
     const result = await sut.command.command(backup.id)
     expect(backup.name).to.equal(result.name)
-  })
+  }).timeout(5000)
 })

@@ -1,6 +1,6 @@
 {
   "name": "@nativecode/rest-client",
-  "version": "0.0.1",
+  "version": "1.0.0-next.1",
   "description": "REST client",
   "license": "MIT",
   "private": false,
@@ -8,6 +8,7 @@
     "type": "git",
     "url": "git@git.nativecode.net:nativecode/media-clients.git"
   },
+  "homepage": "https://github.com/nativecode-dev/media-clients",
   "author": "opensource@nativecode.com",
   "keywords": [
     "rest"
@@ -25,12 +26,15 @@
   },
   "scripts": {
     "build": "tsc --project tsconfig.json",
-    "upgrade": "npm-check -y"
+    "upgrade": "npm-check -y",
+    "watch": "tsc --project tsconfig.json --watch"
   },
   "types": "lib/index.d.ts",
   "dependencies": {
-    "@nofrills/lincoln": "^6.0.0",
     "isomorphic-fetch": "^2.2.1"
+  },
+  "peerDependencies": {
+    "@nofrills/lincoln": "^6.0.0"
   },
   "devDependencies": {
     "@nofrills/lincoln-debug": "^6.0.0",

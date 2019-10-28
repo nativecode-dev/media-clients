@@ -1,3 +1,5 @@
+import 'mocha'
+
 import expect from './expect'
 import Logger from './logging'
 
@@ -16,7 +18,7 @@ describe('when using the MovieResource class', () => {
 
   it('should fail to find movie', () => {
     expect(sut.movie.id(0)).to.eventually.be.rejected
-  })
+  }).timeout(5000)
 
   it('should fail to add movie', () => {
     const add: MovieInfo = {
@@ -30,29 +32,29 @@ describe('when using the MovieResource class', () => {
     }
 
     expect(sut.movie.add(add)).to.eventually.be.rejected
-  })
+  }).timeout(5000)
 
   step('should get movie by IMDb ID', () => {
     expect(sut.movie.imdb('tt1814643')).to.eventually.not.be.empty
-  })
+  }).timeout(5000)
 
   step('should get movie by TMDB ID', () => {
     expect(sut.movie.tmdb(535292)).to.eventually.not.be.empty
-  })
+  }).timeout(5000)
 
   step('should get movie by lookup', () => {
     expect(sut.movie.lookup('21 Bridges')).to.eventually.not.be.empty
-  })
+  }).timeout(5000)
 
   step('should get list of movies', async () => {
     movies = await sut.movie.list()
     expect(movies).to.not.be.empty
-  })
+  }).timeout(5000)
 
   step('should get single movie', async () => {
     const movie = await sut.movie.id(1)
     expect(movie.title).to.equal('Banana')
-  })
+  }).timeout(5000)
 
   if (!process.env.CI) {
     step('should add movie', async () => {
@@ -76,10 +78,10 @@ describe('when using the MovieResource class', () => {
       } else {
         movie = existing
       }
-    })
+    }).timeout(5000)
 
     step('should delete added movie', () => {
       expect(sut.movie.remove(movie.id)).to.eventually.not.be.rejected
-    })
+    }).timeout(5000)
   }
 })

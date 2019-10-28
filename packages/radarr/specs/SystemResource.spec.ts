@@ -1,3 +1,5 @@
+import 'mocha'
+
 import expect from './expect'
 import Logger from './logging'
 
@@ -9,5 +11,5 @@ describe('when using the CalendarResource class', () => {
 
   it('should validate version supported', () => {
     expect(sut.system.supported()).to.eventually.be.false
-  })
+  }).timeout(5000)
 })
