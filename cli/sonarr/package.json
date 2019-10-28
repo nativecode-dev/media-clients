@@ -16,6 +16,7 @@
   "dependencies": {
     "@nativecode/media-cli": "^0.1.1",
     "@nativecode/sonarr": "^1.0.1",
+    "@nofrills/fs": "^7.0.0",
     "@nofrills/lincoln": "^6.0.0",
     "@nofrills/lincoln-debug": "^6.0.0",
     "@nofrills/types": "^6.0.0",

@@ -9,6 +9,7 @@ import ListCommand, { ListOptions } from './commands/list'
 import SelectCommand, { SelectOptions } from './commands/select'
 import MovieCommand, { MovieOptions } from './commands/movie'
 import CalendarCommand, { CalendarOptions } from './commands/calendar'
+import { Load } from './config'
 
 const args = GlobalOptions(yargs)
   .scriptName('radarr-cli')
@@ -18,8 +19,9 @@ const args = GlobalOptions(yargs)
   .command<ListOptions>(ListCommand)
   .command<MovieOptions>(MovieCommand)
   .command<SelectOptions>(SelectCommand)
-  .middleware((args: Arguments<Global>) => {
+  .middleware(async (args: Arguments<Global>) => {
     args = env(args)
+    await Load(args)
 
     if (process.env.DEBUG) {
       console.log(args)
