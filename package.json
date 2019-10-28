@@ -47,11 +47,15 @@
     "sourceMap": true,
     "temp-directory": ".cache/nyc"
   },
+  "dependencies": {
+    "chunk-text": "^1.0.5"
+  },
   "devDependencies": {
     "@nofrills/lincoln": "^6.0.0",
     "@nofrills/tasks": "^9.0.2",
     "@types/chai": "^4.2.4",
     "@types/chai-as-promised": "^7.1.2",
+    "@types/chunk-text": "^1.0.0",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.11.7",
     "chai": "^4.2.0",

@@ -22,9 +22,9 @@ function createTable<T extends any>(value: T, compact: boolean, filter?: ObjectF
       instance[key] = property
 
       if (Is.array(property)) {
-        instance[key] = property.length > 0 ? createTable(property, compact).toString() : ''
+        instance[key] = property.length > 0 ? createTable(property, compact, filter).toString() : ''
       } else if (Is.object(property)) {
-        instance[key] = createTable(property, compact).toString()
+        instance[key] = createTable(property, compact, filter).toString()
       }
 
       return instance
