@@ -23,6 +23,7 @@ function getStatement(value: string): FilterStatement {
   }
 }
 
+export type FilterCompare = <T>(comparison: T, value: T) => boolean
 export type FilterConverter = (value: string) => any
 export type FilterFunction = (value: string) => boolean
 
@@ -45,7 +46,7 @@ export function CreateFilter(filter: string, converter: FilterConverter = Defaul
     case '<=':
       return (value: string) => converter(value) <= converter(statement.value)
     default:
-      return () => false
+      return (value: string) => converter(value) === converter(statement.value)
   }
 }
 
