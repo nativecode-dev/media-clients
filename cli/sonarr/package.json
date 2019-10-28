@@ -1,6 +1,6 @@
 {
   "name": "@nativecode/sonarr-cli",
-  "version": "1.0.2",
+  "version": "1.1.0-next.0",
   "bin": {
     "radarr-cli": "bin/index.js"
   },
@@ -14,7 +14,7 @@
     "watch": "tsc --project tsconfig.json --watch"
   },
   "dependencies": {
-    "@nativecode/media-cli": "^0.1.1",
+    "@nativecode/media-cli": "^0.2.0-next.0",
     "@nativecode/sonarr": "^1.0.1",
     "@nofrills/fs": "^7.0.0",
     "@nofrills/lincoln": "^6.0.0",
