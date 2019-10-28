@@ -2,8 +2,8 @@ import yargsui from 'yargs-interactive'
 
 import { Arguments, CommandModule } from 'yargs'
 
-import { Output } from '../output'
 import { Global } from '../options/global'
+import { ConfigPath, SaveConfig } from '../config'
 
 export class ConfigureCommand implements CommandModule<{}, Global> {
   command = 'configure'
@@ -34,6 +34,9 @@ export class ConfigureCommand implements CommandModule<{}, Global> {
       endpoint: results.endpoint,
     }
 
-    Output(args, config, 'config', args.compact)
+    const filepath = await ConfigPath()
+    await SaveConfig(filepath, config)
+
+    console.log(`Saved configuration to ${filepath}`)
   }
 }

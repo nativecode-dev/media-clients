@@ -25,7 +25,7 @@ export class MovieResource extends Resource {
     ])
   }
 
-  imdb(imdbId: string): Promise<Movie[]> {
+  imdb(imdbId: string): Promise<Movie> {
     return this._get('movie/lookup/imdb', [
       {
         key: 'imdbId',
@@ -64,7 +64,7 @@ export class MovieResource extends Resource {
     ])
   }
 
-  tmdb(tmdbId: number): Promise<Movie[]> {
+  tmdb(tmdbId: number): Promise<Movie> {
     return this._get('movie/lookup/tmdb', [
       {
         key: 'tmdbId',

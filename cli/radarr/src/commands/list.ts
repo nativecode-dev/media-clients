@@ -14,6 +14,8 @@ export interface ListOptions extends Global {
 
 interface MovieDisplay {
   id: number
+  imdb: string
+  tmdb: number
   title: string
   year: number
 }
@@ -40,6 +42,8 @@ function filter(args: Arguments<ListOptions>, movies: Movie[]): Movie[] {
 function map(movies: Movie[]): MovieDisplay[] {
   return movies.map(movie => ({
     id: movie.id,
+    imdb: movie.imdbId,
+    tmdb: movie.tmdbId,
     title: movie.title,
     year: movie.year,
   }))
