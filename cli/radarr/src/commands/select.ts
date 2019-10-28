@@ -7,6 +7,7 @@ import { CommandModule, Arguments, Argv } from 'yargs'
 import logger from '../logging'
 
 import { Global, Output } from '@nativecode/media-cli'
+import { ListPropertyFilter } from '../filters'
 
 export interface SelectOptions extends Global {
   shows?: string
@@ -60,7 +61,7 @@ export class SelectCommand implements CommandModule<{}, SelectOptions> {
         const filter = (property: string) => selectedPropertiesAnswer.properties.includes(property)
         Output(args, movie, 'movie', args.compact, filter)
       } else {
-        Output(args, movie, 'movie', args.compact)
+        Output(args, movie, 'movie', args.compact, ListPropertyFilter)
       }
     }
   }
