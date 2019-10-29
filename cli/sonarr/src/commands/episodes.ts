@@ -3,7 +3,7 @@ import { Arguments, CommandModule } from 'yargs'
 
 import client from '../client'
 
-import { ListPropertyFilter } from '../filters'
+import { DefaultFilter } from '../filters'
 
 export interface EpisodeOptions extends Global {
   showId: string
@@ -19,7 +19,7 @@ export class EpisodesCommand implements CommandModule<{}, EpisodeOptions> {
     const episodes = await sonarr.episodes.list(id)
     const seasons = args.seasons.map(season => parseInt(season, 0))
     const filtered = episodes.filter(episode => seasons.includes(episode.seasonNumber))
-    Output(args, filtered, 'episodes', args.compact, ListPropertyFilter)
+    Output(args, filtered, 'episodes', args.compact, DefaultFilter)
   }
 }
 

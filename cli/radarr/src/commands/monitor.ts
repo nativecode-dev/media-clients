@@ -5,7 +5,7 @@ import { Global, Output } from '@nativecode/media-cli'
 import logger from '../logging'
 
 import client, { GetMovieById } from '../client'
-import { ListPropertyFilter } from '../filters'
+import { DefaultFilter } from '../filters'
 
 export interface MonitorOptions extends Global {
   id: string
@@ -46,7 +46,7 @@ export class MonitorCommand implements CommandModule<{}, MonitorOptions> {
       tmdb: movie.tmdbId,
     }
 
-    Output(args, output, movie.titleSlug, args.compact, ListPropertyFilter)
+    Output(args, output, movie.titleSlug, args.compact, DefaultFilter)
   }
 }
 

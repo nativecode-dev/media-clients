@@ -3,7 +3,7 @@ import { Arguments, CommandModule, Options } from 'yargs'
 
 import client from '../client'
 
-import { ListPropertyFilter } from '../filters'
+import { DefaultFilter } from '../filters'
 
 export interface CalendarOptions extends Global {
   end?: string
@@ -34,7 +34,7 @@ export class CalendarCommand implements CommandModule<{}, CalendarOptions> {
   handler = async (args: Arguments<CalendarOptions>) => {
     const sonarr = client(args)
     const episodes = await sonarr.calendar.list(args.start, args.end)
-    Output(args, episodes, 'episodes', args.compact, ListPropertyFilter)
+    Output(args, episodes, 'episodes', args.compact, DefaultFilter)
   }
 }
 

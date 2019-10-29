@@ -1,14 +1,13 @@
-import { Is } from '@nofrills/types'
-
 import chunk from 'chunk-text'
 
 import { Series } from '@nativecode/sonarr'
+import { Is, DictionaryOf } from '@nofrills/types'
 import { Global, Output } from '@nativecode/media-cli'
 import { Arguments, CommandModule, Options } from 'yargs'
 
 import client from '../client'
 
-import { ListPropertyFilter } from '../filters'
+import { DefaultFilter } from '../filters'
 
 export interface ShowOptions extends Global {
   id: string
@@ -28,18 +27,18 @@ function display(args: ShowOptions, show: Series): void {
   const property = getPropertyValue(args, show)
 
   if (Is.object(property)) {
-    Output(args, property, 'show', args.compact, ListPropertyFilter)
+    Output(args, property, 'show', args.compact, DefaultFilter)
   } else if (Is.array(property)) {
-    Output(args, property, 'show', args.compact, ListPropertyFilter)
+    Output(args, property, 'show', args.compact, DefaultFilter)
   } else if (Is.string(property)) {
     const chunks = chunk(property, process.stdout.columns - 30)
-    Output(args, chunks, args.property!, args.compact || true, ListPropertyFilter)
+    Output(args, chunks, args.property!, args.compact || true, DefaultFilter)
   } else {
-    Output(args, show, 'show', args.compact, ListPropertyFilter)
+    Output(args, show, 'show', args.compact, DefaultFilter)
   }
 }
 
-const options: { [key: string]: Options } = {}
+const options: DictionaryOf<Options> = {}
 
 export class ShowCommand implements CommandModule<{}, ShowOptions> {
   aliases = ['series']

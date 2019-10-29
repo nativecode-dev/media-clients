@@ -4,7 +4,7 @@ import { Global, Output } from '@nativecode/media-cli'
 
 import client from '../client'
 
-import { ListPropertyFilter } from '../filters'
+import { DefaultFilter } from '../filters'
 
 export interface ListOptions extends Global {
   ids?: string[]
@@ -25,10 +25,10 @@ export class ListCommand implements CommandModule<{}, ListOptions> {
       const tasks = ids.map(id => sonarr.shows.id(id))
       const shows = await Promise.all(tasks)
       const seasons = shows.map(result => result.seasons)
-      Output(args, seasons, 'seasons', args.compact, ListPropertyFilter)
+      Output(args, seasons, 'seasons', args.compact, DefaultFilter)
     } else {
       const shows = await sonarr.shows.list()
-      Output(args, shows, 'shows', args.compact, ListPropertyFilter)
+      Output(args, shows, 'shows', args.compact, DefaultFilter)
     }
   }
 }

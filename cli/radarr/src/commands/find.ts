@@ -4,7 +4,9 @@ import { DictionaryOf } from '@nofrills/collections'
 import { Global, FilterCompare, Output } from '@nativecode/media-cli'
 
 import client from '../client'
-import { ListPropertyFilter } from '../filters'
+import logger from '../logging'
+
+import { DefaultFilter } from '../filters'
 
 const OPERATORS: DictionaryOf<string> = {
   equal: '=',
@@ -52,6 +54,8 @@ export interface FindOptions extends Global {
 }
 
 export class FindCommand implements CommandModule<{}, FindOptions> {
+  private readonly log = logger.extend('find')
+
   builder = {
     summary: {
       boolean: true,
@@ -70,13 +74,14 @@ export class FindCommand implements CommandModule<{}, FindOptions> {
       const property = instance[args.property]
       const operator = OPERATORS[args.operator]
       const filter = FILTERS[operator]
+      this.log.trace(args.property, operator, args.value)
       return filter(args.value, property)
     })
 
     if (args.summary) {
-      Output(args, { found: results.length }, 'movie', args.compact, ListPropertyFilter)
+      Output(args, { found: results.length }, 'movie', args.compact, DefaultFilter)
     } else {
-      Output(args, results, 'movie', args.compact, ListPropertyFilter)
+      Output(args, results, 'movie', args.compact, DefaultFilter)
     }
   }
 }

@@ -3,7 +3,7 @@ import { CommandModule, Arguments } from 'yargs'
 import client, { GetMovieById } from '../client'
 
 import { Global, Output } from '@nativecode/media-cli'
-import { ListPropertyFilter } from '../filters'
+import { DefaultFilter } from '../filters'
 
 export interface MovieOptions extends Global {
   id: string
@@ -17,7 +17,7 @@ export class MovieCommand implements CommandModule<{}, MovieOptions> {
     try {
       const radarr = client(args)
       const movie = await GetMovieById(radarr, args.id)
-      Output(args, movie, 'movie', args.compact, ListPropertyFilter)
+      Output(args, movie, 'movie', args.compact, DefaultFilter)
     } catch (error) {
       console.error(error.message || 'ERROR')
       process.exit(-1)
