@@ -1,5 +1,9 @@
 {
   "tasks": {
+    "binaries": [
+      "nexe cli/radarr/bin/index.js -o dist/radarr",
+      "nexe cli/sonarr/bin/index.js -o dist/sonarr"
+    ],
     "bootstrap": [
       "lerna bootstrap"
     ],
@@ -26,16 +30,19 @@
     "ci:publish:canary": [
       "[ci:configure]",
       "[ci:test]",
+      "[binaries]",
       ".citools/lerna-publish canary"
     ],
     "ci:publish:prerelease": [
       "[ci:configure]",
       "[ci:test]",
+      "[binaries]",
       ".citools/lerna-publish prerelease"
     ],
     "ci:publish:release": [
       "[ci:configure]",
       "[ci:test]",
+      "[binaries]",
       ".citools/lerna-publish release"
     ],
     "ci:test": [
