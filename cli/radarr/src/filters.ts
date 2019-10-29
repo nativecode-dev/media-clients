@@ -23,7 +23,7 @@ export class PropertyFilter {
   }
 }
 
-const DefaultPropertyFilter = new PropertyFilter(['images', 'overview', 'subtitles', 'sortTitle', 'statistics'])
+const DefaultPropertyFilter = new PropertyFilter([], ['images', 'overview', 'subtitles', 'sortTitle', 'statistics'])
 
 export function DefaultFilter(key: string): boolean {
   return DefaultPropertyFilter.filtered(key)

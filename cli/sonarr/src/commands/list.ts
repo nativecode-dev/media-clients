@@ -1,6 +1,6 @@
 import { CommandModule, Arguments, Options } from 'yargs'
 
-import { Global, VerticalTable, HorizontalTable } from '@nativecode/media-cli'
+import { Global, HorizontalTable } from '@nativecode/media-cli'
 
 import client from '../client'
 
