@@ -10,7 +10,6 @@
   },
   "scripts": {
     "build": "tsc --project tsconfig.json",
-    "postbuild": "nexe bin/index.js -o dist/radarr",
     "upgrade": "npm-check -y",
     "watch": "tsc --project tsconfig.json --watch"
   },
