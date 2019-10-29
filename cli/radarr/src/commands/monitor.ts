@@ -1,5 +1,6 @@
-import { Global, Output } from '@nativecode/media-cli'
+import { Movie } from '@nativecode/radarr'
 import { Arguments, CommandModule } from 'yargs'
+import { Global, Output } from '@nativecode/media-cli'
 
 import logger from '../logging'
 
@@ -27,13 +28,12 @@ export class MonitorCommand implements CommandModule<{}, MonitorOptions> {
     const radarr = client(args)
     const movie = await GetMovieById(radarr, args.id)
 
-    console.log(movie)
-
     const changed = args.monitor !== movie.monitored
-    const defined = args.monitor !== undefined
+    const defined = args.monitor !== undefined && movie.id
 
     if (changed && defined) {
       movie.monitored = args.monitor
+      await radarr.movie.update(movie as Movie)
       this.log.trace(`args.monitor: ${args.monitor}`, `monitored: ${movie.monitored}`)
     }
 

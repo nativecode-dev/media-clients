@@ -1,5 +1,5 @@
 import { Movie } from '@nativecode/radarr'
-import { CommandModule, Arguments, Argv } from 'yargs'
+import { CommandModule, Arguments } from 'yargs'
 
 import client from '../client'
 import logger from '../logging'

@@ -4,6 +4,7 @@ import { Resource, ResourceRouteParamType } from '@nativecode/rest-client'
 
 import { Movie } from '../Models/Movie'
 import { MovieInfo } from '../Models/MovieInfo'
+import { RemoteMovie } from '../Models/RemoteMovie'
 
 export class MovieResource extends Resource {
   constructor(url: URL, apikey: string, logger: Lincoln) {
@@ -25,7 +26,7 @@ export class MovieResource extends Resource {
     ])
   }
 
-  imdb(imdbId: string): Promise<Movie> {
+  imdb(imdbId: string): Promise<RemoteMovie> {
     return this._get('movie/lookup/imdb', [
       {
         key: 'imdbId',
@@ -39,7 +40,7 @@ export class MovieResource extends Resource {
     return this._get('movie')
   }
 
-  lookup(term: string): Promise<Movie[]> {
+  lookup(term: string): Promise<RemoteMovie[]> {
     return this._get('movie/lookup', [
       {
         key: 'term',
@@ -64,7 +65,7 @@ export class MovieResource extends Resource {
     ])
   }
 
-  tmdb(tmdbId: number): Promise<Movie> {
+  tmdb(tmdbId: number): Promise<RemoteMovie> {
     return this._get('movie/lookup/tmdb', [
       {
         key: 'tmdbId',
