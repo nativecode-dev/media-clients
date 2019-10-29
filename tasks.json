@@ -1,8 +1,8 @@
 {
   "tasks": {
     "binaries": [
-      "nexe cli/radarr/bin/index.js -o dist/radarr --build",
-      "nexe cli/sonarr/bin/index.js -o dist/sonarr --build"
+      "nexe cli/radarr/bin/index.js -o dist/radarr --target x86-12.12.0",
+      "nexe cli/sonarr/bin/index.js -o dist/sonarr --target x86-12.12.0"
     ],
     "bootstrap": [
       "lerna bootstrap"
