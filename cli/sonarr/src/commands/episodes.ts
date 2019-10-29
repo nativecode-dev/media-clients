@@ -1,4 +1,4 @@
-import { Global, Output } from '@nativecode/media-cli'
+import { Global, VerticalTable } from '@nativecode/media-cli'
 import { Arguments, CommandModule } from 'yargs'
 
 import client from '../client'
@@ -19,7 +19,7 @@ export class EpisodesCommand implements CommandModule<{}, EpisodeOptions> {
     const episodes = await sonarr.episodes.list(id)
     const seasons = args.seasons.map(season => parseInt(season, 0))
     const filtered = episodes.filter(episode => seasons.includes(episode.seasonNumber))
-    Output(args, filtered, 'episodes', args.compact, DefaultFilter)
+    VerticalTable(args, filtered, 'episodes', args.compact, DefaultFilter(filtered))
   }
 }
 

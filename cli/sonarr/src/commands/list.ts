@@ -1,6 +1,6 @@
 import { CommandModule, Arguments, Options } from 'yargs'
 
-import { Global, Output } from '@nativecode/media-cli'
+import { Global, VerticalTable, HorizontalTable } from '@nativecode/media-cli'
 
 import client from '../client'
 
@@ -25,10 +25,10 @@ export class ListCommand implements CommandModule<{}, ListOptions> {
       const tasks = ids.map(id => sonarr.shows.id(id))
       const shows = await Promise.all(tasks)
       const seasons = shows.map(result => result.seasons)
-      Output(args, seasons, 'seasons', args.compact, DefaultFilter)
+      HorizontalTable(args, seasons, 'seasons', args.compact, DefaultFilter(seasons))
     } else {
       const shows = await sonarr.shows.list()
-      Output(args, shows, 'shows', args.compact, DefaultFilter)
+      HorizontalTable(args, shows, 'shows', args.compact, DefaultFilter(shows))
     }
   }
 }

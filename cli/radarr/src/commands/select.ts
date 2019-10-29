@@ -6,7 +6,7 @@ import { CommandModule, Arguments, Argv } from 'yargs'
 
 import logger from '../logging'
 
-import { Global, Output } from '@nativecode/media-cli'
+import { Global, VerticalTable } from '@nativecode/media-cli'
 import { DefaultFilter } from '../filters'
 
 export interface SelectOptions extends Global {
@@ -59,9 +59,9 @@ export class SelectCommand implements CommandModule<{}, SelectOptions> {
       if (args.output === 'pretty') {
         const selectedPropertiesAnswer = await selectProperties(movie)
         const filter = (property: string) => selectedPropertiesAnswer.properties.includes(property)
-        Output(args, movie, 'movie', args.compact, filter)
+        VerticalTable(args, movie, 'movie', args.compact, filter)
       } else {
-        Output(args, movie, 'movie', args.compact, DefaultFilter)
+        VerticalTable(args, movie, 'movie', args.compact, DefaultFilter)
       }
     }
   }

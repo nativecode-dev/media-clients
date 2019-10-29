@@ -1,17 +1,24 @@
+import { FilterFunction } from '@nativecode/media-cli'
+
+import logger from './logging'
+
 export class PropertyFilter {
+  private readonly log = logger.extend('property-filter')
+
   constructor(private readonly included: string[] = [], private readonly ignored: string[] = []) {}
 
-  filtered<T>(instance: T): boolean {
-    return Object.keys(instance).reduce<boolean>((result, key) => {
-      const ignored = this.ignored.includes(key) === false
-      const included = this.included.includes(key)
+  filtered<T extends any>(key: string, instance: T): boolean {
+    const ignored = this.ignored.includes(key)
+    const included = this.included.includes(key)
+    const value = instance[key]
 
-      if (ignored && included) {
-        return true
-      }
+    this.log.trace(key, ignored, included, value)
 
-      return result
-    }, false)
+    if (ignored === false || included) {
+      return true
+    }
+
+    return false
   }
 
   ignore(property: string): void {
@@ -23,17 +30,13 @@ export class PropertyFilter {
   }
 }
 
-const DefaultPropertyFilter = new PropertyFilter([
-  'images',
-  'overview',
-  'seasons',
-  'subtitles',
-  'sortTitle',
-  'statistics',
-])
+const DefaultPropertyFilter = new PropertyFilter(
+  ['id', 'title'],
+  ['images', 'overview', 'seasons', 'subtitles', 'sortTitle', 'statistics'],
+)
 
-export function DefaultFilter(key: string): boolean {
-  return DefaultPropertyFilter.filtered(key)
+export function DefaultFilter<T>(instance: T): FilterFunction {
+  return (key: string) => DefaultPropertyFilter.filtered(key, instance)
 }
 
 export default DefaultPropertyFilter

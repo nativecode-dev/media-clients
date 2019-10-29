@@ -1,7 +1,7 @@
 import { Is } from '@nofrills/types'
 import { Arguments, CommandModule } from 'yargs'
 import { DictionaryOf } from '@nofrills/collections'
-import { Global, FilterCompare, Output } from '@nativecode/media-cli'
+import { Global, FilterCompare, VerticalTable } from '@nativecode/media-cli'
 
 import client from '../client'
 import logger from '../logging'
@@ -79,9 +79,9 @@ export class FindCommand implements CommandModule<{}, FindOptions> {
     })
 
     if (args.summary) {
-      Output(args, { found: results.length }, 'movie', args.compact, DefaultFilter)
+      VerticalTable(args, { found: results.length }, 'movie', args.compact, DefaultFilter)
     } else {
-      Output(args, results, 'movie', args.compact, DefaultFilter)
+      VerticalTable(args, results, 'movie', args.compact, DefaultFilter)
     }
   }
 }

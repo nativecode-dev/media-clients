@@ -1,4 +1,4 @@
-import { Global, Output } from '@nativecode/media-cli'
+import { Global, VerticalTable } from '@nativecode/media-cli'
 import { Arguments, CommandModule, Options } from 'yargs'
 
 import client from '../client'
@@ -34,7 +34,7 @@ export class CalendarCommand implements CommandModule<{}, CalendarOptions> {
   handler = async (args: Arguments<CalendarOptions>) => {
     const sonarr = client(args)
     const episodes = await sonarr.calendar.list(args.start, args.end)
-    Output(args, episodes, 'episodes', args.compact, DefaultFilter)
+    VerticalTable(args, episodes, 'episodes', args.compact, DefaultFilter)
   }
 }
 

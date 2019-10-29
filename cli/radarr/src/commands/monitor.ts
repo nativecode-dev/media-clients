@@ -1,6 +1,6 @@
 import { Movie } from '@nativecode/radarr'
 import { Arguments, CommandModule } from 'yargs'
-import { Global, Output } from '@nativecode/media-cli'
+import { Global, VerticalTable } from '@nativecode/media-cli'
 
 import logger from '../logging'
 
@@ -46,7 +46,7 @@ export class MonitorCommand implements CommandModule<{}, MonitorOptions> {
       tmdb: movie.tmdbId,
     }
 
-    Output(args, output, movie.titleSlug, args.compact, DefaultFilter)
+    VerticalTable(args, output, movie.titleSlug, args.compact, DefaultFilter)
   }
 }
 

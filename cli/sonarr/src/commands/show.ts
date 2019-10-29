@@ -2,7 +2,7 @@ import chunk from 'chunk-text'
 
 import { Series } from '@nativecode/sonarr'
 import { Is, DictionaryOf } from '@nofrills/types'
-import { Global, Output } from '@nativecode/media-cli'
+import { Global, VerticalTable } from '@nativecode/media-cli'
 import { Arguments, CommandModule, Options } from 'yargs'
 
 import client from '../client'
@@ -27,14 +27,14 @@ function display(args: ShowOptions, show: Series): void {
   const property = getPropertyValue(args, show)
 
   if (Is.object(property)) {
-    Output(args, property, 'show', args.compact, DefaultFilter)
+    VerticalTable(args, property, 'show', args.compact, DefaultFilter(property))
   } else if (Is.array(property)) {
-    Output(args, property, 'show', args.compact, DefaultFilter)
+    VerticalTable(args, property, 'show', args.compact, DefaultFilter(property))
   } else if (Is.string(property)) {
     const chunks = chunk(property, process.stdout.columns - 30)
-    Output(args, chunks, args.property!, args.compact || true, DefaultFilter)
+    VerticalTable(args, chunks, args.property!, args.compact || true, DefaultFilter(chunks))
   } else {
-    Output(args, show, 'show', args.compact, DefaultFilter)
+    VerticalTable(args, show, 'show', args.compact, DefaultFilter(show))
   }
 }
 

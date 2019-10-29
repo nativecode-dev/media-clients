@@ -11,8 +11,13 @@ export type ObjectFilter = (name: string) => boolean
 
 export const DefaultObjectFilter = () => true
 
-function createTable<T extends any>(value: T, compact: boolean, filter?: ObjectFilter): Table.Table {
-  const table = new Table({ style: { compact } })
+function createTable<T extends any>(
+  value: T,
+  compact: boolean,
+  filter?: ObjectFilter,
+  headers: string[] = [],
+): Table.Table {
+  const table = new Table({ head: headers, style: { compact } })
 
   const rows = Object.keys(value)
     .filter(filter || DefaultObjectFilter)
@@ -34,7 +39,27 @@ function createTable<T extends any>(value: T, compact: boolean, filter?: ObjectF
   return table
 }
 
-export function Output<T extends any>(
+export function HorizontalTable<T extends any>(
+  args: Global,
+  value: T | T[],
+  tag: string,
+  compact: boolean,
+  filter: ObjectFilter = DefaultObjectFilter,
+): void {
+  switch (args.output) {
+    case 'json':
+      return console.log(JSON.stringify(value))
+
+    case 'xml':
+      return console.log(parse(tag, value))
+
+    default:
+      const table = createTable(value, compact, filter, Object.keys(value))
+      return console.log(table.toString())
+  }
+}
+
+export function VerticalTable<T extends any>(
   args: Global,
   value: T | T[],
   tag: string,
