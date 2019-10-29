@@ -9,6 +9,7 @@ stages:
 cache:
   paths:
     - node_modules
+    - /root/.nexe
 
 .testsetup: &testsetup
   artifacts:
