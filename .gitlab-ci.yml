@@ -11,6 +11,10 @@ cache:
     - node_modules
 
 .testsetup: &testsetup
+  artifacts:
+    paths:
+      - dist/radarr
+      - dist/sonarr
   services:
     - nativecode/test-radarr:latest
     - nativecode/test-sonarr:latest
