@@ -13,6 +13,41 @@
     "radarr",
     "sonarr"
   ],
+  "scripts": {
+    "build": "cli-tasks build",
+    "canary": "cli-tasks ci:publish:canary",
+    "clean": "cli-tasks clean",
+    "commit": "git add -A . && npx git-cz",
+    "lerna": "lerna",
+    "pre-release": "cli-tasks ci:publish:prerelease",
+    "prepare": "lerna bootstrap",
+    "radarr": "ts-node cli/radarr/src/index.ts",
+    "release": "cli-tasks ci:publish:release",
+    "sonarr": "ts-node cli/sonarr/src/index.ts",
+    "tasks": "cli-tasks",
+    "test": "cli-tasks test",
+    "upgrade": "lernaupdate",
+    "watch": "cli-tasks watch"
+  },
+  "nyc": {
+    "all": true,
+    "exclude": [
+      "node_modules",
+      "*/*/specs/**/*.spec.ts",
+      "**/index.ts"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "include": [
+      "*/*/src/**/*.ts"
+    ],
+    "instrument": true,
+    "report-dir": ".cache/coverage",
+    "reporter": "text",
+    "sourceMap": true,
+    "temp-directory": ".cache/nyc"
+  },
   "tasks": {
     "build": [
       "[clean]",
@@ -93,41 +128,6 @@
     "watch": [
       "lerna run --parallel watch"
     ]
-  },
-  "scripts": {
-    "build": "cli-tasks build",
-    "canary": "cli-tasks ci:publish:canary",
-    "clean": "cli-tasks clean",
-    "commit": "git add -A . && npx git-cz",
-    "lerna": "lerna",
-    "pre-release": "cli-tasks ci:publish:prerelease",
-    "radarr": "ts-node cli/radarr/src/index.ts",
-    "release": "cli-tasks ci:publish:release",
-    "sonarr": "ts-node cli/sonarr/src/index.ts",
-    "prepare": "lerna bootstrap",
-    "tasks": "cli-tasks",
-    "test": "cli-tasks test",
-    "upgrade": "lernaupdate",
-    "watch": "cli-tasks watch"
-  },
-  "nyc": {
-    "all": true,
-    "exclude": [
-      "node_modules",
-      "*/*/specs/**/*.spec.ts",
-      "**/index.ts"
-    ],
-    "extension": [
-      ".ts"
-    ],
-    "include": [
-      "*/*/src/**/*.ts"
-    ],
-    "instrument": true,
-    "report-dir": ".cache/coverage",
-    "reporter": "text",
-    "sourceMap": true,
-    "temp-directory": ".cache/nyc"
   },
   "dependencies": {
     "chunk-text": "^1.0.5"

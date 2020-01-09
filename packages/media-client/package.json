@@ -18,9 +18,7 @@
     "yargs": "^14.2.0",
     "yargs-interactive": "^3.0.0"
   },
-  "peerDependencies": {
-    "@nofrills/lincoln": "11.0.0"
-  },
+  "peerDependencies": {},
   "devDependencies": {
     "@types/cli-table2": "^0.2.2",
     "@types/node": "^12.11.7",
