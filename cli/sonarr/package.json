@@ -19,7 +19,7 @@
     "@nofrills/fs": "^11.0.0",
     "@nofrills/lincoln": "^11.0.0",
     "@nofrills/lincoln-debug": "^11.0.0",
-    "@nofrills/types": "^6.0.0",
+    "@nofrills/types": "^10.0.2",
     "yargs": "^14.2.0",
     "yargs-interactive": "^3.0.0"
   },
