@@ -11,7 +11,7 @@
     "watch": "tsc --project tsconfig.json --watch"
   },
   "dependencies": {
-    "@nofrills/lincoln-debug": "^6.0.0",
+    "@nofrills/lincoln-debug": "^11.0.0",
     "@nofrills/types": "^6.0.0",
     "cli-table2": "^0.2.0",
     "js2xmlparser": "^4.0.0",
