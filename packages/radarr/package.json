@@ -25,7 +25,6 @@
   },
   "scripts": {
     "build": "tsc --project tsconfig.json",
-    "upgrade": "npm-check -y",
     "watch": "tsc --project tsconfig.json --watch"
   },
   "radarr": {

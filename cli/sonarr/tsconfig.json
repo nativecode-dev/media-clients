@@ -10,5 +10,13 @@
   "extends": "../../tsconfig.settings.json",
   "include": [
     "src/**/*.ts"
+  ],
+  "references": [
+    {
+      "path": "../../packages/media-cli"
+    },
+    {
+      "path": "../../packages/sonarr"
+    }
   ]
 }

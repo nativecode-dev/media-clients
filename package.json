@@ -55,6 +55,7 @@
       "[build:compile]"
     ],
     "build:compile": [
+      "[references]",
       "lerna run build"
     ],
     "ci:build": [
@@ -101,6 +102,9 @@
     ],
     "install": [
       "npm install"
+    ],
+    "references": [
+      "ts-node promon/references.ts"
     ],
     "source": [
       "[source:format]",

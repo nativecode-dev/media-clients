@@ -7,7 +7,6 @@
   },
   "scripts": {
     "build": "tsc --project tsconfig.json",
-    "upgrade": "npm-check -y",
     "watch": "tsc --project tsconfig.json --watch"
   },
   "dependencies": {
@@ -15,7 +14,7 @@
     "@nofrills/types": "^10.0.2",
     "cli-table2": "^0.2.0",
     "js2xmlparser": "^4.0.0",
-    "yargs": "^14.2.0",
+    "yargs": "^15.1.0",
     "yargs-interactive": "^3.0.0"
   },
   "peerDependencies": {},
