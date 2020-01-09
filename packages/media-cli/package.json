@@ -20,7 +20,7 @@
   "peerDependencies": {},
   "devDependencies": {
     "@types/cli-table2": "^0.2.2",
-    "@types/node": "^12.11.7",
+    "@types/node": "^13.1.6",
     "@types/yargs": "^15.0.0",
     "@types/yargs-interactive": "^2.1.0",
     "typescript": "^3.7.4"
