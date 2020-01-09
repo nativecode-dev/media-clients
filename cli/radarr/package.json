@@ -18,13 +18,13 @@
     "@nofrills/fs": "^11.0.0",
     "@nofrills/lincoln": "^11.0.0",
     "@nofrills/lincoln-debug": "^11.0.0",
-    "yargs": "^14.2.0",
+    "yargs": "^15.1.0",
     "yargs-interactive": "^3.0.0"
   },
   "devDependencies": {
     "@types/node": "^12.11.7",
     "@types/yargs": "^13.0.3",
     "@types/yargs-interactive": "^2.1.0",
-    "typescript": "^3.6.4"
+    "typescript": "^3.7.4"
   }
 }
