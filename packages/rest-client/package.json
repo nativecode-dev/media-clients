@@ -36,7 +36,7 @@
   "devDependencies": {
     "@nofrills/lincoln-debug": "^11.0.0",
     "@types/blob-util": "^2.0.0",
-    "@types/chai": "^4.2.4",
+    "@types/chai": "^4.2.7",
     "@types/chai-as-promised": "^7.1.2",
     "@types/isomorphic-fetch": "0.0.35",
     "@types/mocha": "^5.2.7",
