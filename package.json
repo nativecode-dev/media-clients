@@ -13,6 +13,87 @@
     "radarr",
     "sonarr"
   ],
+  "tasks": {
+    "build": [
+      "[clean]",
+      "[source]",
+      "[build:compile]"
+    ],
+    "build:compile": [
+      "lerna run build"
+    ],
+    "ci:build": [
+      "[build:compile]"
+    ],
+    "ci:configure": [
+      ".citools/setup-git ${BUILD_REPO_BRANCH} ${BUILD_REPO_GIT} ${BUILD_REPO_EMAIL}",
+      ".citools/setup-ssh ${BUILD_REPO_DOMAIN} ${BUILD_REPO_SSHKEY_PATH} ${BUILD_REPO_DOMAIN_SSH}"
+    ],
+    "ci:install": [
+      "npm ci"
+    ],
+    "ci:publish:canary": [
+      "[ci:configure]",
+      "[ci:test]",
+      ".citools/lerna-publish canary"
+    ],
+    "ci:publish:prerelease": [
+      "[ci:configure]",
+      "[ci:test]",
+      ".citools/lerna-publish prerelease"
+    ],
+    "ci:publish:release": [
+      "[ci:configure]",
+      "[ci:test]",
+      ".citools/lerna-publish release"
+    ],
+    "ci:test": [
+      "[ci:build]",
+      "nyc mocha --opts .citools/mocha.opts"
+    ],
+    "clean": [
+      "rimraf .cache",
+      "rimraf core/*/lib",
+      "rimraf packages/*/lib",
+      "rimraf **/*.tsbuildinfo"
+    ],
+    "commit": [
+      "git add -A .",
+      "git-cz"
+    ],
+    "coverage": [
+      "nyc report --reporter=text-lcov | coveralls"
+    ],
+    "install": [
+      "npm install"
+    ],
+    "source": [
+      "[source:format]",
+      "[source:lint]"
+    ],
+    "source:format": [
+      "jsonsort *.json",
+      "jsonsort {cli,packages,web}/*/*.json",
+      "prettier --loglevel silent --write \"*/*/{specs,src}/**/*.ts\""
+    ],
+    "source:lint": [
+      "tslint --project tsconfig.json --config tslint.json"
+    ],
+    "test": [
+      "[build]",
+      "[test:only]"
+    ],
+    "test:only": [
+      "nyc mocha --opts mocha.opts"
+    ],
+    "upgrade": [
+      "npm-check -y",
+      "lerna run upgrade"
+    ],
+    "watch": [
+      "lerna run --parallel watch"
+    ]
+  },
   "scripts": {
     "build": "cli-tasks build",
     "canary": "cli-tasks ci:publish:canary",
@@ -23,23 +104,24 @@
     "radarr": "ts-node cli/radarr/src/index.ts",
     "release": "cli-tasks ci:publish:release",
     "sonarr": "ts-node cli/sonarr/src/index.ts",
+    "prepare": "lerna bootstrap",
     "tasks": "cli-tasks",
     "test": "cli-tasks test",
-    "upgrade": "cli-tasks upgrade",
+    "upgrade": "lernaupdate",
     "watch": "cli-tasks watch"
   },
   "nyc": {
     "all": true,
     "exclude": [
       "node_modules",
-      "packages/*/src/**/*.spec.ts",
-      "packages/**/index.ts"
+      "*/*/specs/**/*.spec.ts",
+      "**/index.ts"
     ],
     "extension": [
       ".ts"
     ],
     "include": [
-      "packages/*/src/**/*.ts"
+      "*/*/src/**/*.ts"
     ],
     "instrument": true,
     "report-dir": ".cache/coverage",
@@ -53,28 +135,28 @@
   "devDependencies": {
     "@nofrills/lincoln": "^6.0.0",
     "@nofrills/tasks": "^9.0.2",
-    "@types/chai": "^4.2.4",
+    "@types/chai": "^4.2.7",
     "@types/chai-as-promised": "^7.1.2",
     "@types/chunk-text": "^1.0.0",
     "@types/mocha": "^5.2.7",
-    "@types/node": "^12.11.7",
+    "@types/node": "^12.12.24",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
-    "coveralls": "^3.0.7",
+    "coveralls": "^3.0.9",
     "cross-env": "^6.0.3",
     "git-ssh-key": "^1.1.0",
-    "json-sort-cli": "^1.14.5",
-    "lerna": "^3.18.3",
+    "json-sort-cli": "^1.15.4",
+    "lerna": "^3.20.2",
+    "lerna-update-wizard": "^0.17.7",
     "mocha": "^6.2.2",
-    "npm-check": "^5.9.0",
     "nyc": "^14.1.1",
-    "prettier": "^1.17.1",
+    "prettier": "^1.19.1",
     "rimraf": "^3.0.0",
-    "source-map-support": "^0.5.13",
-    "ts-node": "^8.4.1",
-    "tslint": "^5.20.0",
+    "source-map-support": "^0.5.16",
+    "ts-node": "^8.5.4",
+    "tslint": "^5.20.1",
     "tslint-config-standard": "^8.0.1",
     "tslint-no-unused-expression-chai": "^0.1.4",
-    "typescript": "^3.6.4"
+    "typescript": "^3.7.4"
   }
 }

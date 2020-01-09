@@ -4,4 +4,4 @@
 --reporter spec
 --require source-map-support/register
 --require ts-node/register
-packages/*/specs/**/*.spec.ts
+*/*/specs/**/*.spec.ts

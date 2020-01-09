@@ -5,7 +5,8 @@
     "declarationMap": true,
     "esModuleInterop": true,
     "lib": [
-      "dom"
+      "dom",
+      "dom.iterable"
     ],
     "module": "commonjs",
     "moduleResolution": "node",

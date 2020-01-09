@@ -19,7 +19,8 @@
   },
   "packages": [
     "cli/*",
-    "packages/*"
+    "packages/*",
+    "web/*"
   ],
   "version": "independent"
 }
