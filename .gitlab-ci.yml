@@ -20,7 +20,7 @@ cache:
 
 before_script:
   - git submodule update --init -- .citools
-  - npm install
+  - npm ci
   - source .ci-env
 
 test:
