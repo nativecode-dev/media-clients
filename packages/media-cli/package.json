@@ -1,6 +1,6 @@
 {
   "name": "@nativecode/media-cli",
-  "version": "0.2.0",
+  "version": "0.2.1-next.0",
   "main": "lib/index.js",
   "publishConfig": {
     "access": "public"
@@ -17,7 +17,6 @@
     "yargs": "15.1.0",
     "yargs-interactive": "3.0.0"
   },
-  "peerDependencies": {},
   "devDependencies": {
     "@types/cli-table2": "0.2.2",
     "@types/node": "13.1.6",
