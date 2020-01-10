@@ -13,6 +13,5 @@ export * from './Models/RestResource'
 export * from './Models/Revision'
 export * from './Models/SortDirection'
 export * from './Models/SystemStatus'
-
 export * from './RadarrClient'
 export * from './RadarrPackageOptions'
