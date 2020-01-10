@@ -16,7 +16,6 @@
     "@nativecode/media-cli": "^0.2.0",
     "@nativecode/sonarr": "^1.0.1",
     "@nofrills/fs": "11.0.0",
-    "@nofrills/lincoln": "11.0.0",
     "@nofrills/lincoln-debug": "11.0.0",
     "@nofrills/types": "10.0.2",
     "yargs": "15.1.0",
