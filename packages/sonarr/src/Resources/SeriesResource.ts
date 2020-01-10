@@ -23,4 +23,14 @@ export class SeriesResource extends Resource {
   list(): Promise<Series[]> {
     return this._get<Series[]>('series')
   }
+
+  update(series: Series): Promise<Series> {
+    return this._put('series', series, [
+      {
+        key: 'id',
+        type: ResourceRouteParamType.RouteParameter,
+        value: series.id,
+      },
+    ])
+  }
 }

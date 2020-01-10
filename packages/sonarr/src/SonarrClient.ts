@@ -17,7 +17,7 @@ export class SonarrClient {
   public readonly episodes: EpisodeResource
   public readonly indexer: IndexerResource
   public readonly profile: ProfileResource
-  public readonly shows: SeriesResource
+  public readonly series: SeriesResource
   public readonly system: SystemResource
 
   constructor(endpoint: URL, apikey: string, logger: Lincoln) {
@@ -27,7 +27,7 @@ export class SonarrClient {
     this.episodes = new EpisodeResource(endpoint, apikey, logger)
     this.indexer = new IndexerResource(endpoint, apikey, logger)
     this.profile = new ProfileResource(endpoint, apikey, logger)
-    this.shows = new SeriesResource(endpoint, apikey, logger)
+    this.series = new SeriesResource(endpoint, apikey, logger)
     this.system = new SystemResource(endpoint, apikey, logger)
   }
 }
