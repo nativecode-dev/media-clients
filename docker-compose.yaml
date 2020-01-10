@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  test-radarr:
+    image: nativecode/test-radarr:latest
+    container_name: test-radarr
+    environment:
+      PUID: "0"
+      PGID: "0"
+      TZ: America/New_York
+    ports:
+      - 7878:7878
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+
+  test-sonarr:
+    image: nativecode/test-sonarr:latest
+    container_name: test-sonarr
+    environment:
+      PUID: "0"
+      PGID: "0"
+      TZ: America/New_York
+    ports:
+      - 8989:8989
+    volumes:
+      - /etc/localtime:/etc/localtime:ro

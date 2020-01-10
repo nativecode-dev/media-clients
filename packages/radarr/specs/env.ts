@@ -11,8 +11,9 @@ function endpoint(): string {
     return process.env.RADARR_ENDPOINT
   }
 
-  return `http://${os.hostname()}:7878/api`
+  return 'http://localhost:7878/api'
 }
 
-export const APIKEY: string = process.env.RADARR_TEST_APIKEY || process.env.RADARR_APIKEY || 'invalid_key'
+export const APIKEY: string =
+  process.env.RADARR_TEST_APIKEY || process.env.RADARR_APIKEY || '46aa7e39bff545b0af772eaa0338f098'
 export const ENDPOINT = new URL(endpoint())
