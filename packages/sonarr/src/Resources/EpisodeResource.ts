@@ -29,4 +29,8 @@ export class EpisodeResource extends Resource {
       },
     ])
   }
+
+  update(episode: Episode): Promise<Episode> {
+    return this._put('episode', episode)
+  }
 }

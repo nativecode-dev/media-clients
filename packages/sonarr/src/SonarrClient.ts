@@ -10,13 +10,17 @@ import { IndexerResource } from './Resources/IndexerResource'
 import { EpisodeResource } from './Resources/EpisodeResource'
 import { ProfileResource } from './Resources/ProfileResource'
 import { EpisodeFileResource } from './Resources/EpisodeFileResource'
+import { DiskspaceResource } from './Resources/DiskspaceResource'
+import { HistoryResource } from './Resources'
 
 export class SonarrClient {
   public readonly backup: BackupResource
   public readonly calendar: CalendarResource
   public readonly command: CommandResource
+  public readonly diskspace: DiskspaceResource
   public readonly episodes: EpisodeResource
   public readonly files: EpisodeFileResource
+  public readonly history: HistoryResource
   public readonly indexer: IndexerResource
   public readonly profile: ProfileResource
   public readonly series: SeriesResource
@@ -26,8 +30,10 @@ export class SonarrClient {
     this.backup = new BackupResource(endpoint, apikey, logger)
     this.calendar = new CalendarResource(endpoint, apikey, logger)
     this.command = new CommandResource(endpoint, apikey, logger)
+    this.diskspace = new DiskspaceResource(endpoint, apikey, logger)
     this.episodes = new EpisodeResource(endpoint, apikey, logger)
     this.files = new EpisodeFileResource(endpoint, apikey, logger)
+    this.history = new HistoryResource(endpoint, apikey, logger)
     this.indexer = new IndexerResource(endpoint, apikey, logger)
     this.profile = new ProfileResource(endpoint, apikey, logger)
     this.series = new SeriesResource(endpoint, apikey, logger)

@@ -3,11 +3,22 @@ import { Lincoln } from '@nofrills/lincoln'
 import { Resource, ResourceRouteParamType } from '@nativecode/rest-client'
 
 import { EpisodeFile } from '../Models/EpisodeFile'
+import { EpisodeFileQuality } from '../Models'
 
 export class EpisodeFileResource extends Resource {
   constructor(url: URL, apikey: string, logger: Lincoln) {
     super(url, logger)
     this.setHeader('X-Api-Key', apikey)
+  }
+
+  delete(episodeFileId: number) {
+    this._delete('episodefile/{:id}', [
+      {
+        key: 'id',
+        type: ResourceRouteParamType.RouteParameter,
+        value: episodeFileId,
+      },
+    ])
   }
 
   id(episodeId: number): Promise<EpisodeFile> {
@@ -28,5 +39,9 @@ export class EpisodeFileResource extends Resource {
         value: seriesId,
       },
     ])
+  }
+
+  update(quality: EpisodeFileQuality): Promise<EpisodeFile> {
+    return this._put('episode', quality)
   }
 }
