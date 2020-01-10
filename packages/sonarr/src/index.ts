@@ -13,5 +13,6 @@ export * from './Models/Season'
 export * from './Models/Series'
 export * from './Models/Statistics'
 export * from './Models/Value'
+
 export * from './SonarrClient'
 export * from './SonarrPackageOptions'
