@@ -1,0 +1,7 @@
+export * from './BackupResource'
+export * from './CalendarResource'
+export * from './CommandResource'
+export * from './EpisodeResource'
+export * from './IndexerResource'
+export * from './SeriesResource'
+export * from './SystemResource'

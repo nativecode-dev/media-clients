@@ -6,10 +6,7 @@ import compare from 'compare-versions'
 import { fs } from '@nofrills/fs'
 
 import { SystemStatus } from '../Models/SystemStatus'
-
-export interface RadarrPackageOptions {
-  version: string
-}
+import { RadarrPackageOptions } from '../RadarrPackageOptions'
 
 export class SystemResource extends Resource {
   constructor(url: URL, apikey: string, logger: Lincoln) {

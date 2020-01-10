@@ -1,7 +1,7 @@
 import { URL } from 'url'
 import { Lincoln } from '@nofrills/lincoln'
 
-import { SystemResource } from './Models/SystemResource'
+import { SystemResource } from './Resources/SystemResource'
 import { MovieResource } from './Resources/MovieResource'
 import { HistoryResource } from './Resources/HistoryResource'
 import { IndexerResource } from './Resources/IndexerResource'
