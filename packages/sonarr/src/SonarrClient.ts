@@ -1,5 +1,6 @@
 import { URL } from 'url'
 import { Lincoln } from '@nofrills/lincoln'
+
 import { BackupResource } from './Resources/BackupResource'
 import { SeriesResource } from './Resources/SeriesResource'
 import { SystemResource } from './Resources/SystemResource'
@@ -17,7 +18,7 @@ export class SonarrClient {
   public readonly shows: SeriesResource
   public readonly system: SystemResource
 
-  constructor(private readonly endpoint: URL, private readonly apikey: string, logger: Lincoln) {
+  constructor(endpoint: URL, apikey: string, logger: Lincoln) {
     this.backup = new BackupResource(endpoint, apikey, logger)
     this.calendar = new CalendarResource(endpoint, apikey, logger)
     this.command = new CommandResource(endpoint, apikey, logger)

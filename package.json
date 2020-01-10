@@ -121,7 +121,7 @@
       "[test:only]"
     ],
     "test:only": [
-      "nyc mocha --opts mocha.opts"
+      "nyc mocha"
     ],
     "upgrade": [
       "lernaupdate"
