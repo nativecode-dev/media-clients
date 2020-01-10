@@ -1,6 +1,6 @@
 {
   "name": "@nativecode/sonarr",
-  "version": "1.1.0-next.0",
+  "version": "1.1.0-next.1",
   "description": "Sonarr REST client",
   "license": "MIT",
   "private": false,
@@ -32,7 +32,7 @@
   },
   "types": "lib/index.d.ts",
   "dependencies": {
-    "@nativecode/rest-client": "^1.1.0-next.0",
+    "@nativecode/rest-client": "^1.1.0-next.1",
     "isomorphic-fetch": "2.2.1"
   },
   "devDependencies": {
