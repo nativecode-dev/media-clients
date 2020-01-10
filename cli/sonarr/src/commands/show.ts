@@ -47,7 +47,7 @@ export class ShowCommand implements CommandModule<{}, ShowOptions> {
   builder = options
   handler = async (args: Arguments<ShowOptions>) => {
     const sonarr = client(args)
-    const show = await sonarr.shows.id(parseInt(args.id, 0))
+    const show = await sonarr.series.id(parseInt(args.id, 0))
     display(args, show)
   }
 }
