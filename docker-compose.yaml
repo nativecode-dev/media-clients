@@ -5,8 +5,8 @@ services:
     image: nativecode/test-radarr:latest
     container_name: test-radarr
     environment:
-      PUID: "0"
-      PGID: "0"
+      PUID: 1000
+      PGID: 1000
       TZ: America/New_York
     ports:
       - 7878:7878
@@ -17,8 +17,8 @@ services:
     image: nativecode/test-sonarr:latest
     container_name: test-sonarr
     environment:
-      PUID: "0"
-      PGID: "0"
+      PUID: 1000
+      PGID: 1000
       TZ: America/New_York
     ports:
       - 8989:8989

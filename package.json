@@ -68,7 +68,7 @@
     ],
     "ci:install": [
       "npm ci",
-      "lerna boostrap"
+      "lerna boostrap -- ci"
     ],
     "ci:publish:canary": [
       "[ci:configure]",
