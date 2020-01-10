@@ -67,7 +67,8 @@
       ".citools/setup-ssh ${BUILD_REPO_DOMAIN} ${BUILD_REPO_SSHKEY_PATH} ${BUILD_REPO_DOMAIN_SSH}"
     ],
     "ci:install": [
-      "npm ci"
+      "npm ci",
+      "lerna boostrap"
     ],
     "ci:publish:canary": [
       "[ci:configure]",
