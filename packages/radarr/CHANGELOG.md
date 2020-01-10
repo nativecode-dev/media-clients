@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://git.nativecode.net/nativecode/media-clients/compare/@nativecode/radarr@1.0.3-next.1...@nativecode/radarr@1.0.3) (2020-01-10)
+
+
+### Bug Fixes
+
+* force version update ([cd468e5](https://git.nativecode.net/nativecode/media-clients/commits/cd468e5c7e9c4fdc553465865aaaba706d375e12))
+
+
+
+
+
 ## [1.0.2](https://git.nativecode.net/nativecode/media-clients/compare/@nativecode/radarr@1.0.2-next.0...@nativecode/radarr@1.0.2) (2019-10-28)
 
 **Note:** Version bump only for package @nativecode/radarr
