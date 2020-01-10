@@ -1,6 +1,6 @@
 {
   "name": "@nativecode/radarr",
-  "version": "1.1.0-next.1",
+  "version": "1.1.0-next.2",
   "description": "Radarr REST client",
   "license": "MIT",
   "private": false,
@@ -32,7 +32,7 @@
   },
   "types": "lib/index.d.ts",
   "dependencies": {
-    "@nativecode/rest-client": "^1.1.0-next.1",
+    "@nativecode/rest-client": "^1.1.0-next.2",
     "isomorphic-fetch": "2.2.1"
   },
   "devDependencies": {
