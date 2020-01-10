@@ -10,12 +10,12 @@ describe('when using SeriesResource', () => {
   const sut = new SonarrClient(ENDPOINT, APIKEY, Logger.extend('shows-resource'))
 
   it('should get list of shows', async () => {
-    const shows = await sut.shows.list()
+    const shows = await sut.series.list()
     expect(shows).to.not.be.empty
   })
 
   it('should get single shows', async () => {
-    const shows = await sut.shows.id(1)
+    const shows = await sut.series.id(1)
     expect(shows.title).to.equal('Transformers')
   })
 })
