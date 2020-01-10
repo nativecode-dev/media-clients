@@ -59,6 +59,7 @@
       "lerna run build"
     ],
     "ci:build": [
+      "lerna bootstrap",
       "[build:compile]"
     ],
     "ci:configure": [
@@ -126,8 +127,7 @@
       "nyc mocha --opts mocha.opts"
     ],
     "upgrade": [
-      "npm-check -y",
-      "lerna run upgrade"
+      "lernaupdate"
     ],
     "watch": [
       "lerna run --parallel watch"
