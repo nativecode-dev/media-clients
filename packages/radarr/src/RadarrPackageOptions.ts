@@ -1,3 +1,5 @@
 export interface RadarrPackageOptions {
-  version: string
+  radarr: {
+    version: string
+  }
 }

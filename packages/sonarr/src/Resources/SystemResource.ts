@@ -1,7 +1,6 @@
-import compare from 'compare-versions'
-
 import { URL } from 'url'
 import { fs } from '@nofrills/fs'
+import { compare } from 'compare-versions'
 import { Lincoln } from '@nofrills/lincoln'
 import { Resource } from '@nativecode/rest-client'
 
@@ -22,6 +21,10 @@ export class SystemResource extends Resource {
     const path = fs.join(__dirname, '../../package.json')
     const packageInfo = await fs.json<SonarrPackageOptions>(path)
     const status = await this.status()
-    return compare(status.version, packageInfo.version) < 1
+    const source = status.version
+    const target = packageInfo.sonarr.version
+    const acceptable = compare(source, target, '>=')
+    this.logger.trace('sonarr-version', source, target, acceptable)
+    return acceptable
   }
 }

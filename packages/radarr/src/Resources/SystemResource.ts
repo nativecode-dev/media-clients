@@ -1,9 +1,8 @@
 import { URL } from 'url'
+import { fs } from '@nofrills/fs'
+import { compare } from 'compare-versions'
 import { Lincoln } from '@nofrills/lincoln'
 import { Resource } from '@nativecode/rest-client'
-
-import compare from 'compare-versions'
-import { fs } from '@nofrills/fs'
 
 import { SystemStatus } from '../Models/SystemStatus'
 import { RadarrPackageOptions } from '../RadarrPackageOptions'
@@ -22,6 +21,18 @@ export class SystemResource extends Resource {
     const path = fs.join(__dirname, '../../package.json')
     const packageInfo = await fs.json<RadarrPackageOptions>(path)
     const status = await this.status()
-    return compare(status.version, packageInfo.version) < 1
+    const source = this.clean(status.version)
+    const target = packageInfo.radarr.version
+    const acceptable = compare(source, target, '>=')
+    console.log('radarr-version', source, target, acceptable)
+    this.logger.trace('radarr-version', source, target, acceptable)
+    return acceptable
+  }
+
+  private clean(version: string) {
+    return version
+      .split('.')
+      .slice(0, 2)
+      .join('.')
   }
 }

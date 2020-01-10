@@ -1,3 +1,5 @@
 export interface SonarrPackageOptions {
-  version: string
+  sonarr: {
+    version: string
+  }
 }

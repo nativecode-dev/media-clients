@@ -6,10 +6,11 @@ import Logger from './logging'
 import { APIKEY, ENDPOINT } from './env'
 import { SonarrClient } from '../src/SonarrClient'
 
-describe('when using the CalendarResource class', () => {
+describe('when using the SystemResource class', () => {
   const sut = new SonarrClient(ENDPOINT, APIKEY, Logger.extend('system-resource'))
 
-  it('should validate version supported', () => {
-    expect(sut.system.supported()).to.eventually.be.false
-  }).timeout(5000)
+  it('should validate version supported', async () => {
+    const supported = await sut.system.supported()
+    expect(supported).to.be.true
+  })
 })

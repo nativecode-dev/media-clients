@@ -28,7 +28,7 @@
     "watch": "tsc --project tsconfig.json --watch"
   },
   "radarr": {
-    "version": "0.2.0.1344"
+    "version": "0.2.0"
   },
   "types": "lib/index.d.ts",
   "dependencies": {
