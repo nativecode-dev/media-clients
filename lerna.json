@@ -6,15 +6,26 @@
     "publish": {
       "allowBranch": [
         "develop",
-        "master"
+        "master",
+        "feature/*"
       ],
       "conventionalCommits": true,
-      "message": "[skip ci] publish",
+      "message": "chore; publish",
       "yes": true
     },
     "run": {
       "loglevel": "silent",
       "stream": true
+    },
+    "version": {
+      "allowBranch": [
+        "develop",
+        "master",
+        "feature/*"
+      ],
+      "conventionalCommits": true,
+      "message": "[skip ci] release",
+      "yes": true
     }
   },
   "packages": [
