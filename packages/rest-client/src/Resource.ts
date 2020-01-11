@@ -81,7 +81,9 @@ export abstract class Resource {
         headers: this.headers(),
       })
 
+      this.logger.trace(route, request)
       const response = await fetch(request)
+      this.logger.trace(response)
 
       if (response.ok === false) {
         const error = new HttpError(request, response)
