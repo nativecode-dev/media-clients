@@ -3,6 +3,7 @@ import { Lincoln } from '@nofrills/lincoln'
 import { Resource, ResourceRouteParamType } from '@nativecode/rest-client'
 
 import { Release } from '../Models'
+import { ReleasePush } from '../Models/ReleasePush'
 
 export class ReleaseResource extends Resource {
   constructor(url: URL, apikey: string, logger: Lincoln) {
@@ -33,5 +34,9 @@ export class ReleaseResource extends Resource {
         value: episodeId,
       },
     ])
+  }
+
+  push(push: ReleasePush) {
+    this._post('release/push', push)
   }
 }
