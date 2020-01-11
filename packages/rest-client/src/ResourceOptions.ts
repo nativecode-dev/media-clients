@@ -1,6 +1,6 @@
 import { ResourceHeader } from './ResourceHeader'
 
 export interface ResourceOptions {
-  credentials?: RequestCredentials
+  credentials?: 'omit' | 'same-origin' | 'include'
   headers: ResourceHeader[]
 }

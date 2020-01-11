@@ -33,7 +33,7 @@ export abstract class Resource {
 
   protected async http_get<T>(route: string, params?: ResourceRouteParam[]): Promise<T> {
     try {
-      const url = this.getFormattedUrl(route, params).href
+      const url = this.getRoute(route, params).href
 
       const request = new Request(url, {
         credentials: this.options.credentials,
@@ -57,12 +57,14 @@ export abstract class Resource {
 
   protected async http_delete<R>(route: string, params?: ResourceRouteParam[]): Promise<R> {
     try {
-      const url = this.getFormattedUrl(route, params).href
+      const url = this.getRoute(route, params).href
+
       const request = new Request(url, {
         credentials: this.options.credentials,
         headers: this.headers(),
         method: 'DELETE',
       })
+
       const response = await fetch(request)
 
       if (response.ok === false) {
@@ -79,13 +81,15 @@ export abstract class Resource {
 
   protected async http_patch<T, R>(route: string, resource: T, params?: ResourceRouteParam[]): Promise<R> {
     try {
-      const url = this.getFormattedUrl(route, params).href
+      const url = this.getRoute(route, params).href
+
       const request = new Request(url, {
         body: this.json(resource),
         credentials: this.options.credentials,
         headers: this.headers(),
         method: 'PATCH',
       })
+
       const response = await fetch(request)
 
       if (response.ok === false) {
@@ -102,13 +106,15 @@ export abstract class Resource {
 
   protected async http_post<T, R>(route: string, resource: T, params?: ResourceRouteParam[]): Promise<R> {
     try {
-      const url = this.getFormattedUrl(route, params).href
+      const url = this.getRoute(route, params).href
+
       const request = new Request(url, {
         body: this.json(resource),
         credentials: this.options.credentials,
         headers: this.headers(),
         method: 'POST',
       })
+
       const response = await fetch(request)
 
       if (response.ok === false) {
@@ -125,13 +131,15 @@ export abstract class Resource {
 
   protected async http_put<T, R>(route: string, resource: T, params?: ResourceRouteParam[]): Promise<R> {
     try {
-      const url = this.getFormattedUrl(route, params).href
+      const url = this.getRoute(route, params).href
+
       const request = new Request(url, {
         body: this.json(resource),
         credentials: this.options.credentials,
         headers: this.headers(),
         method: 'PUT',
       })
+
       const response = await fetch(request)
 
       if (response.ok === false) {
@@ -150,7 +158,7 @@ export abstract class Resource {
     this.options.headers.push({ name, value })
   }
 
-  private getFormattedUrl(route: string, params: ResourceRouteParams = []): URL {
+  private getRoute(route: string, params: ResourceRouteParams = []): URL {
     const routeUrl = params
       .filter(param => param.type === ResourceRouteParamType.RouteParameter)
       .reduce((result, param) => {
@@ -175,19 +183,14 @@ export abstract class Resource {
   }
 
   private getUrl(route: string): string {
-    if (route.startsWith('/')) {
-      return `${this.base.href}${route.substring(1)}`
-    }
-
-    return `${this.base.href}${route}`
+    return route.startsWith('/') ? `${this.base.href}${route.substring(1)}` : `${this.base.href}${route}`
   }
 
   private headers(): Headers {
-    const headers = new Headers()
-    this.options.headers.forEach(header => {
-      headers.append(header.name, header.value)
-    })
-    return headers
+    return this.options.headers.reduce((headers, current) => {
+      headers.append(current.name, current.value)
+      return headers
+    }, new Headers())
   }
 
   private json<T>(resource: T): string {
