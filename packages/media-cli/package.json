@@ -1,6 +1,6 @@
 {
   "name": "@nativecode/media-cli",
-  "version": "0.2.2-next.2",
+  "version": "0.2.2",
   "main": "lib/index.js",
   "publishConfig": {
     "access": "public"
