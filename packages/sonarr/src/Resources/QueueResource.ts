@@ -10,7 +10,7 @@ export class QueueResource extends Resource {
   }
 
   delete(id: number, blacklist: boolean = false) {
-    return this._delete('queue', [
+    return this.http_delete('queue', [
       {
         key: 'id',
         type: ResourceRouteParamType.Query,
@@ -25,6 +25,6 @@ export class QueueResource extends Resource {
   }
 
   list(): Promise<Queue[]> {
-    return this._get<Queue[]>('queue')
+    return this.http_get<Queue[]>('queue')
   }
 }

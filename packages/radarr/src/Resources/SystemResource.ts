@@ -14,7 +14,7 @@ export class SystemResource extends Resource {
   }
 
   status(): Promise<SystemStatus> {
-    return this._get<SystemStatus>('system/status')
+    return this.http_get<SystemStatus>('system/status')
   }
 
   async supported(): Promise<boolean> {

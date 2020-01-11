@@ -12,7 +12,7 @@ export class ReleaseResource extends Resource {
   }
 
   download(guid: string, indexerId: string): Promise<Release[]> {
-    return this._post('release', [
+    return this.http_post('release', [
       {
         key: 'guid',
         type: ResourceRouteParamType.Query,
@@ -27,7 +27,7 @@ export class ReleaseResource extends Resource {
   }
 
   get(episodeId: number): Promise<Release[]> {
-    return this._get<Release[]>('diskspace', [
+    return this.http_get<Release[]>('diskspace', [
       {
         key: 'episodeId',
         type: ResourceRouteParamType.Query,
@@ -37,6 +37,6 @@ export class ReleaseResource extends Resource {
   }
 
   push(push: ReleasePush) {
-    this._post('release/push', push)
+    this.http_post('release/push', push)
   }
 }

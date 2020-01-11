@@ -12,11 +12,11 @@ export class MovieResource extends Resource {
   }
 
   add(movie: MovieInfo): Promise<Movie> {
-    return this._post('movie', movie)
+    return this.http_post('movie', movie)
   }
 
   id(id: number): Promise<Movie> {
-    return this._get('movie/{:id}', [
+    return this.http_get('movie/{:id}', [
       {
         key: 'id',
         type: ResourceRouteParamType.RouteParameter,
@@ -26,7 +26,7 @@ export class MovieResource extends Resource {
   }
 
   imdb(imdbId: string): Promise<Movie> {
-    return this._get('movie/lookup/imdb', [
+    return this.http_get('movie/lookup/imdb', [
       {
         key: 'imdbId',
         type: ResourceRouteParamType.Query,
@@ -36,11 +36,11 @@ export class MovieResource extends Resource {
   }
 
   list(): Promise<Movie[]> {
-    return this._get('movie')
+    return this.http_get('movie')
   }
 
   lookup(term: string): Promise<Movie[]> {
-    return this._get('movie/lookup', [
+    return this.http_get('movie/lookup', [
       {
         key: 'term',
         type: ResourceRouteParamType.Query,
@@ -50,7 +50,7 @@ export class MovieResource extends Resource {
   }
 
   remove(id: number, deleteFiles: boolean = false): Promise<void> {
-    return this._delete('movie/{:id}', [
+    return this.http_delete('movie/{:id}', [
       {
         key: 'deleteFiles',
         type: ResourceRouteParamType.Query,
@@ -65,7 +65,7 @@ export class MovieResource extends Resource {
   }
 
   tmdb(tmdbId: number): Promise<Movie> {
-    return this._get('movie/lookup/tmdb', [
+    return this.http_get('movie/lookup/tmdb', [
       {
         key: 'tmdbId',
         type: ResourceRouteParamType.Query,
@@ -75,7 +75,7 @@ export class MovieResource extends Resource {
   }
 
   update(movie: Movie): Promise<Movie> {
-    return this._put('movie/{:id}', movie, [
+    return this.http_put('movie/{:id}', movie, [
       {
         key: 'id',
         type: ResourceRouteParamType.RouteParameter,

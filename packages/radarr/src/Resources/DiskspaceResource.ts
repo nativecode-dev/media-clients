@@ -11,6 +11,6 @@ export class DiskspaceResource extends Resource {
   }
 
   list(): Promise<Diskspace[]> {
-    return this._get<Diskspace[]>('diskspace')
+    return this.http_get<Diskspace[]>('diskspace')
   }
 }

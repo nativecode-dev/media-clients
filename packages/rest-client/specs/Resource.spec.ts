@@ -22,11 +22,13 @@ class RestApiResource extends Resource {
   }
 
   all(): Promise<Employee[]> {
-    return this._get<Employee[]>('users')
+    return this.http_get<Employee[]>('users')
   }
 
   id(id: number): Promise<Employee> {
-    return this._get<Employee>('users/{:id}', [{ key: 'id', type: ResourceRouteParamType.RouteParameter, value: id }])
+    return this.http_get<Employee>('users/{:id}', [
+      { key: 'id', type: ResourceRouteParamType.RouteParameter, value: id },
+    ])
   }
 }
 

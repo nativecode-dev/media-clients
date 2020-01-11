@@ -11,6 +11,6 @@ export class ProfileResource extends Resource {
   }
 
   list(start?: string, end?: string): Promise<Profile[]> {
-    return this._get<Profile[]>('profile')
+    return this.http_get<Profile[]>('profile')
   }
 }

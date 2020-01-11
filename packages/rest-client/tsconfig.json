@@ -3,6 +3,7 @@
     "lib": [
       "dom"
     ],
+    "moduleResolution": "node",
     "outDir": "lib",
     "rootDir": "src"
   },

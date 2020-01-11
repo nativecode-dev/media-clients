@@ -11,7 +11,7 @@ export class IndexerResource extends Resource {
   }
 
   indexer(id: number): Promise<Indexer> {
-    return this._get('indexer/{:id}', [
+    return this.http_get('indexer/{:id}', [
       {
         key: 'id',
         type: ResourceRouteParamType.RouteParameter,
@@ -21,11 +21,11 @@ export class IndexerResource extends Resource {
   }
 
   list(): Promise<Indexer[]> {
-    return this._get('indexer')
+    return this.http_get('indexer')
   }
 
   remove(id: number): Promise<void> {
-    return this._delete('indexer/{:id}', [
+    return this.http_delete('indexer/{:id}', [
       {
         key: 'id',
         type: ResourceRouteParamType.RouteParameter,
@@ -35,7 +35,7 @@ export class IndexerResource extends Resource {
   }
 
   update(indexer: Indexer): Promise<Indexer> {
-    return this._put('indexer/{:id}', indexer, [
+    return this.http_put('indexer/{:id}', indexer, [
       {
         key: 'id',
         type: ResourceRouteParamType.RouteParameter,

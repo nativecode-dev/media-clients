@@ -20,11 +20,11 @@ export class RestResource extends Resource {
   }
 
   all(): Promise<Model[]> {
-    return this._get('models')
+    return this.http_get('models')
   }
 
   byId(id: number): Promise<Model> {
-    return this._get('models/{:id}', [
+    return this.http_get('models/{:id}', [
       {
         key: 'id',
         type: RestResourceParamType.RouteParameter,

@@ -13,7 +13,7 @@ export class WantedMissingResource extends Resource {
   }
 
   list(sortKey: string = 'airDateUtc', options: PagingOptions = {}): Promise<Paging<WantedMissing>> {
-    return this._get<Paging<WantedMissing>>('diskspace', [
+    return this.http_get<Paging<WantedMissing>>('diskspace', [
       {
         key: 'sortKey',
         type: ResourceRouteParamType.Query,

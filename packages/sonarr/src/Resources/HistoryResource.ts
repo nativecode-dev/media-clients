@@ -18,7 +18,7 @@ export class HistoryResource extends Resource {
   }
 
   get(sortKey: string = 'date', options: PagingOptions = {}): Promise<History> {
-    return this._get('history', [
+    return this.http_get('history', [
       {
         key: 'sortKey',
         type: ResourceRouteParamType.Query,

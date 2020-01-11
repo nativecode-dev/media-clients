@@ -15,7 +15,7 @@ export class CommandResource extends Resource {
   }
 
   command(id: number): Promise<Command> {
-    return this._get('command/{:id}', [
+    return this.http_get('command/{:id}', [
       {
         key: 'id',
         type: ResourceRouteParamType.RouteParameter,
@@ -25,10 +25,10 @@ export class CommandResource extends Resource {
   }
 
   commands(): Promise<Command[]> {
-    return this._get('command')
+    return this.http_get('command')
   }
 
   private execute(command: string, params?: any): Promise<Command> {
-    return this._post('command', { name: command, ...params })
+    return this.http_post('command', { name: command, ...params })
   }
 }

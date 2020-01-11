@@ -1,16 +1,9 @@
-import 'isomorphic-fetch'
-
 import { URL } from 'url'
 import { Lincoln } from '@nofrills/lincoln'
 
-import { ResourceHeader } from './ResourceHeader'
 import { ResourceRouteParam, ResourceRouteParams } from './ResourceRouteParam'
 import { ResourceRouteParamType } from './ResourceRouteParamType'
-
-export interface ResourceOptions {
-  credentials?: RequestCredentials
-  headers: ResourceHeader[]
-}
+import { ResourceOptions } from './ResourceOptions'
 
 const DefaultOptions: () => ResourceOptions = () => {
   return {
@@ -38,14 +31,16 @@ export abstract class Resource {
     return this.url
   }
 
-  protected async _get<T>(route: string, params?: ResourceRouteParam[]): Promise<T> {
+  protected async http_get<T>(route: string, params?: ResourceRouteParam[]): Promise<T> {
     try {
       const url = this.getFormattedUrl(route, params).href
-      const request: RequestInfo = new Request(url, {
+
+      const request = new Request(url, {
         credentials: this.options.credentials,
         headers: this.headers(),
         method: 'GET',
       })
+
       const response = await fetch(request)
 
       if (response.ok === false) {
@@ -60,10 +55,10 @@ export abstract class Resource {
     }
   }
 
-  protected async _delete<R>(route: string, params?: ResourceRouteParam[]): Promise<R> {
+  protected async http_delete<R>(route: string, params?: ResourceRouteParam[]): Promise<R> {
     try {
       const url = this.getFormattedUrl(route, params).href
-      const request: RequestInfo = new Request(url, {
+      const request = new Request(url, {
         credentials: this.options.credentials,
         headers: this.headers(),
         method: 'DELETE',
@@ -82,10 +77,10 @@ export abstract class Resource {
     }
   }
 
-  protected async _patch<T, R>(route: string, resource: T, params?: ResourceRouteParam[]): Promise<R> {
+  protected async http_patch<T, R>(route: string, resource: T, params?: ResourceRouteParam[]): Promise<R> {
     try {
       const url = this.getFormattedUrl(route, params).href
-      const request: RequestInfo = new Request(url, {
+      const request = new Request(url, {
         body: this.json(resource),
         credentials: this.options.credentials,
         headers: this.headers(),
@@ -105,10 +100,10 @@ export abstract class Resource {
     }
   }
 
-  protected async _post<T, R>(route: string, resource: T, params?: ResourceRouteParam[]): Promise<R> {
+  protected async http_post<T, R>(route: string, resource: T, params?: ResourceRouteParam[]): Promise<R> {
     try {
       const url = this.getFormattedUrl(route, params).href
-      const request: RequestInfo = new Request(url, {
+      const request = new Request(url, {
         body: this.json(resource),
         credentials: this.options.credentials,
         headers: this.headers(),
@@ -128,10 +123,10 @@ export abstract class Resource {
     }
   }
 
-  protected async _put<T, R>(route: string, resource: T, params?: ResourceRouteParam[]): Promise<R> {
+  protected async http_put<T, R>(route: string, resource: T, params?: ResourceRouteParam[]): Promise<R> {
     try {
       const url = this.getFormattedUrl(route, params).href
-      const request: RequestInfo = new Request(url, {
+      const request = new Request(url, {
         body: this.json(resource),
         credentials: this.options.credentials,
         headers: this.headers(),

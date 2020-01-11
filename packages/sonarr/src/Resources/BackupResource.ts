@@ -11,11 +11,11 @@ export class BackupResource extends Resource {
   }
 
   list(): Promise<Backup[]> {
-    return this._get<Backup[]>('system/backup')
+    return this.http_get<Backup[]>('system/backup')
   }
 
   async remove(id: number): Promise<void> {
-    await this._delete('v3/system/backup/{:id}', [
+    await this.http_delete('v3/system/backup/{:id}', [
       {
         key: 'id',
         type: ResourceRouteParamType.RouteParameter,
