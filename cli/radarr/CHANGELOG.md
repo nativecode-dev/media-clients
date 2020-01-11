@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.4](https://git.nativecode.net/nativecode/media-clients/compare/@nativecode/radarr-cli@1.1.4-next.3...@nativecode/radarr-cli@1.1.4) (2020-01-11)
+
+**Note:** Version bump only for package @nativecode/radarr-cli
+
+
+
+
+
 ## [1.1.3](https://git.nativecode.net/nativecode/media-clients/compare/@nativecode/radarr-cli@1.1.3-next.2...@nativecode/radarr-cli@1.1.3) (2020-01-11)
 
 **Note:** Version bump only for package @nativecode/radarr-cli
