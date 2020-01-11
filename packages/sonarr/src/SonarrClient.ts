@@ -11,7 +11,9 @@ import { EpisodeResource } from './Resources/EpisodeResource'
 import { ProfileResource } from './Resources/ProfileResource'
 import { EpisodeFileResource } from './Resources/EpisodeFileResource'
 import { DiskspaceResource } from './Resources/DiskspaceResource'
-import { HistoryResource } from './Resources'
+import { HistoryResource } from './Resources/HistoryResource'
+import { WantedMissingResource } from './Resources/WantedMissingResource'
+import { ParsedEpisodeInfoResource } from './Resources/ParsedEpisodeInfoResource'
 
 export class SonarrClient {
   public readonly backup: BackupResource
@@ -22,9 +24,11 @@ export class SonarrClient {
   public readonly files: EpisodeFileResource
   public readonly history: HistoryResource
   public readonly indexer: IndexerResource
+  public readonly parser: ParsedEpisodeInfoResource
   public readonly profile: ProfileResource
   public readonly series: SeriesResource
   public readonly system: SystemResource
+  public readonly wanted: WantedMissingResource
 
   constructor(endpoint: URL, apikey: string, logger: Lincoln) {
     this.backup = new BackupResource(endpoint, apikey, logger)
@@ -35,8 +39,10 @@ export class SonarrClient {
     this.files = new EpisodeFileResource(endpoint, apikey, logger)
     this.history = new HistoryResource(endpoint, apikey, logger)
     this.indexer = new IndexerResource(endpoint, apikey, logger)
+    this.parser = new ParsedEpisodeInfoResource(endpoint, apikey, logger)
     this.profile = new ProfileResource(endpoint, apikey, logger)
     this.series = new SeriesResource(endpoint, apikey, logger)
     this.system = new SystemResource(endpoint, apikey, logger)
+    this.wanted = new WantedMissingResource(endpoint, apikey, logger)
   }
 }
