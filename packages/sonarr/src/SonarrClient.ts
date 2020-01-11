@@ -14,6 +14,7 @@ import { DiskspaceResource } from './Resources/DiskspaceResource'
 import { HistoryResource } from './Resources/HistoryResource'
 import { WantedMissingResource } from './Resources/WantedMissingResource'
 import { ParsedEpisodeInfoResource } from './Resources/ParsedEpisodeInfoResource'
+import { ReleaseResource } from './Resources/ReleaseResource'
 
 export class SonarrClient {
   public readonly backup: BackupResource
@@ -26,6 +27,7 @@ export class SonarrClient {
   public readonly indexer: IndexerResource
   public readonly parser: ParsedEpisodeInfoResource
   public readonly profile: ProfileResource
+  public readonly release: ReleaseResource
   public readonly series: SeriesResource
   public readonly system: SystemResource
   public readonly wanted: WantedMissingResource
@@ -41,6 +43,7 @@ export class SonarrClient {
     this.indexer = new IndexerResource(endpoint, apikey, logger)
     this.parser = new ParsedEpisodeInfoResource(endpoint, apikey, logger)
     this.profile = new ProfileResource(endpoint, apikey, logger)
+    this.release = new ReleaseResource(endpoint, apikey, logger)
     this.series = new SeriesResource(endpoint, apikey, logger)
     this.system = new SystemResource(endpoint, apikey, logger)
     this.wanted = new WantedMissingResource(endpoint, apikey, logger)
