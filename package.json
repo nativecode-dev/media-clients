@@ -26,7 +26,7 @@
     "sonarr": "ts-node cli/sonarr/src/index.ts",
     "tasks": "cli-tasks",
     "test": "cli-tasks test",
-    "upgrade": "lernaupdate",
+    "upgrade": "cli-tasks upgrade",
     "watch": "cli-tasks watch"
   },
   "nyc": {
@@ -124,7 +124,8 @@
       "nyc mocha"
     ],
     "upgrade": [
-      "lernaupdate"
+      "npx npm-check -y",
+      "lerna run upgrade"
     ],
     "watch": [
       "lerna run --parallel watch"
@@ -139,7 +140,7 @@
     "@types/chai-as-promised": "7.1.2",
     "@types/chunk-text": "1.0.0",
     "@types/mocha": "5.2.7",
-    "@types/node": "12.12.24",
+    "@types/node": "^13.1.6",
     "chai": "4.2.0",
     "chai-as-promised": "7.1.1",
     "coveralls": "3.0.9",
@@ -147,15 +148,14 @@
     "git-ssh-key": "1.1.0",
     "json-sort-cli": "1.15.4",
     "lerna": "3.20.2",
-    "lerna-update-wizard": "0.17.3",
-    "mocha": "6.2.2",
-    "nyc": "14.1.1",
+    "mocha": "^7.0.0",
+    "nyc": "^15.0.0",
     "prettier": "1.19.1",
     "rimraf": "3.0.0",
     "source-map-support": "0.5.16",
-    "ts-node": "8.5.4",
+    "ts-node": "^8.6.1",
     "tslint": "5.20.1",
-    "tslint-config-standard": "8.0.1",
+    "tslint-config-standard": "^9.0.0",
     "tslint-no-unused-expression-chai": "0.1.4",
     "typescript": "3.7.4"
   }

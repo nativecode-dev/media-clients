@@ -24,7 +24,6 @@ export class SystemResource extends Resource {
     const source = this.clean(status.version)
     const target = packageInfo.radarr.version
     const acceptable = compare(source, target, '>=')
-    console.log('radarr-version', source, target, acceptable)
     this.logger.trace('radarr-version', source, target, acceptable)
     return acceptable
   }

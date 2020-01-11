@@ -25,6 +25,7 @@
   },
   "scripts": {
     "build": "tsc --project tsconfig.json",
+    "upgrade": "npx npm-check -y",
     "watch": "tsc --project tsconfig.json --watch"
   },
   "sonarr": {
@@ -54,7 +55,7 @@
     "p-throttle": "3.1.0",
     "rimraf": "3.0.0",
     "source-map-support": "0.5.16",
-    "ts-node": "8.5.4",
+    "ts-node": "^8.6.1",
     "typescript": "3.7.4"
   }
 }

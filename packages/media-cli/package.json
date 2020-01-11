@@ -7,18 +7,18 @@
   },
   "scripts": {
     "build": "tsc --project tsconfig.json",
+    "upgrade": "npx npm-check -y",
     "watch": "tsc --project tsconfig.json --watch"
   },
   "dependencies": {
     "@nofrills/lincoln-debug": "11.0.0",
     "@nofrills/types": "10.0.2",
-    "cli-table2": "0.2.0",
+    "cli-table3": "^0.5.1",
     "js2xmlparser": "4.0.0",
     "yargs": "15.1.0",
     "yargs-interactive": "3.0.0"
   },
   "devDependencies": {
-    "@types/cli-table2": "0.2.2",
     "@types/node": "13.1.6",
     "@types/yargs": "15.0.0",
     "@types/yargs-interactive": "2.1.0",
