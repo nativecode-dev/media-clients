@@ -9,7 +9,7 @@
         "master"
       ],
       "conventionalCommits": true,
-      "message": "[skip ci] chore(release): publish",
+      "message": "[skip ci] publish",
       "yes": true
     },
     "run": {
