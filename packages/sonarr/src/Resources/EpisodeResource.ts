@@ -1,6 +1,6 @@
 import { URL } from 'url'
 import { Lincoln } from '@nofrills/lincoln'
-import { Resource, ResourceRouteParamType } from '@nativecode/rest-client'
+import { Resource, ResourceParamType } from '@nativecode/rest-client'
 
 import { Episode } from '../Models/Episode'
 
@@ -13,7 +13,7 @@ export class EpisodeResource extends Resource {
   id(episodeId: number): Promise<Episode> {
     return this.http_get<Episode>('episode/{:id}', {
       key: 'id',
-      type: ResourceRouteParamType.RouteParameter,
+      type: ResourceParamType.RouteParameter,
       value: episodeId,
     })
   }
@@ -21,7 +21,7 @@ export class EpisodeResource extends Resource {
   list(seriesId: number): Promise<Episode[]> {
     return this.http_get<Episode[]>('episode', {
       key: 'seriesId',
-      type: ResourceRouteParamType.Query,
+      type: ResourceParamType.Query,
       value: seriesId,
     })
   }

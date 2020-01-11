@@ -1,6 +1,6 @@
 import { URL } from 'url'
 import { Lincoln } from '@nofrills/lincoln'
-import { Resource, ResourceRouteParamType } from '@nativecode/rest-client'
+import { Resource, ResourceParamType } from '@nativecode/rest-client'
 
 import { History } from '../Models'
 
@@ -22,27 +22,27 @@ export class HistoryResource extends Resource {
       'history',
       {
         key: 'sortKey',
-        type: ResourceRouteParamType.Query,
+        type: ResourceParamType.Query,
         value: sortKey,
       },
       {
         key: 'page',
-        type: ResourceRouteParamType.Query,
+        type: ResourceParamType.Query,
         value: options.page,
       },
       {
         key: 'pageSize',
-        type: ResourceRouteParamType.Query,
+        type: ResourceParamType.Query,
         value: options.pageSize,
       },
       {
         key: 'sortDir',
-        type: ResourceRouteParamType.Query,
+        type: ResourceParamType.Query,
         value: options.sortDir,
       },
       {
         key: 'episodeId',
-        type: ResourceRouteParamType.Query,
+        type: ResourceParamType.Query,
         value: options.episodeId,
       },
     )

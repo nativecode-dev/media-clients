@@ -1,6 +1,6 @@
 import { URL } from 'url'
 import { Lincoln } from '@nofrills/lincoln'
-import { Resource, ResourceRouteParamType } from '@nativecode/rest-client'
+import { Resource, ResourceParamType } from '@nativecode/rest-client'
 
 import { Backup } from '../Models/Backup'
 
@@ -17,7 +17,7 @@ export class BackupResource extends Resource {
   async remove(id: number): Promise<void> {
     await this.http_delete('v3/system/backup/{:id}', {
       key: 'id',
-      type: ResourceRouteParamType.RouteParameter,
+      type: ResourceParamType.RouteParameter,
       value: id,
     })
   }

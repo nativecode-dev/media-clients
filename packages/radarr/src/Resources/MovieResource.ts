@@ -1,6 +1,6 @@
 import { URL } from 'url'
 import { Lincoln } from '@nofrills/lincoln'
-import { Resource, ResourceRouteParamType } from '@nativecode/rest-client'
+import { Resource, ResourceParamType } from '@nativecode/rest-client'
 
 import { Movie } from '../Models/Movie'
 import { MovieInfo } from '../Models/MovieInfo'
@@ -18,7 +18,7 @@ export class MovieResource extends Resource {
   id(id: number): Promise<Movie> {
     return this.http_get('movie/{:id}', {
       key: 'id',
-      type: ResourceRouteParamType.RouteParameter,
+      type: ResourceParamType.RouteParameter,
       value: id,
     })
   }
@@ -26,7 +26,7 @@ export class MovieResource extends Resource {
   imdb(imdbId: string): Promise<Movie> {
     return this.http_get('movie/lookup/imdb', {
       key: 'imdbId',
-      type: ResourceRouteParamType.Query,
+      type: ResourceParamType.Query,
       value: imdbId,
     })
   }
@@ -38,7 +38,7 @@ export class MovieResource extends Resource {
   lookup(term: string): Promise<Movie[]> {
     return this.http_get('movie/lookup', {
       key: 'term',
-      type: ResourceRouteParamType.Query,
+      type: ResourceParamType.Query,
       value: term,
     })
   }
@@ -48,12 +48,12 @@ export class MovieResource extends Resource {
       'movie/{:id}',
       {
         key: 'deleteFiles',
-        type: ResourceRouteParamType.Query,
+        type: ResourceParamType.Query,
         value: deleteFiles,
       },
       {
         key: 'id',
-        type: ResourceRouteParamType.RouteParameter,
+        type: ResourceParamType.RouteParameter,
         value: id,
       },
     )
@@ -62,7 +62,7 @@ export class MovieResource extends Resource {
   tmdb(tmdbId: number): Promise<Movie> {
     return this.http_get('movie/lookup/tmdb', {
       key: 'tmdbId',
-      type: ResourceRouteParamType.Query,
+      type: ResourceParamType.Query,
       value: tmdbId,
     })
   }
@@ -70,7 +70,7 @@ export class MovieResource extends Resource {
   update(movie: Movie): Promise<Movie> {
     return this.http_put('movie/{:id}', movie, {
       key: 'id',
-      type: ResourceRouteParamType.RouteParameter,
+      type: ResourceParamType.RouteParameter,
       value: movie.id,
     })
   }

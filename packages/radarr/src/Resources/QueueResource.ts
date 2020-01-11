@@ -1,6 +1,6 @@
 import { URL } from 'url'
 import { Lincoln } from '@nofrills/lincoln'
-import { Resource, ResourceRouteParamType } from '@nativecode/rest-client'
+import { Resource, ResourceParamType } from '@nativecode/rest-client'
 import { Queue } from '../Models'
 
 export class QueueResource extends Resource {
@@ -14,12 +14,12 @@ export class QueueResource extends Resource {
       'queue',
       {
         key: 'id',
-        type: ResourceRouteParamType.Query,
+        type: ResourceParamType.Query,
         value: id,
       },
       {
         key: 'blacklist',
-        type: ResourceRouteParamType.Query,
+        type: ResourceParamType.Query,
         value: blacklist,
       },
     )

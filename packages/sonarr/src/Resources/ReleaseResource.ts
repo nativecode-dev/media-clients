@@ -1,6 +1,6 @@
 import { URL } from 'url'
 import { Lincoln } from '@nofrills/lincoln'
-import { Resource, ResourceRouteParamType } from '@nativecode/rest-client'
+import { Resource, ResourceParamType } from '@nativecode/rest-client'
 
 import { Release } from '../Models'
 import { ReleasePush } from '../Models/ReleasePush'
@@ -15,12 +15,12 @@ export class ReleaseResource extends Resource {
     return this.http_post('release', [
       {
         key: 'guid',
-        type: ResourceRouteParamType.Query,
+        type: ResourceParamType.Query,
         value: guid,
       },
       {
         key: 'indexerId',
-        type: ResourceRouteParamType.Query,
+        type: ResourceParamType.Query,
         value: indexerId,
       },
     ])
@@ -29,7 +29,7 @@ export class ReleaseResource extends Resource {
   get(episodeId: number): Promise<Release[]> {
     return this.http_get<Release[]>('diskspace', {
       key: 'episodeId',
-      type: ResourceRouteParamType.Query,
+      type: ResourceParamType.Query,
       value: episodeId,
     })
   }

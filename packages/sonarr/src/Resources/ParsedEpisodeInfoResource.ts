@@ -1,6 +1,6 @@
 import { URL } from 'url'
 import { Lincoln } from '@nofrills/lincoln'
-import { Resource, ResourceRouteParamType } from '@nativecode/rest-client'
+import { Resource, ResourceParamType } from '@nativecode/rest-client'
 
 import { ParsedEpisodeInfo } from '../Models'
 
@@ -15,12 +15,12 @@ export class ParsedEpisodeInfoResource extends Resource {
       'parsed',
       {
         key: 'path',
-        type: ResourceRouteParamType.Query,
+        type: ResourceParamType.Query,
         value: path,
       },
       {
         key: 'title',
-        type: ResourceRouteParamType.Query,
+        type: ResourceParamType.Query,
         value: title,
       },
     )

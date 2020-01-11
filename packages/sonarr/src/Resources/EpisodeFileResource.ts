@@ -1,6 +1,6 @@
 import { URL } from 'url'
 import { Lincoln } from '@nofrills/lincoln'
-import { Resource, ResourceRouteParamType } from '@nativecode/rest-client'
+import { Resource, ResourceParamType } from '@nativecode/rest-client'
 
 import { EpisodeFile } from '../Models/EpisodeFile'
 import { EpisodeFileQuality } from '../Models'
@@ -14,7 +14,7 @@ export class EpisodeFileResource extends Resource {
   delete(episodeFileId: number) {
     this.http_delete('episodefile/{:id}', {
       key: 'id',
-      type: ResourceRouteParamType.RouteParameter,
+      type: ResourceParamType.RouteParameter,
       value: episodeFileId,
     })
   }
@@ -22,7 +22,7 @@ export class EpisodeFileResource extends Resource {
   id(episodeId: number): Promise<EpisodeFile> {
     return this.http_get<EpisodeFile>('episodefile/{:id}', {
       key: 'id',
-      type: ResourceRouteParamType.RouteParameter,
+      type: ResourceParamType.RouteParameter,
       value: episodeId,
     })
   }
@@ -30,7 +30,7 @@ export class EpisodeFileResource extends Resource {
   list(seriesId: number): Promise<EpisodeFile[]> {
     return this.http_get<EpisodeFile[]>('episodefile', {
       key: 'seriesId',
-      type: ResourceRouteParamType.Query,
+      type: ResourceParamType.Query,
       value: seriesId,
     })
   }

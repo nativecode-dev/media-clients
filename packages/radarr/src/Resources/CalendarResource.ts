@@ -1,6 +1,6 @@
 import { URL } from 'url'
 import { Lincoln } from '@nofrills/lincoln'
-import { Resource, ResourceRouteParamType } from '@nativecode/rest-client'
+import { Resource, ResourceParamType } from '@nativecode/rest-client'
 
 import { Movie } from '../Models/Movie'
 
@@ -15,12 +15,12 @@ export class CalendarResource extends Resource {
       'calendar',
       {
         key: 'end',
-        type: ResourceRouteParamType.Query,
+        type: ResourceParamType.Query,
         value: end || '',
       },
       {
         key: 'start',
-        type: ResourceRouteParamType.Query,
+        type: ResourceParamType.Query,
         value: start || '',
       },
     )

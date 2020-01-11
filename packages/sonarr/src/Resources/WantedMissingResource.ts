@@ -1,6 +1,6 @@
 import { URL } from 'url'
 import { Lincoln } from '@nofrills/lincoln'
-import { Resource, ResourceRouteParamType } from '@nativecode/rest-client'
+import { Resource, ResourceParamType } from '@nativecode/rest-client'
 
 import { Paging } from '../Models/Paging'
 import { WantedMissing } from '../Models/WantedMissing'
@@ -17,27 +17,27 @@ export class WantedMissingResource extends Resource {
       'diskspace',
       {
         key: 'sortKey',
-        type: ResourceRouteParamType.Query,
+        type: ResourceParamType.Query,
         value: sortKey,
       },
       {
         key: 'page',
-        type: ResourceRouteParamType.Query,
+        type: ResourceParamType.Query,
         value: options.page,
       },
       {
         key: 'pageSize',
-        type: ResourceRouteParamType.Query,
+        type: ResourceParamType.Query,
         value: options.pageSize,
       },
       {
         key: 'sortDir',
-        type: ResourceRouteParamType.Query,
+        type: ResourceParamType.Query,
         value: options.sortDir,
       },
       {
         key: 'episodeId',
-        type: ResourceRouteParamType.Query,
+        type: ResourceParamType.Query,
         value: options.episodeId,
       },
     )

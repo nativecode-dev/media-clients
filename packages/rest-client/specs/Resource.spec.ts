@@ -7,7 +7,7 @@ import { URL } from 'url'
 import { step } from 'mocha-steps'
 
 import { Resource } from '../src/Resource'
-import { ResourceRouteParamType } from '../src/ResourceRouteParamType'
+import { ResourceParamType } from '../src/ResourceParamType'
 
 interface Employee {
   id: number
@@ -26,7 +26,7 @@ class RestApiResource extends Resource {
   }
 
   id(id: number): Promise<Employee> {
-    return this.http_get<Employee>('users/{:id}', { key: 'id', type: ResourceRouteParamType.RouteParameter, value: id })
+    return this.http_get<Employee>('users/{:id}', { key: 'id', type: ResourceParamType.RouteParameter, value: id })
   }
 }
 

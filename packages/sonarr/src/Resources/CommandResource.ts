@@ -1,6 +1,6 @@
 import { URL } from 'url'
 import { Lincoln } from '@nofrills/lincoln'
-import { Resource, ResourceRouteParamType } from '@nativecode/rest-client'
+import { Resource, ResourceParamType } from '@nativecode/rest-client'
 
 import { Command } from '../Models/Command'
 
@@ -17,7 +17,7 @@ export class CommandResource extends Resource {
   command(id: number): Promise<Command> {
     return this.http_get('command/{:id}', {
       key: 'id',
-      type: ResourceRouteParamType.RouteParameter,
+      type: ResourceParamType.RouteParameter,
       value: id,
     })
   }
