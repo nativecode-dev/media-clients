@@ -6,6 +6,8 @@ import { Global } from '../options/global'
 import { ConfigPath, SaveConfig } from '../config'
 
 export class ConfigureCommand implements CommandModule<{}, Global> {
+  constructor(private readonly configname: string) {}
+
   command = 'configure'
   describe = 'configure options'
   handler = async (args: Arguments<Global>) => {
@@ -34,7 +36,7 @@ export class ConfigureCommand implements CommandModule<{}, Global> {
       endpoint: results.endpoint,
     }
 
-    const filepath = await ConfigPath()
+    const filepath = await ConfigPath(this.configname)
     await SaveConfig(filepath, config)
 
     console.log(`Saved configuration to ${filepath}`)

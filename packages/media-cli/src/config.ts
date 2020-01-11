@@ -1,18 +1,16 @@
 import { fs } from '@nofrills/fs'
 
-const configname = '.radarrrc.json'
-
-function EtcConfigPath(): string {
+function EtcConfigPath(configname: string): string {
   return fs.join('/etc', configname)
 }
 
-function UserConfigPath(): string {
+function UserConfigPath(configname: string): string {
   const root = process.env.HOME || process.cwd()
   return fs.join(root, configname)
 }
 
-export async function ConfigPath(): Promise<string> {
-  const paths = [EtcConfigPath(), UserConfigPath()]
+export async function ConfigPath(configname: string): Promise<string> {
+  const paths = [EtcConfigPath(configname), UserConfigPath(configname)]
   const tasks = paths.map(async path => ((await fs.exists(path)) ? path : null))
   const found = await Promise.all(tasks)
 
@@ -21,7 +19,7 @@ export async function ConfigPath(): Promise<string> {
       return previous
     }
     return current
-  }, UserConfigPath())
+  }, UserConfigPath(configname))
 }
 
 export async function LoadConfig<T>(filepath: string): Promise<T | null> {

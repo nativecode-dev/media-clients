@@ -6,7 +6,7 @@ export interface Config {
 }
 
 export async function Load(args: Global): Promise<void> {
-  const path = await ConfigPath('.radarrrc.json')
+  const path = await ConfigPath('.sonarrrc.json')
   const config = await LoadConfig<Config>(path)
 
   if (config !== null) {
