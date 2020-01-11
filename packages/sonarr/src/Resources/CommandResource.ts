@@ -15,13 +15,11 @@ export class CommandResource extends Resource {
   }
 
   command(id: number): Promise<Command> {
-    return this.http_get('command/{:id}', [
-      {
-        key: 'id',
-        type: ResourceRouteParamType.RouteParameter,
-        value: id,
-      },
-    ])
+    return this.http_get('command/{:id}', {
+      key: 'id',
+      type: ResourceRouteParamType.RouteParameter,
+      value: id,
+    })
   }
 
   commands(): Promise<Command[]> {

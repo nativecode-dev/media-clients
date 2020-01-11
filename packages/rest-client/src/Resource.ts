@@ -1,9 +1,12 @@
+import merge from 'deepmerge'
+
 import { URL } from 'url'
 import { Lincoln } from '@nofrills/lincoln'
 
-import { ResourceRouteParam, ResourceRouteParams } from './ResourceRouteParam'
-import { ResourceRouteParamType } from './ResourceRouteParamType'
 import { ResourceOptions } from './ResourceOptions'
+import { ResourceRouteParamType } from './ResourceRouteParamType'
+import { ResourceRouteParam, ResourceRouteParams } from './ResourceRouteParam'
+import { HttpError } from './HttpError'
 
 const DefaultOptions: () => ResourceOptions = () => {
   return {
@@ -18,7 +21,7 @@ export abstract class Resource {
 
   constructor(url: URL, logger: Lincoln, options: Partial<ResourceOptions> = {}) {
     this.logger = logger
-    this.options = { ...DefaultOptions(), ...options }
+    this.options = merge.all<ResourceOptions>([DefaultOptions(), options])
 
     if (url.href.endsWith('/')) {
       this.url = url
@@ -31,131 +34,91 @@ export abstract class Resource {
     return this.url
   }
 
-  protected async http_get<T>(route: string, params?: ResourceRouteParam[]): Promise<T> {
-    try {
-      const url = this.getRoute(route, params).href
-
-      const request = new Request(url, {
-        credentials: this.options.credentials,
-        headers: this.headers(),
-        method: 'GET',
-      })
-
-      const response = await fetch(request)
-
-      if (response.ok === false) {
-        this.logger.error(JSON.stringify(request, null, 2))
-        return Promise.reject(new Error(`${response.status}: ${response.statusText} @ ${url}`))
-      }
-
-      return response.json()
-    } catch (error) {
-      this.logger.error(error)
-      return Promise.reject(error)
-    }
+  protected async http_get<T>(route: string, ...params: ResourceRouteParams): Promise<T> {
+    return this.getResponseJson(route, 'GET', params)
   }
 
-  protected async http_delete<R>(route: string, params?: ResourceRouteParam[]): Promise<R> {
-    try {
-      const url = this.getRoute(route, params).href
-
-      const request = new Request(url, {
-        credentials: this.options.credentials,
-        headers: this.headers(),
-        method: 'DELETE',
-      })
-
-      const response = await fetch(request)
-
-      if (response.ok === false) {
-        this.logger.error(JSON.stringify(request, null, 2))
-        return Promise.reject(new Error(`${response.status}: ${response.statusText} @ ${url}`))
-      }
-
-      return response.json()
-    } catch (error) {
-      this.logger.error(error)
-      return Promise.reject(error)
-    }
+  protected async http_delete<R>(route: string, ...params: ResourceRouteParams): Promise<R> {
+    return this.getResponseJson(route, 'DELETE', params)
   }
 
-  protected async http_patch<T, R>(route: string, resource: T, params?: ResourceRouteParam[]): Promise<R> {
-    try {
-      const url = this.getRoute(route, params).href
-
-      const request = new Request(url, {
-        body: this.json(resource),
-        credentials: this.options.credentials,
-        headers: this.headers(),
-        method: 'PATCH',
-      })
-
-      const response = await fetch(request)
-
-      if (response.ok === false) {
-        this.logger.error(JSON.stringify(request, null, 2))
-        return Promise.reject(new Error(`${response.status}: ${response.statusText} @ ${url}`))
-      }
-
-      return response.json()
-    } catch (error) {
-      this.logger.error(error)
-      return Promise.reject(error)
-    }
+  protected async http_head(route: string, ...params: ResourceRouteParams): Promise<string> {
+    return this.getResponseText(route, 'HEAD', params)
   }
 
-  protected async http_post<T, R>(route: string, resource: T, params?: ResourceRouteParam[]): Promise<R> {
-    try {
-      const url = this.getRoute(route, params).href
-
-      const request = new Request(url, {
-        body: this.json(resource),
-        credentials: this.options.credentials,
-        headers: this.headers(),
-        method: 'POST',
-      })
-
-      const response = await fetch(request)
-
-      if (response.ok === false) {
-        this.logger.error(JSON.stringify(request, null, 2))
-        return Promise.reject(new Error(`${response.status}: ${response.statusText} @ ${url}`))
-      }
-
-      return response.json()
-    } catch (error) {
-      this.logger.error(error)
-      return Promise.reject(error)
-    }
+  protected async http_options(route: string, ...params: ResourceRouteParams): Promise<string> {
+    return this.getResponseText(route, 'OPTIONS', params)
   }
 
-  protected async http_put<T, R>(route: string, resource: T, params?: ResourceRouteParam[]): Promise<R> {
-    try {
-      const url = this.getRoute(route, params).href
+  protected async http_patch<T, R>(route: string, resource: T, ...params: ResourceRouteParams): Promise<R> {
+    return this.getResponseJson(route, 'PATCH', params, resource)
+  }
 
-      const request = new Request(url, {
-        body: this.json(resource),
-        credentials: this.options.credentials,
-        headers: this.headers(),
-        method: 'PUT',
-      })
+  protected async http_post<T, R>(route: string, resource: T, ...params: ResourceRouteParams): Promise<R> {
+    return this.getResponseJson(route, 'POST', params, resource)
+  }
 
-      const response = await fetch(request)
+  protected async http_put<T, R>(route: string, resource: T, ...params: ResourceRouteParams): Promise<R> {
+    return this.getResponseJson(route, 'PUT', params, resource)
+  }
 
-      if (response.ok === false) {
-        this.logger.error(JSON.stringify(request, null, 2))
-        return Promise.reject(new Error(`${response.status}: ${response.statusText} @ ${url}`))
-      }
-
-      return response.json()
-    } catch (error) {
-      this.logger.error(error)
-      return Promise.reject(error)
-    }
+  protected async http_trace(route: string, ...params: ResourceRouteParams): Promise<string> {
+    return this.getResponseText(route, 'TRACE', params)
   }
 
   protected setHeader(name: string, value: string): void {
     this.options.headers.push({ name, value })
+  }
+
+  protected async getResponseJson<T>(route: string, method: string, params: ResourceRouteParams, resource?: T) {
+    try {
+      const url = this.getRoute(route, params).href
+
+      const request = new Request(url, {
+        body: resource ? this.json(resource) : undefined,
+        credentials: this.options.credentials,
+        headers: this.headers(),
+        method,
+      })
+
+      const response = await fetch(request)
+
+      if (response.ok === false) {
+        const error = new HttpError(request, response)
+        this.logger.error(error, response.statusText)
+        throw error
+      }
+
+      return response.json()
+    } catch (error) {
+      this.logger.error(error)
+      throw error
+    }
+  }
+
+  protected async getResponseText(route: string, method: string, params: ResourceRouteParams) {
+    try {
+      const url = this.getRoute(route, params).href
+
+      const request = new Request(url, {
+        credentials: this.options.credentials,
+        headers: this.headers(),
+        method,
+      })
+
+      const response = await fetch(request)
+
+      if (response.ok === false) {
+        const error = new HttpError(request, response)
+        this.logger.error(error, response.statusText)
+        throw error
+      }
+
+      return response.text()
+    } catch (error) {
+      this.logger.error(error)
+      throw error
+    }
   }
 
   private getRoute(route: string, params: ResourceRouteParams = []): URL {

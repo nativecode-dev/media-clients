@@ -11,23 +11,19 @@ export class EpisodeResource extends Resource {
   }
 
   id(episodeId: number): Promise<Episode> {
-    return this.http_get<Episode>('episode/{:id}', [
-      {
-        key: 'id',
-        type: ResourceRouteParamType.RouteParameter,
-        value: episodeId,
-      },
-    ])
+    return this.http_get<Episode>('episode/{:id}', {
+      key: 'id',
+      type: ResourceRouteParamType.RouteParameter,
+      value: episodeId,
+    })
   }
 
   list(seriesId: number): Promise<Episode[]> {
-    return this.http_get<Episode[]>('episode', [
-      {
-        key: 'seriesId',
-        type: ResourceRouteParamType.Query,
-        value: seriesId,
-      },
-    ])
+    return this.http_get<Episode[]>('episode', {
+      key: 'seriesId',
+      type: ResourceRouteParamType.Query,
+      value: seriesId,
+    })
   }
 
   update(episode: Episode): Promise<Episode> {

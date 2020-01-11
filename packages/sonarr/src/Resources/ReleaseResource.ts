@@ -27,13 +27,11 @@ export class ReleaseResource extends Resource {
   }
 
   get(episodeId: number): Promise<Release[]> {
-    return this.http_get<Release[]>('diskspace', [
-      {
-        key: 'episodeId',
-        type: ResourceRouteParamType.Query,
-        value: episodeId,
-      },
-    ])
+    return this.http_get<Release[]>('diskspace', {
+      key: 'episodeId',
+      type: ResourceRouteParamType.Query,
+      value: episodeId,
+    })
   }
 
   push(push: ReleasePush) {

@@ -31,6 +31,7 @@
   },
   "types": "lib/index.d.ts",
   "dependencies": {
+    "deepmerge": "^4.2.2",
     "isomorphic-fetch": "2.2.1"
   },
   "devDependencies": {
@@ -38,6 +39,7 @@
     "@types/blob-util": "2.0.0",
     "@types/chai": "4.2.7",
     "@types/chai-as-promised": "7.1.2",
+    "@types/deepmerge": "^2.2.0",
     "@types/isomorphic-fetch": "0.0.35",
     "@types/mocha": "5.2.7",
     "@types/node": "13.1.6",

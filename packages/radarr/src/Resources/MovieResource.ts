@@ -16,23 +16,19 @@ export class MovieResource extends Resource {
   }
 
   id(id: number): Promise<Movie> {
-    return this.http_get('movie/{:id}', [
-      {
-        key: 'id',
-        type: ResourceRouteParamType.RouteParameter,
-        value: id,
-      },
-    ])
+    return this.http_get('movie/{:id}', {
+      key: 'id',
+      type: ResourceRouteParamType.RouteParameter,
+      value: id,
+    })
   }
 
   imdb(imdbId: string): Promise<Movie> {
-    return this.http_get('movie/lookup/imdb', [
-      {
-        key: 'imdbId',
-        type: ResourceRouteParamType.Query,
-        value: imdbId,
-      },
-    ])
+    return this.http_get('movie/lookup/imdb', {
+      key: 'imdbId',
+      type: ResourceRouteParamType.Query,
+      value: imdbId,
+    })
   }
 
   list(): Promise<Movie[]> {
@@ -40,17 +36,16 @@ export class MovieResource extends Resource {
   }
 
   lookup(term: string): Promise<Movie[]> {
-    return this.http_get('movie/lookup', [
-      {
-        key: 'term',
-        type: ResourceRouteParamType.Query,
-        value: term,
-      },
-    ])
+    return this.http_get('movie/lookup', {
+      key: 'term',
+      type: ResourceRouteParamType.Query,
+      value: term,
+    })
   }
 
   remove(id: number, deleteFiles: boolean = false): Promise<void> {
-    return this.http_delete('movie/{:id}', [
+    return this.http_delete(
+      'movie/{:id}',
       {
         key: 'deleteFiles',
         type: ResourceRouteParamType.Query,
@@ -61,26 +56,22 @@ export class MovieResource extends Resource {
         type: ResourceRouteParamType.RouteParameter,
         value: id,
       },
-    ])
+    )
   }
 
   tmdb(tmdbId: number): Promise<Movie> {
-    return this.http_get('movie/lookup/tmdb', [
-      {
-        key: 'tmdbId',
-        type: ResourceRouteParamType.Query,
-        value: tmdbId,
-      },
-    ])
+    return this.http_get('movie/lookup/tmdb', {
+      key: 'tmdbId',
+      type: ResourceRouteParamType.Query,
+      value: tmdbId,
+    })
   }
 
   update(movie: Movie): Promise<Movie> {
-    return this.http_put('movie/{:id}', movie, [
-      {
-        key: 'id',
-        type: ResourceRouteParamType.RouteParameter,
-        value: movie.id,
-      },
-    ])
+    return this.http_put('movie/{:id}', movie, {
+      key: 'id',
+      type: ResourceRouteParamType.RouteParameter,
+      value: movie.id,
+    })
   }
 }

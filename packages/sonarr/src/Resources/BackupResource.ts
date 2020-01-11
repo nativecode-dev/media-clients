@@ -15,12 +15,10 @@ export class BackupResource extends Resource {
   }
 
   async remove(id: number): Promise<void> {
-    await this.http_delete('v3/system/backup/{:id}', [
-      {
-        key: 'id',
-        type: ResourceRouteParamType.RouteParameter,
-        value: id,
-      },
-    ])
+    await this.http_delete('v3/system/backup/{:id}', {
+      key: 'id',
+      type: ResourceRouteParamType.RouteParameter,
+      value: id,
+    })
   }
 }

@@ -11,7 +11,8 @@ export class CalendarResource extends Resource {
   }
 
   list(start?: string, end?: string): Promise<Movie[]> {
-    return this.http_get<Movie[]>('calendar', [
+    return this.http_get<Movie[]>(
+      'calendar',
       {
         key: 'end',
         type: ResourceRouteParamType.Query,
@@ -22,6 +23,6 @@ export class CalendarResource extends Resource {
         type: ResourceRouteParamType.Query,
         value: start || '',
       },
-    ])
+    )
   }
 }

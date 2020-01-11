@@ -12,33 +12,27 @@ export class EpisodeFileResource extends Resource {
   }
 
   delete(episodeFileId: number) {
-    this.http_delete('episodefile/{:id}', [
-      {
-        key: 'id',
-        type: ResourceRouteParamType.RouteParameter,
-        value: episodeFileId,
-      },
-    ])
+    this.http_delete('episodefile/{:id}', {
+      key: 'id',
+      type: ResourceRouteParamType.RouteParameter,
+      value: episodeFileId,
+    })
   }
 
   id(episodeId: number): Promise<EpisodeFile> {
-    return this.http_get<EpisodeFile>('episodefile/{:id}', [
-      {
-        key: 'id',
-        type: ResourceRouteParamType.RouteParameter,
-        value: episodeId,
-      },
-    ])
+    return this.http_get<EpisodeFile>('episodefile/{:id}', {
+      key: 'id',
+      type: ResourceRouteParamType.RouteParameter,
+      value: episodeId,
+    })
   }
 
   list(seriesId: number): Promise<EpisodeFile[]> {
-    return this.http_get<EpisodeFile[]>('episodefile', [
-      {
-        key: 'seriesId',
-        type: ResourceRouteParamType.Query,
-        value: seriesId,
-      },
-    ])
+    return this.http_get<EpisodeFile[]>('episodefile', {
+      key: 'seriesId',
+      type: ResourceRouteParamType.Query,
+      value: seriesId,
+    })
   }
 
   update(quality: EpisodeFileQuality): Promise<EpisodeFile> {

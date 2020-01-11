@@ -26,9 +26,7 @@ class RestApiResource extends Resource {
   }
 
   id(id: number): Promise<Employee> {
-    return this.http_get<Employee>('users/{:id}', [
-      { key: 'id', type: ResourceRouteParamType.RouteParameter, value: id },
-    ])
+    return this.http_get<Employee>('users/{:id}', { key: 'id', type: ResourceRouteParamType.RouteParameter, value: id })
   }
 }
 

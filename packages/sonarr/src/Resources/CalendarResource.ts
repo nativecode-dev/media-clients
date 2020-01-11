@@ -11,7 +11,8 @@ export class CalendarResource extends Resource {
   }
 
   list(start?: string, end?: string): Promise<Episode[]> {
-    return this.http_get<Episode[]>('calendar', [
+    return this.http_get<Episode[]>(
+      'calendar',
       {
         key: 'end',
         type: ResourceRouteParamType.Query,
@@ -22,6 +23,6 @@ export class CalendarResource extends Resource {
         type: ResourceRouteParamType.Query,
         value: start,
       },
-    ])
+    )
   }
 }

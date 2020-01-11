@@ -11,13 +11,11 @@ export class SeriesResource extends Resource {
   }
 
   id(id: number): Promise<Series> {
-    return this.http_get<Series>('series/{:id}', [
-      {
-        key: 'id',
-        type: ResourceRouteParamType.RouteParameter,
-        value: id,
-      },
-    ])
+    return this.http_get<Series>('series/{:id}', {
+      key: 'id',
+      type: ResourceRouteParamType.RouteParameter,
+      value: id,
+    })
   }
 
   list(): Promise<Series[]> {
@@ -25,12 +23,10 @@ export class SeriesResource extends Resource {
   }
 
   update(series: Series): Promise<Series> {
-    return this.http_put('series', series, [
-      {
-        key: 'id',
-        type: ResourceRouteParamType.RouteParameter,
-        value: series.id,
-      },
-    ])
+    return this.http_put('series', series, {
+      key: 'id',
+      type: ResourceRouteParamType.RouteParameter,
+      value: series.id,
+    })
   }
 }

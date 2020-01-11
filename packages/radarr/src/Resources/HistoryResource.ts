@@ -25,7 +25,8 @@ export class HistoryResource extends Resource {
   page(page: number = 1, options?: HistoryOptions): Promise<History> {
     const merged: HistoryOptions = { ...{ pageSize: 0 }, ...options }
 
-    return this.http_get<History>('history', [
+    return this.http_get<History>(
+      'history',
       {
         key: 'page',
         type: ResourceRouteParamType.Query,
@@ -46,6 +47,6 @@ export class HistoryResource extends Resource {
         type: ResourceRouteParamType.Query,
         value: merged.sortKey,
       },
-    ])
+    )
   }
 }

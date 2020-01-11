@@ -11,7 +11,8 @@ export class ParsedEpisodeInfoResource extends Resource {
   }
 
   parse(path?: string, title?: string): Promise<ParsedEpisodeInfo> {
-    return this.http_get<ParsedEpisodeInfo>('parsed', [
+    return this.http_get<ParsedEpisodeInfo>(
+      'parsed',
       {
         key: 'path',
         type: ResourceRouteParamType.Query,
@@ -22,6 +23,6 @@ export class ParsedEpisodeInfoResource extends Resource {
         type: ResourceRouteParamType.Query,
         value: title,
       },
-    ])
+    )
   }
 }
