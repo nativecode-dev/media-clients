@@ -33,19 +33,32 @@ export class SonarrClient {
   public readonly wanted: WantedMissingResource
 
   constructor(endpoint: URL, apikey: string, logger: Lincoln) {
-    this.backup = new BackupResource(endpoint, apikey, logger)
-    this.calendar = new CalendarResource(endpoint, apikey, logger)
-    this.command = new CommandResource(endpoint, apikey, logger)
-    this.diskspace = new DiskspaceResource(endpoint, apikey, logger)
-    this.episodes = new EpisodeResource(endpoint, apikey, logger)
-    this.files = new EpisodeFileResource(endpoint, apikey, logger)
-    this.history = new HistoryResource(endpoint, apikey, logger)
-    this.indexer = new IndexerResource(endpoint, apikey, logger)
-    this.parser = new ParsedEpisodeInfoResource(endpoint, apikey, logger)
-    this.profile = new ProfileResource(endpoint, apikey, logger)
-    this.release = new ReleaseResource(endpoint, apikey, logger)
-    this.series = new SeriesResource(endpoint, apikey, logger)
-    this.system = new SystemResource(endpoint, apikey, logger)
-    this.wanted = new WantedMissingResource(endpoint, apikey, logger)
+    const url = this.getApiUrl(endpoint.toString())
+    this.backup = new BackupResource(url, apikey, logger)
+    this.calendar = new CalendarResource(url, apikey, logger)
+    this.command = new CommandResource(url, apikey, logger)
+    this.diskspace = new DiskspaceResource(url, apikey, logger)
+    this.episodes = new EpisodeResource(url, apikey, logger)
+    this.files = new EpisodeFileResource(url, apikey, logger)
+    this.history = new HistoryResource(url, apikey, logger)
+    this.indexer = new IndexerResource(url, apikey, logger)
+    this.parser = new ParsedEpisodeInfoResource(url, apikey, logger)
+    this.profile = new ProfileResource(url, apikey, logger)
+    this.release = new ReleaseResource(url, apikey, logger)
+    this.series = new SeriesResource(url, apikey, logger)
+    this.system = new SystemResource(url, apikey, logger)
+    this.wanted = new WantedMissingResource(url, apikey, logger)
+  }
+
+  private getApiUrl(endpoint: string) {
+    if (endpoint.endsWith('/api') || endpoint.endsWith('/api/')) {
+      return new URL(endpoint)
+    }
+
+    if (endpoint.endsWith('/')) {
+      return new URL(`${endpoint}api`)
+    }
+
+    return new URL(`${endpoint}/api`)
   }
 }

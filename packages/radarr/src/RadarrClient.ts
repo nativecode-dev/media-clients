@@ -19,12 +19,25 @@ export class RadarrClient {
   readonly system: SystemResource
 
   constructor(endpoint: URL, apikey: string, logger: Lincoln) {
-    this.calendar = new CalendarResource(endpoint, apikey, logger)
-    this.diskspace = new DiskspaceResource(endpoint, apikey, logger)
-    this.history = new HistoryResource(endpoint, apikey, logger)
-    this.indexer = new IndexerResource(endpoint, apikey, logger)
-    this.movie = new MovieResource(endpoint, apikey, logger)
-    this.profile = new ProfileResource(endpoint, apikey, logger)
-    this.system = new SystemResource(endpoint, apikey, logger)
+    const url = this.getApiUrl(endpoint.toString())
+    this.calendar = new CalendarResource(url, apikey, logger)
+    this.diskspace = new DiskspaceResource(url, apikey, logger)
+    this.history = new HistoryResource(url, apikey, logger)
+    this.indexer = new IndexerResource(url, apikey, logger)
+    this.movie = new MovieResource(url, apikey, logger)
+    this.profile = new ProfileResource(url, apikey, logger)
+    this.system = new SystemResource(url, apikey, logger)
+  }
+
+  private getApiUrl(endpoint: string) {
+    if (endpoint.endsWith('/api') || endpoint.endsWith('/api/')) {
+      return new URL(endpoint)
+    }
+
+    if (endpoint.endsWith('/')) {
+      return new URL(`${endpoint}api`)
+    }
+
+    return new URL(`${endpoint}/api`)
   }
 }
