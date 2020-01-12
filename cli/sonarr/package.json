@@ -1,6 +1,6 @@
 {
   "name": "@nativecode/sonarr-cli",
-  "version": "1.1.5",
+  "version": "1.1.6-next.0",
   "bin": {
     "radarr-cli": "bin/index.js"
   },
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@nativecode/media-cli": "^0.2.3",
-    "@nativecode/sonarr": "^3.0.1",
+    "@nativecode/sonarr": "^3.1.0-next.0",
     "@nofrills/fs": "~11.0.0",
     "@nofrills/lincoln-debug": "~11.0.0",
     "@nofrills/types": "~10.0.2",
