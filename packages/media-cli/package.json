@@ -11,17 +11,17 @@
     "watch": "tsc --project tsconfig.json --watch"
   },
   "dependencies": {
-    "@nofrills/lincoln-debug": "11.0.0",
-    "@nofrills/types": "10.0.2",
-    "cli-table3": "^0.5.1",
-    "js2xmlparser": "4.0.0",
-    "yargs": "15.1.0",
-    "yargs-interactive": "3.0.0"
+    "@nofrills/lincoln-debug": "~11.0.0",
+    "@nofrills/types": "~10.0.2",
+    "cli-table3": "~0.5.1",
+    "js2xmlparser": "~4.0.0",
+    "yargs": "~15.1.0",
+    "yargs-interactive": "~3.0.0"
   },
   "devDependencies": {
-    "@types/node": "13.1.6",
-    "@types/yargs": "15.0.0",
-    "@types/yargs-interactive": "2.1.0",
-    "typescript": "3.7.4"
+    "@types/node": "~13.1.6",
+    "@types/yargs": "~15.0.0",
+    "@types/yargs-interactive": "~2.1.0",
+    "typescript": "~3.7.4"
   }
 }
