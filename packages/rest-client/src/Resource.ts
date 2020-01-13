@@ -146,6 +146,10 @@ export abstract class Resource {
   }
 
   private getUrl(route: string): string {
+    if (route.startsWith('http')) {
+      return route
+    }
+
     return route.startsWith('/') ? `${this.base.href}${route.substring(1)}` : `${this.base.href}${route}`
   }
 
