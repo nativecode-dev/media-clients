@@ -70,7 +70,7 @@ export abstract class Resource {
     this.options.headers.push({ name, value })
   }
 
-  protected async response(route: string, method: string, params: ResourceParams, body?: any) {
+  protected async response(route: string, method: string, params: ResourceParams = [], body?: any) {
     try {
       const url = this.getRoute(route, params).href
 
