@@ -1,3 +1,4 @@
+import btoa from 'btoa'
 import merge from 'deepmerge'
 
 import { URL } from 'url'
@@ -66,19 +67,38 @@ export abstract class Resource {
     return this.response(route, 'TRACE', params)
   }
 
-  protected setHeader(name: string, value: string): void {
-    this.options.headers.push({ name, value })
+  protected btoa(value: string | Buffer): string {
+    return btoa(value)
+  }
+
+  protected async blob(route: string, method: string, params: ResourceParams) {
+    const response = await this.response(route, method, params)
+    return response.blob()
+  }
+
+  protected async buffer(route: string, method: string, params: ResourceParams) {
+    const response = await this.response(route, method, params)
+    return new Promise(async (resolve, reject) => {
+      const blob = await response.arrayBuffer()
+      return Buffer.from(blob)
+    })
+  }
+
+  protected async json<T, R>(route: string, method: string, params: ResourceParams, resource?: T): Promise<R> {
+    const response = await this.response(route, method, params, resource)
+    return response.json()
   }
 
   protected async response(route: string, method: string, params: ResourceParams = [], body?: any) {
     try {
       const url = this.getRoute(route, params).href
+      const headers = params.filter(param => param.type === ResourceParamType.Header)
 
       const request = new Request(url, {
         body,
         method,
         credentials: this.options.credentials,
-        headers: this.headers(),
+        headers: this.headers(headers),
       })
 
       this.logger.trace(route, request)
@@ -98,22 +118,8 @@ export abstract class Resource {
     }
   }
 
-  protected async blob(route: string, method: string, params: ResourceParams) {
-    const response = await this.response(route, method, params)
-    return response.blob()
-  }
-
-  protected async buffer(route: string, method: string, params: ResourceParams) {
-    const response = await this.response(route, method, params)
-    return new Promise(async (resolve, reject) => {
-      const blob = await response.arrayBuffer()
-      return Buffer.from(blob)
-    })
-  }
-
-  protected async json<T, R>(route: string, method: string, params: ResourceParams, resource?: T): Promise<R> {
-    const response = await this.response(route, method, params, resource)
-    return response.json()
+  protected setHeader(name: string, value: string): void {
+    this.options.headers.push({ name, value })
   }
 
   protected async text(route: string, method: string, params: ResourceParams): Promise<string> {
@@ -153,10 +159,13 @@ export abstract class Resource {
     return route.startsWith('/') ? `${this.base.href}${route.substring(1)}` : `${this.base.href}${route}`
   }
 
-  private headers(): Headers {
+  private headers(params: ResourceParams = []): Headers {
+    const headers = new Headers()
+    params.map(param => headers.set(param.key, param.value))
+
     return this.options.headers.reduce((headers, current) => {
       headers.append(current.name, current.value)
       return headers
-    }, new Headers())
+    }, headers)
   }
 }

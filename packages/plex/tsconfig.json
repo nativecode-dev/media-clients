@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "dom"
+    ],
+    "outDir": "lib",
+    "rootDir": "src"
+  },
+  "exclude": [
+    "node_modules",
+    "specs"
+  ],
+  "extends": "../../tsconfig.settings.json",
+  "include": [
+    "src/**/*.ts"
+  ],
+  "references": [
+    {
+      "path": "../rest-client"
+    }
+  ]
+}
