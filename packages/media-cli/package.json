@@ -21,7 +21,6 @@
   "devDependencies": {
     "@types/node": "~13.1.6",
     "@types/yargs": "~15.0.0",
-    "@types/yargs-interactive": "~2.1.0",
-    "typescript": "~3.7.4"
+    "@types/yargs-interactive": "~2.1.0"
   }
 }
