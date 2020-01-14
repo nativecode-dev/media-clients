@@ -1,6 +1,6 @@
 {
   "name": "@nativecode/plex",
-  "version": "1.2.1",
+  "version": "1.2.2-next.0",
   "description": "Plex client",
   "license": "MIT",
   "private": false,
@@ -38,7 +38,7 @@
   },
   "types": "lib/index.d.ts",
   "dependencies": {
-    "@nativecode/rest-client": "^2.2.1",
+    "@nativecode/rest-client": "^2.2.3-next.0",
     "@nofrills/lincoln-debug": "~11.0.0",
     "isomorphic-fetch": "~2.2.1",
     "xml2json": "^0.12.0"
