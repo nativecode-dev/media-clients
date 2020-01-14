@@ -8,10 +8,17 @@
     "type": "git",
     "url": "git@git.nativecode.net:nativecode/media-clients.git"
   },
-  "homepage": "https://github.com/nativecode-dev/media-clients/packages/plex",
+  "homepage": "https://github.com/nativecode-dev/media-clients/tree/master/packages/plex",
   "author": "opensource@nativecode.com",
   "keywords": [
-    "radarr"
+    "rest",
+    "client",
+    "media",
+    "plex",
+    "movies",
+    "tv shows",
+    "tv-shows",
+    "tv"
   ],
   "main": "lib/index.js",
   "files": [

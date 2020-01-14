@@ -8,10 +8,12 @@
     "type": "git",
     "url": "git@git.nativecode.net:nativecode/media-clients.git"
   },
-  "homepage": "https://github.com/nativecode-dev/media-clients/packages/rest-client",
+  "homepage": "https://github.com/nativecode-dev/media-clients/tree/master/packages/rest-client",
   "author": "opensource@nativecode.com",
   "keywords": [
-    "rest"
+    "rest",
+    "client",
+    "http"
   ],
   "main": "lib/index.js",
   "files": [

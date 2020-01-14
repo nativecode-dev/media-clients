@@ -8,10 +8,17 @@
     "type": "git",
     "url": "git@git.nativecode.net:nativecode/media-clients.git"
   },
-  "homepage": "https://github.com/nativecode-dev/media-clients/packages/sonarr",
+  "homepage": "https://github.com/nativecode-dev/media-clients/tree/master/packages/sonarr",
   "author": "opensource@nativecode.com",
   "keywords": [
-    "sonarr"
+    "rest",
+    "client",
+    "media",
+    "sonarr",
+    "series",
+    "shows",
+    "tv",
+    "tv-shows"
   ],
   "main": "lib/index.js",
   "files": [
