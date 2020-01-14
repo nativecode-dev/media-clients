@@ -2,7 +2,7 @@
 
 Provides an abstract REST compatible resource class using `isomorphic-fetch` to perform operations.
 
-## Installation
+## Install
 
 ```sh
 npm install @nativecode/rest-client
