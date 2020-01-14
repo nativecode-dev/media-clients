@@ -1,9 +1,5 @@
-import { URL } from 'url'
-import { RadarrClient, Movie } from '@nativecode/radarr'
-
-import logger from './logging'
-
 import { Global, IsImdbId } from '@nativecode/media-cli'
+import { RadarrClient, Movie } from '@nativecode/radarr'
 
 export function GetMovieById(client: RadarrClient, id: string): Promise<Movie> {
   if (IsImdbId(id)) {
@@ -13,6 +9,5 @@ export function GetMovieById(client: RadarrClient, id: string): Promise<Movie> {
 }
 
 export default function(args: Global): RadarrClient {
-  const url = new URL(args.endpoint)
-  return new RadarrClient(url, args.apikey, logger)
+  return new RadarrClient({ apikey: args.apikey, host: args.endpoint })
 }

@@ -1,13 +1,12 @@
 import 'mocha'
 
 import expect from './expect'
-import Logger from './logging'
 
 import { APIKEY, ENDPOINT } from './env'
 import { SonarrClient } from '../src/SonarrClient'
 
 describe('when using CalendarResource', () => {
-  const sut = new SonarrClient(ENDPOINT, APIKEY, Logger.extend('calendar-resource'))
+  const sut = new SonarrClient({ apikey: APIKEY, host: ENDPOINT })
 
   it('should return no episodes', async () => {
     const calendar = await sut.calendar.list()

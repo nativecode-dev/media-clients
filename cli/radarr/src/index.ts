@@ -1,7 +1,6 @@
 import yargs, { Arguments } from 'yargs'
 
 import env from './env'
-import log from './logging'
 
 import { ConfigureCommand, GlobalOptions, Global } from '@nativecode/media-cli'
 
@@ -14,7 +13,7 @@ import MonitorCommand, { MonitorOptions } from './commands/monitor'
 import MovieCommand, { MovieOptions } from './commands/movie'
 import SelectCommand, { SelectOptions } from './commands/select'
 
-const args = GlobalOptions(yargs)
+GlobalOptions(yargs)
   .scriptName('radarr-cli')
   .command('$0 <list|select>', false)
   .command<CalendarOptions>(CalendarCommand)
@@ -35,5 +34,3 @@ const args = GlobalOptions(yargs)
   .showHelpOnFail(true)
   .help()
   .parse()
-
-log.trace(args)

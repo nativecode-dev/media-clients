@@ -1,6 +1,9 @@
+import merge from 'deepmerge'
+
 import { URL } from 'url'
 import { Lincoln, CreateLogger } from '@nofrills/lincoln-debug'
 
+import { SonarrOptions } from './SonarrOptions'
 import { BackupResource } from './Resources/BackupResource'
 import { SeriesResource } from './Resources/SeriesResource'
 import { SystemResource } from './Resources/SystemResource'
@@ -16,8 +19,15 @@ import { EpisodeFileResource } from './Resources/EpisodeFileResource'
 import { WantedMissingResource } from './Resources/WantedMissingResource'
 import { ParsedEpisodeInfoResource } from './Resources/ParsedEpisodeInfoResource'
 
+const DefaultSonarrOptions: Partial<SonarrOptions> = {
+  host: 'localhost',
+  port: 8989,
+  secure: false,
+}
+
 export class SonarrClient {
   private readonly log: Lincoln
+  private readonly options: SonarrOptions
 
   public readonly backup: BackupResource
   public readonly calendar: CalendarResource
@@ -34,35 +44,29 @@ export class SonarrClient {
   public readonly system: SystemResource
   public readonly wanted: WantedMissingResource
 
-  constructor(endpoint: URL, apikey: string, logger?: Lincoln) {
+  constructor(options: Partial<SonarrOptions>, logger?: Lincoln) {
     this.log = logger ? logger.extend('sonarr') : CreateLogger('sonarr')
+    this.options = merge.all<SonarrOptions>([DefaultSonarrOptions, options])
 
-    const url = this.getApiUrl(endpoint.toString())
-    this.backup = new BackupResource(url, apikey, this.log)
-    this.calendar = new CalendarResource(url, apikey, this.log)
-    this.command = new CommandResource(url, apikey, this.log)
-    this.diskspace = new DiskspaceResource(url, apikey, this.log)
-    this.episodes = new EpisodeResource(url, apikey, this.log)
-    this.files = new EpisodeFileResource(url, apikey, this.log)
-    this.history = new HistoryResource(url, apikey, this.log)
-    this.indexer = new IndexerResource(url, apikey, this.log)
-    this.parser = new ParsedEpisodeInfoResource(url, apikey, this.log)
-    this.profile = new ProfileResource(url, apikey, this.log)
-    this.release = new ReleaseResource(url, apikey, this.log)
-    this.series = new SeriesResource(url, apikey, this.log)
-    this.system = new SystemResource(url, apikey, this.log)
-    this.wanted = new WantedMissingResource(url, apikey, this.log)
+    const url = this.url()
+    this.backup = new BackupResource(url, this.options.apikey, this.log)
+    this.calendar = new CalendarResource(url, this.options.apikey, this.log)
+    this.command = new CommandResource(url, this.options.apikey, this.log)
+    this.diskspace = new DiskspaceResource(url, this.options.apikey, this.log)
+    this.episodes = new EpisodeResource(url, this.options.apikey, this.log)
+    this.files = new EpisodeFileResource(url, this.options.apikey, this.log)
+    this.history = new HistoryResource(url, this.options.apikey, this.log)
+    this.indexer = new IndexerResource(url, this.options.apikey, this.log)
+    this.parser = new ParsedEpisodeInfoResource(url, this.options.apikey, this.log)
+    this.profile = new ProfileResource(url, this.options.apikey, this.log)
+    this.release = new ReleaseResource(url, this.options.apikey, this.log)
+    this.series = new SeriesResource(url, this.options.apikey, this.log)
+    this.system = new SystemResource(url, this.options.apikey, this.log)
+    this.wanted = new WantedMissingResource(url, this.options.apikey, this.log)
   }
 
-  private getApiUrl(endpoint: string) {
-    if (endpoint.endsWith('/api') || endpoint.endsWith('/api/')) {
-      return new URL(endpoint)
-    }
-
-    if (endpoint.endsWith('/')) {
-      return new URL(`${endpoint}api`)
-    }
-
-    return new URL(`${endpoint}/api`)
+  private url() {
+    const protocol = this.options.secure ? 'https' : 'http'
+    return new URL(`${protocol}://${this.options.host}:${this.options.port}/api`)
   }
 }

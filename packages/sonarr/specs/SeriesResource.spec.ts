@@ -1,13 +1,12 @@
 import 'mocha'
 
 import expect from './expect'
-import Logger from './logging'
 
 import { APIKEY, ENDPOINT } from './env'
 import { SonarrClient } from '../src/SonarrClient'
 
 describe('when using SeriesResource', () => {
-  const sut = new SonarrClient(ENDPOINT, APIKEY, Logger.extend('shows-resource'))
+  const sut = new SonarrClient({ apikey: APIKEY, host: ENDPOINT })
 
   it('should get list of shows', async () => {
     const shows = await sut.series.list()

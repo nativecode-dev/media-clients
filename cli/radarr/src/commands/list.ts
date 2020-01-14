@@ -2,11 +2,8 @@ import { Movie } from '@nativecode/radarr'
 import { CommandModule, Arguments, Argv } from 'yargs'
 
 import client from '../client'
-import logger from '../logging'
 
 import { CreateIntFilter, Global, Output } from '@nativecode/media-cli'
-
-const log = logger.extend('list')
 
 export interface ListOptions extends Global {
   year?: string
@@ -23,7 +20,6 @@ interface MovieDisplay {
 function filter(args: Arguments<ListOptions>, movies: Movie[]): Movie[] {
   if (args.year) {
     const year = args.year
-    log.debug('filter', args.year)
 
     movies = movies.filter(movie => {
       const intFilter = CreateIntFilter(year)

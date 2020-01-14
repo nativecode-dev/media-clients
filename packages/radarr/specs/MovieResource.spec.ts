@@ -1,7 +1,6 @@
 import 'mocha'
 
 import expect from './expect'
-import Logger from './logging'
 
 import { step } from 'mocha-steps'
 
@@ -11,9 +10,8 @@ import { MovieInfo } from '../src/Models/MovieInfo'
 import { RadarrClient } from '../src/RadarrClient'
 
 describe('when using the MovieResource class', () => {
-  const sut = new RadarrClient(ENDPOINT, APIKEY, Logger.extend('movie-resource'))
+  const sut = new RadarrClient({ apikey: APIKEY, host: ENDPOINT })
 
-  let movie: Movie
   let movies: Movie[]
 
   it('should fail to find movie', () => {

@@ -11,9 +11,9 @@ function endpoint(): string {
     return process.env.SONARR_ENDPOINT
   }
 
-  return 'http://localhost:8989/api'
+  return 'localhost'
 }
 
 export const APIKEY: string =
   process.env.SONARR_TEST_APIKEY || process.env.SONARR_APIKEY || '31312e9d204348fda11cf569ad3d1a17'
-export const ENDPOINT = new URL(endpoint())
+export const ENDPOINT = endpoint()

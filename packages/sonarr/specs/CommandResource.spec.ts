@@ -1,7 +1,6 @@
 import 'mocha'
 
 import expect from './expect'
-import Logger from './logging'
 
 import { xstep } from 'mocha-steps'
 
@@ -10,7 +9,7 @@ import { Command } from '../src/Models/Command'
 import { SonarrClient } from '../src/SonarrClient'
 
 describe('when using CommandResource', () => {
-  const sut = new SonarrClient(ENDPOINT, APIKEY, Logger.extend('command-resource'))
+  const sut = new SonarrClient({ apikey: APIKEY, host: ENDPOINT })
 
   let backup: Command
 

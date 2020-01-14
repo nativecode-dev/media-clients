@@ -1,17 +1,16 @@
 import 'mocha'
 
 import expect from './expect'
-import Logger from './logging'
+import plimit from 'p-limit'
 
 import { xstep } from 'mocha-steps'
-import plimit from 'p-limit'
 
 import { APIKEY, ENDPOINT } from './env'
 import { SonarrClient } from '../src/SonarrClient'
 import { Backup } from '../src/Models/Backup'
 
 describe('when using BackupResource', () => {
-  const sut = new SonarrClient(ENDPOINT, APIKEY, Logger.extend('backup-resource'))
+  const sut = new SonarrClient({ apikey: APIKEY, host: ENDPOINT })
 
   let backups: Backup[]
 

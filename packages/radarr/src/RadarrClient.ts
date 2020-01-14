@@ -1,16 +1,26 @@
+import merge from 'deepmerge'
+
 import { URL } from 'url'
 import { Lincoln, CreateLogger } from '@nofrills/lincoln-debug'
 
-import { SystemResource } from './Resources/SystemResource'
+import { RadarrOptions } from './RadarrOptions'
 import { MovieResource } from './Resources/MovieResource'
+import { SystemResource } from './Resources/SystemResource'
+import { ProfileResource } from './Resources/ProfileResource'
 import { HistoryResource } from './Resources/HistoryResource'
 import { IndexerResource } from './Resources/IndexerResource'
 import { CalendarResource } from './Resources/CalendarResource'
 import { DiskspaceResource } from './Resources/DiskspaceResource'
-import { ProfileResource } from './Resources/ProfileResource'
+
+const DefaultRadarrOptions: Partial<RadarrOptions> = {
+  host: 'localhost',
+  port: 7878,
+  secure: false,
+}
 
 export class RadarrClient {
   private readonly log: Lincoln
+  private readonly options: RadarrOptions
 
   readonly calendar: CalendarResource
   readonly diskspace: DiskspaceResource
@@ -20,28 +30,22 @@ export class RadarrClient {
   readonly profile: ProfileResource
   readonly system: SystemResource
 
-  constructor(endpoint: URL, apikey: string, logger?: Lincoln) {
+  constructor(options: Partial<RadarrOptions>, logger?: Lincoln) {
     this.log = logger ? logger.extend('radarr') : CreateLogger('radarr')
+    this.options = merge.all<RadarrOptions>([DefaultRadarrOptions, options])
 
-    const url = this.getApiUrl(endpoint.toString())
-    this.calendar = new CalendarResource(url, apikey, this.log)
-    this.diskspace = new DiskspaceResource(url, apikey, this.log)
-    this.history = new HistoryResource(url, apikey, this.log)
-    this.indexer = new IndexerResource(url, apikey, this.log)
-    this.movie = new MovieResource(url, apikey, this.log)
-    this.profile = new ProfileResource(url, apikey, this.log)
-    this.system = new SystemResource(url, apikey, this.log)
+    const url = this.url()
+    this.calendar = new CalendarResource(url, this.options.apikey, this.log)
+    this.diskspace = new DiskspaceResource(url, this.options.apikey, this.log)
+    this.history = new HistoryResource(url, this.options.apikey, this.log)
+    this.indexer = new IndexerResource(url, this.options.apikey, this.log)
+    this.movie = new MovieResource(url, this.options.apikey, this.log)
+    this.profile = new ProfileResource(url, this.options.apikey, this.log)
+    this.system = new SystemResource(url, this.options.apikey, this.log)
   }
 
-  private getApiUrl(endpoint: string) {
-    if (endpoint.endsWith('/api') || endpoint.endsWith('/api/')) {
-      return new URL(endpoint)
-    }
-
-    if (endpoint.endsWith('/')) {
-      return new URL(`${endpoint}api`)
-    }
-
-    return new URL(`${endpoint}/api`)
+  private url() {
+    const protocol = this.options.secure ? 'https' : 'http'
+    return new URL(`${protocol}://${this.options.host}:${this.options.port}/api`)
   }
 }

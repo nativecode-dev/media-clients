@@ -1,8 +1,6 @@
 import { Global, Output } from '@nativecode/media-cli'
 import { Arguments, CommandModule } from 'yargs'
 
-import logger from '../logging'
-
 import client, { GetMovieById } from '../client'
 import { ListPropertyFilter } from '../filters'
 
@@ -12,8 +10,6 @@ export interface MonitorOptions extends Global {
 }
 
 export class MonitorCommand implements CommandModule<{}, MonitorOptions> {
-  private readonly log = logger.extend('monitor')
-
   builder = {
     monitor: {
       boolean: true,
@@ -34,7 +30,6 @@ export class MonitorCommand implements CommandModule<{}, MonitorOptions> {
 
     if (changed && defined) {
       movie.monitored = args.monitor
-      this.log.trace(`args.monitor: ${args.monitor}`, `monitored: ${movie.monitored}`)
     }
 
     const output = {
