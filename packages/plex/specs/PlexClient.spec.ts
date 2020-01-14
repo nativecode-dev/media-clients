@@ -29,23 +29,23 @@ function getUsername() {
   return ''
 }
 
-describe('when using PlexClient', () => {
-  const password = getPassword()
-  const username = getUsername()
+if (!process.env.CI) {
+  describe('when using PlexClient', () => {
+    const password = getPassword()
+    const username = getUsername()
 
-  const plex = new PlexClient({ host: getHost() }, Logger)
+    const plex = new PlexClient({ host: getHost() }, Logger)
 
-  it('should get user info', async () => {
-    const login = await plex.accounts.login(username, password)
-    expect(login.user.username).to.equal(username)
-  })
+    it('should get user info', async () => {
+      const login = await plex.accounts.login(username, password)
+      expect(login.user.username).to.equal(username)
+    })
 
-  it('should get auth token', async () => {
-    const token = await plex.accounts.token(username, password)
-    expect(token).to.not.be.empty
-  })
+    it('should get auth token', async () => {
+      const token = await plex.accounts.token(username, password)
+      expect(token).to.not.be.empty
+    })
 
-  if (!process.env.CI) {
     describe('with auth token', () => {
       let token: string
 
@@ -112,5 +112,5 @@ describe('when using PlexClient', () => {
         })
       })
     })
-  }
-})
+  })
+}
