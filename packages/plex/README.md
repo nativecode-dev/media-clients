@@ -1,4 +1,4 @@
-# `plex`
+# @nativecode/plex
 
 ## Install
 

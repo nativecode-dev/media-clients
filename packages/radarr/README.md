@@ -1,5 +1,4 @@
-# `radarr`
-
+# @nativecode/radarr
 ## Install
 
 ```sh

@@ -1,4 +1,4 @@
-# `rest-client`
+# @nativecode/rest-client
 
 Provides an abstract REST compatible resource class using `isomorphic-fetch` to perform operations.
 
@@ -33,5 +33,4 @@ export class RestResource extends Resource {
     ])
   }
 }
-
 ```

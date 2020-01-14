@@ -1,1 +1,1 @@
-# media-client
+# @nativecode/media-cli

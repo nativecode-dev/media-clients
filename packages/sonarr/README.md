@@ -1,4 +1,4 @@
-# `sonarr`
+# @nativecode/sonarr
 
 ## Install
 
