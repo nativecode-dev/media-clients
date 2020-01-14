@@ -1,6 +1,6 @@
 {
   "name": "@nativecode/radarr-cli",
-  "version": "1.1.10",
+  "version": "1.1.11-next.0",
   "bin": {
     "radarr-cli": "bin/index.js"
   },
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@nativecode/media-cli": "^0.2.4",
-    "@nativecode/radarr": "^3.0.2",
+    "@nativecode/radarr": "^3.0.3-next.0",
     "@nofrills/fs": "~11.0.0",
     "@nofrills/lincoln-debug": "~11.0.0",
     "yargs": "~15.1.0",
