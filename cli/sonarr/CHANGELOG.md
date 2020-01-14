@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.12](https://git.nativecode.net/nativecode/media-clients/compare/@nativecode/sonarr-cli@1.1.11-next.1...@nativecode/sonarr-cli@1.1.12) (2020-01-14)
+
+
+### Bug Fixes
+
+* 🐛 manual version bump ([6c2e380](https://git.nativecode.net/nativecode/media-clients/commits/6c2e3806fdd130cd8915b9d844b2605260879516))
+
+
+
+
+
 ## [1.1.11](https://git.nativecode.net/nativecode/media-clients/compare/@nativecode/sonarr-cli@1.1.10...@nativecode/sonarr-cli@1.1.11) (2020-01-14)
 
 **Note:** Version bump only for package @nativecode/sonarr-cli

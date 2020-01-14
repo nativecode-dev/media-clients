@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://git.nativecode.net/nativecode/media-clients/compare/@nativecode/radarr@3.0.3-next.1...@nativecode/radarr@4.0.0) (2020-01-14)
+
+
+### Bug Fixes
+
+* 🐛 manual version bump ([6c2e380](https://git.nativecode.net/nativecode/media-clients/commits/6c2e3806fdd130cd8915b9d844b2605260879516))
+* 🐛 remove radarr and sonarr resources export ([db940fc](https://git.nativecode.net/nativecode/media-clients/commits/db940fcbc3bbf131d660410eebe0742fb845a66e))
+
+
+### BREAKING CHANGES
+
+* removing export of resources
+
+
+
+
+
 ## [3.0.3](https://git.nativecode.net/nativecode/media-clients/compare/@nativecode/radarr@3.0.2...@nativecode/radarr@3.0.3) (2020-01-14)
 
 **Note:** Version bump only for package @nativecode/radarr

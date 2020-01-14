@@ -1,6 +1,6 @@
 {
   "name": "@nativecode/plex",
-  "version": "1.2.1-next.2",
+  "version": "1.2.1",
   "description": "Plex client",
   "license": "MIT",
   "private": false,
