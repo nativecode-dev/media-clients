@@ -1,22 +1,24 @@
 import { URL } from 'url'
-import { Lincoln } from '@nofrills/lincoln'
+import { Lincoln, CreateLogger } from '@nofrills/lincoln-debug'
 
 import { BackupResource } from './Resources/BackupResource'
 import { SeriesResource } from './Resources/SeriesResource'
 import { SystemResource } from './Resources/SystemResource'
 import { CommandResource } from './Resources/CommandResource'
-import { CalendarResource } from './Resources/CalendarResource'
 import { IndexerResource } from './Resources/IndexerResource'
 import { EpisodeResource } from './Resources/EpisodeResource'
 import { ProfileResource } from './Resources/ProfileResource'
-import { EpisodeFileResource } from './Resources/EpisodeFileResource'
-import { DiskspaceResource } from './Resources/DiskspaceResource'
 import { HistoryResource } from './Resources/HistoryResource'
+import { ReleaseResource } from './Resources/ReleaseResource'
+import { CalendarResource } from './Resources/CalendarResource'
+import { DiskspaceResource } from './Resources/DiskspaceResource'
+import { EpisodeFileResource } from './Resources/EpisodeFileResource'
 import { WantedMissingResource } from './Resources/WantedMissingResource'
 import { ParsedEpisodeInfoResource } from './Resources/ParsedEpisodeInfoResource'
-import { ReleaseResource } from './Resources/ReleaseResource'
 
 export class SonarrClient {
+  private readonly log: Lincoln
+
   public readonly backup: BackupResource
   public readonly calendar: CalendarResource
   public readonly command: CommandResource
@@ -32,22 +34,24 @@ export class SonarrClient {
   public readonly system: SystemResource
   public readonly wanted: WantedMissingResource
 
-  constructor(endpoint: URL, apikey: string, logger: Lincoln) {
+  constructor(endpoint: URL, apikey: string, logger?: Lincoln) {
+    this.log = logger ? logger.extend('sonarr') : CreateLogger('sonarr')
+
     const url = this.getApiUrl(endpoint.toString())
-    this.backup = new BackupResource(url, apikey, logger)
-    this.calendar = new CalendarResource(url, apikey, logger)
-    this.command = new CommandResource(url, apikey, logger)
-    this.diskspace = new DiskspaceResource(url, apikey, logger)
-    this.episodes = new EpisodeResource(url, apikey, logger)
-    this.files = new EpisodeFileResource(url, apikey, logger)
-    this.history = new HistoryResource(url, apikey, logger)
-    this.indexer = new IndexerResource(url, apikey, logger)
-    this.parser = new ParsedEpisodeInfoResource(url, apikey, logger)
-    this.profile = new ProfileResource(url, apikey, logger)
-    this.release = new ReleaseResource(url, apikey, logger)
-    this.series = new SeriesResource(url, apikey, logger)
-    this.system = new SystemResource(url, apikey, logger)
-    this.wanted = new WantedMissingResource(url, apikey, logger)
+    this.backup = new BackupResource(url, apikey, this.log)
+    this.calendar = new CalendarResource(url, apikey, this.log)
+    this.command = new CommandResource(url, apikey, this.log)
+    this.diskspace = new DiskspaceResource(url, apikey, this.log)
+    this.episodes = new EpisodeResource(url, apikey, this.log)
+    this.files = new EpisodeFileResource(url, apikey, this.log)
+    this.history = new HistoryResource(url, apikey, this.log)
+    this.indexer = new IndexerResource(url, apikey, this.log)
+    this.parser = new ParsedEpisodeInfoResource(url, apikey, this.log)
+    this.profile = new ProfileResource(url, apikey, this.log)
+    this.release = new ReleaseResource(url, apikey, this.log)
+    this.series = new SeriesResource(url, apikey, this.log)
+    this.system = new SystemResource(url, apikey, this.log)
+    this.wanted = new WantedMissingResource(url, apikey, this.log)
   }
 
   private getApiUrl(endpoint: string) {

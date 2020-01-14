@@ -1,9 +1,17 @@
 # `plex`
 
-## PlexCloud
+## Install
 
-PlexCloud is used to interact with `plex.tv` to get your access token, retrieve servers, etc.
+`npm install --save @nativecode/plex`
 
-## PlexClient
+## Usage
 
-PlexClient is used to connect to an instance of a Plex Server.
+```typescript
+import { URL } from 'url'
+import { PlexClient } from '@nativecode/plex'
+
+const plex = new PlexClient({
+  host: 'localhost',
+  port: 32400,
+})
+```

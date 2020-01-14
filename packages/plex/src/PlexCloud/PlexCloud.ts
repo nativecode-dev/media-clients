@@ -1,7 +1,7 @@
 import merge from 'deepmerge'
 
 import { URL } from 'url'
-import { Lincoln } from '@nofrills/lincoln-debug'
+import { Lincoln, CreateLogger } from '@nofrills/lincoln-debug'
 import { ResourceHeader } from '@nativecode/rest-client'
 
 import { AccountResource } from '../PlexClient'
@@ -26,8 +26,8 @@ export class PlexCloud {
   readonly libraries: LibraryResource
   readonly system: SystemResource
 
-  constructor(options: Partial<PlexClientOptions> = {}, logger: Lincoln) {
-    this.log = logger.extend('plexcloud')
+  constructor(options: Partial<PlexClientOptions> = {}, logger?: Lincoln) {
+    this.log = logger ? logger.extend('plexcloud') : CreateLogger('plexcloud')
     this.options = merge.all<PlexClientOptions>([DefaultPlexOptions, options])
 
     const headers: ResourceHeader[] = [
