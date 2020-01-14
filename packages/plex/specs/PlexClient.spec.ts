@@ -62,6 +62,10 @@ if (!process.env.CI) {
         }
       })
 
+      it('should get transcode sessions', () => {
+        expect(plex.system.transcoders(token)).to.eventually.be.fulfilled
+      })
+
       it('should list agents for movies', async () => {
         const agents = await plex.system.agents(token, Movie)
         expect(agents.MediaContainer.Agent).to.not.be.empty
