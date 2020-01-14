@@ -5,4 +5,5 @@ export const Person: MediaTypeDefinition = {
   element: 'directory',
   title: 'Person',
   typeString: 'person',
+  related: [],
 }

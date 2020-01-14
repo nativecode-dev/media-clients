@@ -5,4 +5,5 @@ export const Comic: MediaTypeDefinition = {
   element: 'photo',
   title: 'Comic',
   typeString: 'comic',
+  related: [],
 }

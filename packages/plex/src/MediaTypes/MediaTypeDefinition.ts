@@ -3,5 +3,5 @@ export interface MediaTypeDefinition {
   typeString: string
   title: string
   element: string
-  related?: MediaTypeDefinition[]
+  related: MediaTypeDefinition[]
 }

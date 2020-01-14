@@ -5,4 +5,5 @@ export const Movie: MediaTypeDefinition = {
   element: 'video',
   title: 'Movie',
   typeString: 'movie',
+  related: [],
 }

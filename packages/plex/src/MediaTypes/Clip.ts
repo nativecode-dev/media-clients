@@ -5,4 +5,5 @@ export const Clip: MediaTypeDefinition = {
   element: 'video',
   title: 'Clip',
   typeString: 'clip',
+  related: [],
 }
