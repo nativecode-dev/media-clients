@@ -2,7 +2,7 @@ import { URL } from 'url'
 import { Lincoln } from '@nofrills/lincoln-debug'
 import { ResourceOptions, ResourceParamType } from '@nativecode/rest-client'
 
-import { PlexResource } from '../PlexResource'
+import { PlexResource } from '../../PlexResource'
 import { LoginResponse } from '../Responses/LoginResponse'
 
 export class AccountResource extends PlexResource {
@@ -12,7 +12,7 @@ export class AccountResource extends PlexResource {
 
   login(username: string, password: string): Promise<LoginResponse> {
     return this.json(
-      'https://plex.tv/users/sign_in.json',
+      'users/sign_in.json',
       'POST',
       [
         {

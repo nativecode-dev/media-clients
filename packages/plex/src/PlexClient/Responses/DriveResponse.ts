@@ -1,4 +1,4 @@
-import { Drive } from '../Drive'
+import { Drive } from '../Models/Drive'
 
 export interface DriveResponse {
   MediaContainer: {

@@ -2,10 +2,10 @@ import { URL } from 'url'
 import { Lincoln } from '@nofrills/lincoln-debug'
 import { ResourceOptions, ResourceParamType } from '@nativecode/rest-client'
 
-import { PlexResource } from '../PlexResource'
-import { MediaTypeDefinition } from '../MediaTypes/MediaTypeDefinition'
+import { PlexResource } from '../../PlexResource'
 import { AgentResponse } from '../Responses/AgentResponse'
-import { DriveResponse } from '../Responses'
+import { DriveResponse } from '../Responses/DriveResponse'
+import { MediaTypeDefinition } from '../../MediaTypes/MediaTypeDefinition'
 
 export class SystemResource extends PlexResource {
   constructor(url: URL, logger: Lincoln, options: Partial<ResourceOptions> = {}) {

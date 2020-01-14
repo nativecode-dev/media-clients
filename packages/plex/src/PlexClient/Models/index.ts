@@ -1,6 +1,7 @@
 export * from './Agent'
 export * from './Directory'
 export * from './DirectorySection'
+export * from './Drive'
 export * from './Language'
 export * from './Media'
 export * from './Part'

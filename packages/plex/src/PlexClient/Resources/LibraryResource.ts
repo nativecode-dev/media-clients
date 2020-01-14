@@ -2,7 +2,7 @@ import { URL } from 'url'
 import { Lincoln } from '@nofrills/lincoln-debug'
 import { ResourceOptions, ResourceParamType } from '@nativecode/rest-client'
 
-import { PlexResource } from '../PlexResource'
+import { PlexResource } from '../../PlexResource'
 import { OnDeckResponse } from '../Responses/OnDeckResponse'
 import { LibraryResponse } from '../Responses/LibraryResponse'
 import { LibrariesResponse } from '../Responses/LibrariesResponse'
