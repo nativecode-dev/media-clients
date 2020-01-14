@@ -35,6 +35,6 @@ export class ReleaseResource extends Resource {
   }
 
   push(push: ReleasePush) {
-    this.http_post('release/push', push)
+    return this.http_post('release/push', push)
   }
 }

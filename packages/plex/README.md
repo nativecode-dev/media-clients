@@ -12,3 +12,9 @@ npm install --save @nativecode/plex
 import { PlexClient } from '@nativecode/plex'
 const plex = new PlexClient({ host: 'localhost', port: 32400 })
 ```
+
+### References
+
+- https://github.com/phillipj/node-plex-api
+- https://github.com/Arcanemagus/plex-api/wiki/Plex-Web-API-Overview
+- https://support.plex.tv/articles/201638786-plex-media-server-url-commands/

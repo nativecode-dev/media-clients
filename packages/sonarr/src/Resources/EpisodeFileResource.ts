@@ -12,7 +12,7 @@ export class EpisodeFileResource extends Resource {
   }
 
   delete(episodeFileId: number) {
-    this.http_delete('episodefile/{:id}', {
+    return this.http_delete('episodefile/{:id}', {
       key: 'id',
       type: ResourceParamType.RouteParameter,
       value: episodeFileId,
