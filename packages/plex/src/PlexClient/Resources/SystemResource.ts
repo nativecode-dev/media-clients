@@ -5,6 +5,7 @@ import { ResourceOptions, ResourceParamType } from '@nativecode/rest-client'
 import { PlexResource } from '../../PlexResource'
 import { AgentResponse } from '../Responses/AgentResponse'
 import { DriveResponse } from '../Responses/DriveResponse'
+import { TranscodersResponse } from '../Responses/TranscodersResponse'
 import { MediaTypeDefinition } from '../../MediaTypes/MediaTypeDefinition'
 
 export class SystemResource extends PlexResource {
@@ -25,5 +26,9 @@ export class SystemResource extends PlexResource {
 
   drives(token: string): Promise<DriveResponse> {
     return this.xmljson('services/browse', 'GET', [this.getTokenHeader(token)])
+  }
+
+  transcoders(token: string): Promise<TranscodersResponse> {
+    return this.xmljson('transcode/sessions', 'GET', [this.getTokenHeader(token)])
   }
 }
