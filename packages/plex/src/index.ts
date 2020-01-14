@@ -1,3 +1,5 @@
+export * from './MediaTypes'
+
 export * from './PlexClient/PlexClient'
 export * from './PlexClient/PlexClientOptions'
 
