@@ -89,7 +89,39 @@ export abstract class Resource {
     return response.json()
   }
 
-  protected async response(route: string, method: string, params: ResourceParams = [], body?: any) {
+  protected async response(route: string, method: string, params: ResourceParams = [], body?: any, retry: number = 3) {
+    let counter = 0
+
+    while (counter < retry) {
+      const url = this.getRoute(route, params).href
+      const headers = params.filter(param => param.type === ResourceParamType.Header)
+
+      const request = new Request(url, {
+        body,
+        method,
+        credentials: this.options.credentials,
+        headers: this.headers(headers),
+      })
+
+      this.logger.trace(route, request)
+      const response = await fetch(request)
+      this.logger.trace(response)
+
+      const error = new HttpError(request, response)
+
+      if (response.ok === false) {
+        this.logger.error(error, response.statusText)
+      } else {
+        return response
+      }
+
+      if (counter >= retry) {
+        throw error
+      }
+
+      counter++
+    }
+
     try {
       const url = this.getRoute(route, params).href
       const headers = params.filter(param => param.type === ResourceParamType.Header)
