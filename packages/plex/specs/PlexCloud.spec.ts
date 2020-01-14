@@ -2,6 +2,7 @@ import expect from './expect'
 import Logger from './logging'
 
 import { PlexCloud } from '../src/PlexCloud/PlexCloud'
+import { cacheExists, cacheRead, cacheSave } from './cache'
 
 function getPassword() {
   if (process.env.PLEX_PASSWORD) {
@@ -39,7 +40,15 @@ describe('when using PlexCloud', () => {
     let token: string
 
     before(async () => {
-      token = await plex.accounts.token(username, password)
+      const exists = await cacheExists('plex.token')
+
+      if (exists) {
+        const buffer = await cacheRead('plex.token')
+        token = buffer.toString()
+      } else {
+        token = await plex.accounts.token(username, password)
+        await cacheSave(token, 'plex.token')
+      }
     })
 
     it('should list servers', async () => {

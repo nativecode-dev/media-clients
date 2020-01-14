@@ -86,7 +86,6 @@
       "nyc mocha --opts .citools/mocha.opts"
     ],
     "clean": [
-      "rimraf .cache",
       "rimraf core/*/lib",
       "rimraf packages/*/lib",
       "rimraf **/*.tsbuildinfo"
@@ -135,6 +134,7 @@
     "chunk-text": "~1.0.5"
   },
   "devDependencies": {
+    "@nofrills/fs": "^11.0.0",
     "@nofrills/tasks": "~10.0.3",
     "@types/chai": "~4.2.7",
     "@types/chai-as-promised": "~7.1.2",

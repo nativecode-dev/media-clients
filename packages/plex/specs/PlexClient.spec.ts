@@ -4,6 +4,7 @@ import Logger from './logging'
 import { Movie } from '../src/MediaTypes/Movie'
 import { PlexClient } from '../src/PlexClient/PlexClient'
 import { Directory } from '../src/PlexClient/Models/Directory'
+import { cacheExists, cacheRead, cacheSave } from './cache'
 
 function getHost() {
   if (process.env.PLEX_HOST) {
@@ -50,7 +51,15 @@ if (!process.env.CI) {
       let token: string
 
       before(async () => {
-        token = await plex.accounts.token(username, password)
+        const exists = await cacheExists('plex.token')
+
+        if (exists) {
+          const buffer = await cacheRead('plex.token')
+          token = buffer.toString()
+        } else {
+          token = await plex.accounts.token(username, password)
+          await cacheSave(token, 'plex.token')
+        }
       })
 
       it('should list agents for movies', async () => {
