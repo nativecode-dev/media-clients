@@ -2,6 +2,7 @@ import merge from 'deepmerge'
 
 import { URL } from 'url'
 import { Lincoln } from '@nofrills/lincoln-debug'
+import { ResourceHeader } from '@nativecode/rest-client'
 
 import { ServerResource } from './Resources/ServerResource'
 import { AccountResource } from './Resources/AccountResource'
@@ -10,6 +11,10 @@ import { SystemResource } from './Resources/SystemResource'
 import { MediaTypeDefinition } from './MediaTypes/MediaTypeDefinition'
 
 export interface PlexOptions {
+  app: {
+    name: string
+    version: string
+  }
   auth: {
     token?: string
     password: string
@@ -20,7 +25,13 @@ export interface PlexOptions {
   secure: boolean
 }
 
+const packageInfo = require('../package.json')
+
 const DefaultPlexOptions: Partial<PlexOptions> = {
+  app: {
+    name: 'PlexClient',
+    version: packageInfo.version,
+  },
   host: 'localhost',
   port: 32400,
   secure: false,
@@ -33,11 +44,13 @@ export class PlexClient {
   readonly servers: ServerResource
   readonly system: SystemResource
 
-  constructor(appname: string, options: Partial<PlexOptions> = {}, logger: Lincoln) {
-    const headers = [
-      { name: 'X-Plex-Client-Identifier', value: appname || '@nativecode/plex:test' },
+  constructor(options: Partial<PlexOptions> = {}, logger: Lincoln) {
+    const packageInfo = require('../package.json')
+
+    const headers: ResourceHeader[] = [
+      { name: 'X-Plex-Client-Identifier', value: options.app?.name || packageInfo.name },
       { name: 'X-Plex-Product', value: 'PlexClient' },
-      { name: 'X-Plex-Version', value: '0.0.0' },
+      { name: 'X-Plex-Version', value: options.app?.version || packageInfo.version },
     ]
 
     this.options = merge.all<PlexOptions>([DefaultPlexOptions, options])

@@ -33,7 +33,7 @@ describe('when using PlexClient', () => {
   const password = getPassword()
   const username = getUsername()
 
-  const plex = new PlexClient('@nativecode/plex:test', { host: getHost() }, Logger)
+  const plex = new PlexClient({ host: getHost() }, Logger)
 
   it('should get user info', async () => {
     const login = await plex.accounts.login(username, password)
