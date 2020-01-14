@@ -8,6 +8,7 @@
     "type": "git",
     "url": "git@git.nativecode.net:nativecode/media-clients.git"
   },
+  "homepage": "https://github.com/nativecode-dev/media-clients/packages/sonarr",
   "author": "opensource@nativecode.com",
   "keywords": [
     "sonarr"
