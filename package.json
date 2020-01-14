@@ -83,7 +83,7 @@
     ],
     "ci:test": [
       "[ci:build]",
-      "nyc mocha --opts .citools/mocha.opts"
+      "nyc mocha"
     ],
     "clean": [
       "rimraf core/*/lib",
