@@ -1,6 +1,6 @@
 {
   "name": "@nativecode/radarr",
-  "version": "3.0.0-next.0",
+  "version": "3.0.0",
   "description": "Radarr REST client",
   "license": "MIT",
   "private": false,
