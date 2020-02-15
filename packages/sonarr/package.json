@@ -1,6 +1,6 @@
 {
   "name": "@nativecode/sonarr",
-  "version": "5.1.2-next.1",
+  "version": "5.1.2",
   "description": "Sonarr REST client",
   "license": "MIT",
   "private": false,
