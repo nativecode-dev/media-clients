@@ -14,8 +14,8 @@
     "watch": "tsc --project tsconfig.json --watch"
   },
   "dependencies": {
-    "@nativecode/media-cli": "^0.2.8-next.1",
-    "@nativecode/sonarr": "^4.0.3",
+    "@nativecode/media-cli": "^0.2.8",
+    "@nativecode/sonarr": "^5.1.2",
     "@nofrills/fs": "~11.0.0",
     "@nofrills/lincoln-debug": "~11.0.0",
     "@nofrills/types": "~10.0.2",
@@ -23,9 +23,9 @@
     "yargs-interactive": "~3.0.0"
   },
   "devDependencies": {
-    "@types/node": "~13.1.6",
-    "@types/yargs": "~15.0.0",
+    "@types/node": "^13.7.1",
+    "@types/yargs": "^15.0.3",
     "@types/yargs-interactive": "~2.1.0",
-    "typescript": "~3.7.4"
+    "typescript": "^3.7.5"
   }
 }

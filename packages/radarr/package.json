@@ -39,15 +39,15 @@
   },
   "types": "lib/index.d.ts",
   "dependencies": {
-    "@nativecode/rest-client": "^2.4.1-next.1",
+    "@nativecode/rest-client": "^2.4.1",
     "@nofrills/fs": "~11.0.0",
     "@nofrills/lincoln-debug": "~11.0.0",
-    "compare-versions": "~3.5.1",
+    "compare-versions": "^3.6.0",
     "deepmerge": "^4.2.2"
   },
   "devDependencies": {
     "@types/compare-versions": "~3.3.0",
     "@types/deepmerge": "^2.2.0",
-    "@types/node": "~13.1.6"
+    "@types/node": "^13.7.1"
   }
 }
