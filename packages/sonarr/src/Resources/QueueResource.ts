@@ -1,9 +1,9 @@
 import { URL } from 'url'
 import { Lincoln } from '@nofrills/lincoln'
-import { Resource, ResourceParamType } from '@nativecode/rest-client'
+import { RestResource, ResourceParamType } from '@nativecode/rest-client'
 import { Queue } from '../Models'
 
-export class QueueResource extends Resource {
+export class QueueResource extends RestResource {
   constructor(url: URL, apikey: string, logger: Lincoln) {
     super(url, logger)
     this.setHeader('X-Api-Key', apikey)

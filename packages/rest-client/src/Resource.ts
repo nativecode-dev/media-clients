@@ -1,18 +1,18 @@
 import btoa from 'btoa'
-import merge from 'deepmerge'
+
+import fetch, { Headers, RequestInit, Response } from 'node-fetch'
 
 import { URL } from 'url'
 import { Lincoln } from '@nofrills/lincoln'
 
+import { Merge } from './utils/Merge'
 import { HttpError } from './HttpError'
 import { ResourceParams } from './ResourceParam'
 import { ResourceOptions } from './ResourceOptions'
 import { ResourceParamType } from './ResourceParamType'
 
 const DefaultOptions: () => ResourceOptions = () => {
-  return {
-    headers: [],
-  }
+  return { headers: [] }
 }
 
 export abstract class Resource {
@@ -22,7 +22,7 @@ export abstract class Resource {
 
   constructor(url: URL, logger: Lincoln, options: Partial<ResourceOptions> = {}) {
     this.logger = logger
-    this.options = merge.all<ResourceOptions>([DefaultOptions(), options])
+    this.options = Merge<ResourceOptions>([DefaultOptions(), options])
 
     if (url.href.endsWith('/')) {
       this.url = url
@@ -91,18 +91,17 @@ export abstract class Resource {
 
   protected async response(route: string, method: string, params: ResourceParams = [], body?: any) {
     try {
+      const headers = this.headers(params)
       const url = this.getRoute(route, params).href
-      const headers = params.filter(param => param.type === ResourceParamType.Header)
 
-      const request = new Request(url, {
-        body,
+      const request: RequestInit = {
+        headers,
         method,
-        credentials: this.options.credentials,
-        headers: this.headers(headers),
-      })
+        body: body ? JSON.stringify(body) : undefined,
+      }
 
-      this.logger.trace(route, request)
-      const response = await fetch(request)
+      this.logger.trace(route, request, headers)
+      const response = await fetch(url, request)
       this.logger.trace(response)
 
       if (response.ok === false) {

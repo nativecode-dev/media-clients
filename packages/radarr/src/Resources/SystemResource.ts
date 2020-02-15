@@ -2,12 +2,12 @@ import { URL } from 'url'
 import { fs } from '@nofrills/fs'
 import { compare } from 'compare-versions'
 import { Lincoln } from '@nofrills/lincoln'
-import { Resource } from '@nativecode/rest-client'
+import { RestResource } from '@nativecode/rest-client'
 
 import { SystemStatus } from '../Models/SystemStatus'
 import { RadarrPackageOptions } from '../RadarrPackageOptions'
 
-export class SystemResource extends Resource {
+export class SystemResource extends RestResource {
   constructor(url: URL, apikey: string, logger: Lincoln) {
     super(url, logger)
     this.setHeader('X-Api-Key', apikey)

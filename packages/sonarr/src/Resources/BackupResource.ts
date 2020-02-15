@@ -1,10 +1,10 @@
 import { URL } from 'url'
 import { Lincoln } from '@nofrills/lincoln'
-import { Resource, ResourceParamType } from '@nativecode/rest-client'
+import { RestResource, ResourceParamType } from '@nativecode/rest-client'
 
 import { Backup } from '../Models/Backup'
 
-export class BackupResource extends Resource {
+export class BackupResource extends RestResource {
   constructor(url: URL, apikey: string, logger: Lincoln) {
     super(url, logger)
     this.setHeader('X-Api-Key', apikey)
