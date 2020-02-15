@@ -1,5 +1,3 @@
-import 'isomorphic-fetch'
-
 export * from './HttpError'
 export * from './Resource'
 export * from './ResourceHeader'

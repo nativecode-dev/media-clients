@@ -1,6 +1,8 @@
 import btoa from 'btoa'
 import merge from 'deepmerge'
 
+import fetch, { Headers, RequestInit, Response } from 'node-fetch'
+
 import { URL } from 'url'
 import { Lincoln } from '@nofrills/lincoln'
 
@@ -94,15 +96,19 @@ export abstract class Resource {
       const url = this.getRoute(route, params).href
       const headers = params.filter(param => param.type === ResourceParamType.Header)
 
-      const request = new Request(url, {
+      const request: RequestInit = {
         body,
         method,
-        credentials: this.options.credentials,
-        headers: this.headers(headers),
-      })
+        headers: new Headers(
+          headers.reduce<Record<string, string>>((results, current) => {
+            results[current.key] = current.value
+            return results
+          }, {}),
+        ),
+      }
 
       this.logger.trace(route, request)
-      const response = await fetch(request)
+      const response = await fetch(url, request)
       this.logger.trace(response)
 
       if (response.ok === false) {
