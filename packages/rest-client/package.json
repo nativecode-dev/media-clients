@@ -1,6 +1,6 @@
 {
   "name": "@nativecode/rest-client",
-  "version": "2.3.0-next.0",
+  "version": "2.4.0",
   "description": "REST client",
   "license": "MIT",
   "private": false,
@@ -34,12 +34,12 @@
   "types": "lib/index.d.ts",
   "dependencies": {
     "@nofrills/lincoln-debug": "~11.0.0",
+    "@nofrills/types": "^10.0.2",
     "btoa": "^1.2.1",
     "deepmerge": "~4.2.2",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
-    "@types/blob-util": "~2.0.0",
     "@types/btoa": "^1.2.3",
     "@types/deepmerge": "~2.2.0",
     "@types/node": "~13.1.6",

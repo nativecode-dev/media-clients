@@ -1,31 +1,18 @@
 import { URL } from 'url'
 import { Lincoln } from '@nofrills/lincoln-debug'
 
-import { Merge } from './utils/Merge'
 import { Resource } from './Resource'
 import { ResourceOptions } from './ResourceOptions'
-
-const DefaultOptions: () => ResourceOptions = () => {
-  return {
-    headers: [
-      {
-        name: 'Accept',
-        value: 'application/json',
-      },
-      {
-        name: 'Content-Type',
-        value: 'application/json',
-      },
-    ],
-  }
-}
+import { DefaultResourceCache } from './CacheStores/NullResourceCache'
+import { ResourceCache } from './ResourceCache'
 
 export abstract class RestResource extends Resource {
-  constructor(url: URL, logger: Lincoln, options: Partial<ResourceOptions> = {}) {
-    super(
-      url,
-      logger,
-      Merge<ResourceOptions>([options, DefaultOptions()]),
-    )
+  constructor(
+    url: URL,
+    logger: Lincoln,
+    options: Partial<ResourceOptions> = {},
+    cache: ResourceCache = DefaultResourceCache,
+  ) {
+    super(url, logger, options, cache)
   }
 }

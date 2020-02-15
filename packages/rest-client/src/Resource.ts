@@ -1,6 +1,7 @@
+import os from 'os'
 import btoa from 'btoa'
 
-import fetch, { Headers, RequestInit, Response } from 'node-fetch'
+import fetch, { Headers, RequestInit } from 'node-fetch'
 
 import { URL } from 'url'
 import { Lincoln } from '@nofrills/lincoln'
@@ -10,9 +11,16 @@ import { HttpError } from './HttpError'
 import { ResourceParams } from './ResourceParam'
 import { ResourceOptions } from './ResourceOptions'
 import { ResourceParamType } from './ResourceParamType'
+import { DefaultResourceCache } from './CacheStores/NullResourceCache'
+import { ResourceCache } from './ResourceCache'
 
-const DefaultOptions: () => ResourceOptions = () => {
-  return { headers: [] }
+const DefaultOptions: ResourceOptions = {
+  headers: [
+    {
+      name: 'User-Agent',
+      value: `rest-client/1.0 (${os.platform()}; ${os.arch()}; rv:${os.release()})`,
+    },
+  ],
 }
 
 export abstract class Resource {
@@ -20,15 +28,22 @@ export abstract class Resource {
   private readonly options: ResourceOptions
   private readonly url: URL
 
-  constructor(url: URL, logger: Lincoln, options: Partial<ResourceOptions> = {}) {
+  constructor(
+    url: URL,
+    logger: Lincoln,
+    options: Partial<ResourceOptions> = {},
+    private readonly cache: ResourceCache = DefaultResourceCache,
+  ) {
     this.logger = logger
-    this.options = Merge<ResourceOptions>([DefaultOptions(), options])
+    this.options = Merge<ResourceOptions>(DefaultOptions, options)
 
     if (url.href.endsWith('/')) {
       this.url = url
     } else {
       this.url = new URL(`${url.href}/`)
     }
+
+    this.logger.trace(this.url, options)
   }
 
   public get base(): URL {
@@ -43,11 +58,11 @@ export abstract class Resource {
     return this.json(route, 'DELETE', params)
   }
 
-  protected async http_head(route: string, ...params: ResourceParams): Promise<Response> {
+  protected async http_head(route: string, ...params: ResourceParams): Promise<Buffer> {
     return this.response(route, 'HEAD', params)
   }
 
-  protected async http_options(route: string, ...params: ResourceParams): Promise<Response> {
+  protected async http_options(route: string, ...params: ResourceParams): Promise<Buffer> {
     return this.response(route, 'OPTIONS', params)
   }
 
@@ -63,7 +78,7 @@ export abstract class Resource {
     return this.json(route, 'PUT', params, resource)
   }
 
-  protected async http_trace(route: string, ...params: ResourceParams): Promise<Response> {
+  protected async http_trace(route: string, ...params: ResourceParams): Promise<Buffer> {
     return this.response(route, 'TRACE', params)
   }
 
@@ -71,33 +86,33 @@ export abstract class Resource {
     return btoa(value)
   }
 
-  protected async blob(route: string, method: string, params: ResourceParams) {
-    const response = await this.response(route, method, params)
-    return response.blob()
+  protected async blob(
+    route: string,
+    method: string,
+    params: ResourceParams,
+  ): Promise<ArrayBuffer | SharedArrayBuffer> {
+    const buffer = await this.response(route, method, params)
+    return Uint8Array.from(buffer).buffer
   }
 
-  protected async buffer(route: string, method: string, params: ResourceParams) {
-    const response = await this.response(route, method, params)
-    return new Promise(async (resolve, reject) => {
-      const blob = await response.arrayBuffer()
-      return Buffer.from(blob)
-    })
+  protected buffer(route: string, method: string, params: ResourceParams) {
+    return this.response(route, method, params)
   }
 
   protected async json<T, R>(route: string, method: string, params: ResourceParams, resource?: T): Promise<R> {
-    const response = await this.response(route, method, params, resource)
-    return response.json()
+    const buffer = await this.response(route, method, params, resource)
+    return JSON.parse(buffer.toString('utf-8'))
   }
 
-  protected async response(route: string, method: string, params: ResourceParams = [], body?: any) {
+  protected async response(route: string, method: string, params: ResourceParams = [], body?: any): Promise<Buffer> {
     try {
       const headers = this.headers(params)
       const url = this.getRoute(route, params).href
+      const request: RequestInit = { headers, method, body: body ? JSON.stringify(body) : undefined }
 
-      const request: RequestInit = {
-        headers,
-        method,
-        body: body ? JSON.stringify(body) : undefined,
+      if (this.cache.exists(request)) {
+        this.logger.trace('from-cache', request)
+        return this.cache.get(request)
       }
 
       this.logger.trace(route, request, headers)
@@ -110,7 +125,10 @@ export abstract class Resource {
         throw error
       }
 
-      return response
+      const buffer = await response.buffer()
+      await this.cache.cache(request, buffer)
+      this.logger.trace('to-cache', request)
+      return buffer
     } catch (error) {
       this.logger.error(error)
       throw error
@@ -122,8 +140,8 @@ export abstract class Resource {
   }
 
   protected async text(route: string, method: string, params: ResourceParams): Promise<string> {
-    const response = await this.response(route, method, params)
-    return response.text()
+    const buffer = await this.response(route, method, params)
+    return buffer.toString('utf-8')
   }
 
   private getRoute(route: string, params: ResourceParams = []): URL {

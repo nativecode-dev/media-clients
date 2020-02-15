@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://git.nativecode.net/nativecode/media-clients/compare/@nativecode/rest-client@2.3.0...@nativecode/rest-client@2.4.0) (2020-02-15)
+
+
+### Features
+
+* 🎸 adds caching mechanism ([651ab76](https://git.nativecode.net/nativecode/media-clients/commits/651ab7670069b9a4ef0f2de3f6317e2709cb5502))
+
+
+
+
+
+# [2.3.0](https://git.nativecode.net/nativecode/media-clients/compare/@nativecode/rest-client@2.3.0-next.0...@nativecode/rest-client@2.3.0) (2020-02-15)
+
+**Note:** Version bump only for package @nativecode/rest-client
+
+
+
+
+
 ## [2.2.2](https://git.nativecode.net/nativecode/media-clients/compare/@nativecode/rest-client@2.2.1-next.1...@nativecode/rest-client@2.2.2) (2020-01-14)
 
 
