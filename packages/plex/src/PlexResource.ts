@@ -18,8 +18,8 @@ export abstract class PlexResource extends Resource {
   }
 
   protected async xml(route: string, method: string, params: ResourceParams): Promise<string> {
-    const response = await this.response(route, method, params)
-    const xml = await response.text()
+    const buffer = await this.response(route, method, params)
+    const xml = buffer.toString('utf-8')
     return xml2json.toJson(xml)
   }
 

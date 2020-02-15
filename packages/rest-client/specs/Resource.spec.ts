@@ -8,6 +8,7 @@ import { step } from 'mocha-steps'
 
 import { Resource } from '../src/Resource'
 import { ResourceParamType } from '../src/ResourceParamType'
+import { MemoryResourceCache } from '../src/CacheStores/MemoryResourceCache'
 
 interface Employee {
   id: number
@@ -18,7 +19,7 @@ interface Employee {
 
 class RestApiResource extends Resource {
   constructor() {
-    super(new URL('https://jsonplaceholder.typicode.com'), Logger.extend('resource'))
+    super(new URL('https://jsonplaceholder.typicode.com'), Logger.extend('resource'), {}, new MemoryResourceCache())
   }
 
   all(): Promise<Employee[]> {
