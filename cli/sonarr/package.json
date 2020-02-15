@@ -2,7 +2,7 @@
   "name": "@nativecode/sonarr-cli",
   "version": "1.2.0-next.0",
   "bin": {
-    "radarr-cli": "bin/index.js"
+    "sonarr-cli": "bin/index.js"
   },
   "main": "bin/index.js",
   "publishConfig": {
