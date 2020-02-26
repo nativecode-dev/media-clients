@@ -135,7 +135,7 @@
   },
   "devDependencies": {
     "@nofrills/fs": "^11.0.0",
-    "@nofrills/tasks": "~10.0.3",
+    "@nofrills/tasks": "11.0.0-next.1",
     "@types/chai": "^4.2.9",
     "@types/chai-as-promised": "~7.1.2",
     "@types/chunk-text": "~1.0.0",

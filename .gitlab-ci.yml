@@ -22,6 +22,7 @@ before_script:
   - git submodule update --init -- .citools
   - npm ci
   - source .ci-env
+  - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
 
 test:
   <<: *testsetup
