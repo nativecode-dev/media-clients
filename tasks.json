@@ -1,0 +1,82 @@
+{
+  "build": [
+    "[clean]",
+    "[source]",
+    "[build:compile]"
+  ],
+  "build:compile": [
+    "[references]",
+    "lerna run build"
+  ],
+  "ci:build": [
+    "[build:compile]"
+  ],
+  "ci:configure": [
+    ".citools/setup-git ${BUILD_REPO_BRANCH} ${BUILD_REPO_GIT} ${BUILD_REPO_EMAIL}",
+    ".citools/setup-ssh ${BUILD_REPO_DOMAIN} ${BUILD_REPO_SSHKEY_PATH} ${BUILD_REPO_DOMAIN_SSH}",
+    "lerna bootstrap -- ci"
+  ],
+  "ci:publish:canary": [
+    "[ci:configure]",
+    "[ci:test]",
+    ".citools/lerna-publish canary"
+  ],
+  "ci:publish:prerelease": [
+    "[ci:configure]",
+    "[ci:test]",
+    ".citools/lerna-publish prerelease"
+  ],
+  "ci:publish:release": [
+    "[ci:configure]",
+    "[ci:test]",
+    ".citools/lerna-publish release"
+  ],
+  "ci:test": [
+    "[ci:build]",
+    "nyc mocha"
+  ],
+  "clean": [
+    "rimraf core/*/lib",
+    "rimraf packages/*/lib",
+    "rimraf **/*.tsbuildinfo"
+  ],
+  "commit": [
+    "git add -A .",
+    "git-cz"
+  ],
+  "coverage": [
+    "nyc report --reporter=text-lcov | coveralls"
+  ],
+  "install": [
+    "npm install"
+  ],
+  "references": [
+    "ts-node promon/references.ts"
+  ],
+  "source": [
+    "[source:format]",
+    "[source:lint]"
+  ],
+  "source:format": [
+    "npx -q -p json-sort-cli jsonsort *.json",
+    "npx -q -p json-sort-cli jsonsort {cli,packages}/*/*.json",
+    "@prettier --loglevel silent --write \"*/*/{specs,src}/**/*.ts\""
+  ],
+  "source:lint": [
+    "tslint --project tsconfig.json --config tslint.json"
+  ],
+  "test": [
+    "[build]",
+    "[test:only]"
+  ],
+  "test:only": [
+    "nyc mocha"
+  ],
+  "upgrade": [
+    "npx npm-check -y",
+    "lerna run upgrade"
+  ],
+  "watch": [
+    "lerna run --parallel watch"
+  ]
+}

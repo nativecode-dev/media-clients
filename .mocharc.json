@@ -1,14 +1,14 @@
 {
-  "diff": true,
   "colors": true,
+  "diff": true,
+  "extension": [
+    "ts"
+  ],
   "recursive": true,
   "reporter": "spec",
   "require": [
     "source-map-support/register",
     "ts-node/register"
-  ],
-  "extension": [
-    "ts"
   ],
   "spec": [
     "*/*/specs/**/*.spec.ts"

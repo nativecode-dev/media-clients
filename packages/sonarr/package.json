@@ -50,6 +50,6 @@
   "devDependencies": {
     "@types/compare-versions": "~3.3.0",
     "@types/deepmerge": "^2.2.0",
-    "@types/node": "^13.7.1"
+    "@types/node": "^13.9.0"
   }
 }
