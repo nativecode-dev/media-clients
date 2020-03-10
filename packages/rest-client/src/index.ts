@@ -1,6 +1,4 @@
-export * from './HttpError'
 export * from './Resource'
-export * from './ResourceCache'
 export * from './ResourceHeader'
 export * from './ResourceOptions'
 export * from './ResourceParam'

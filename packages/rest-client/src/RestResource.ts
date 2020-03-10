@@ -1,11 +1,9 @@
 import { URL } from 'url'
 import { Lincoln } from '@nofrills/lincoln-debug'
 
+import { Merge } from './utils/Merge'
 import { Resource } from './Resource'
 import { ResourceOptions } from './ResourceOptions'
-import { DefaultResourceCache } from './CacheStores/NullResourceCache'
-import { ResourceCache } from './ResourceCache'
-import { Merge } from './utils/Merge'
 
 const DefaultResourceOptions: Partial<ResourceOptions> = {
   headers: [
@@ -21,12 +19,7 @@ const DefaultResourceOptions: Partial<ResourceOptions> = {
 }
 
 export abstract class RestResource extends Resource {
-  constructor(
-    url: URL,
-    logger: Lincoln,
-    options: Partial<ResourceOptions> = {},
-    cache: ResourceCache = DefaultResourceCache,
-  ) {
-    super(url, logger, Merge<ResourceOptions>(DefaultResourceOptions, options), cache)
+  constructor(url: URL, logger: Lincoln, options: Partial<ResourceOptions> = {}) {
+    super(url, logger, Merge<ResourceOptions>(DefaultResourceOptions, options))
   }
 }

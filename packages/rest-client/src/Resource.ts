@@ -11,8 +11,6 @@ import { HttpError } from './HttpError'
 import { ResourceParams } from './ResourceParam'
 import { ResourceOptions } from './ResourceOptions'
 import { ResourceParamType } from './ResourceParamType'
-import { DefaultResourceCache } from './CacheStores/NullResourceCache'
-import { ResourceCache } from './ResourceCache'
 
 const DefaultOptions: ResourceOptions = {
   headers: [
@@ -28,12 +26,7 @@ export abstract class Resource {
   private readonly options: ResourceOptions
   private readonly url: URL
 
-  constructor(
-    url: URL,
-    logger: Lincoln,
-    options: Partial<ResourceOptions> = {},
-    private readonly cache: ResourceCache = DefaultResourceCache,
-  ) {
+  constructor(url: URL, logger: Lincoln, options: Partial<ResourceOptions> = {}) {
     this.logger = logger
     this.options = Merge<ResourceOptions>(DefaultOptions, options)
 
@@ -110,11 +103,6 @@ export abstract class Resource {
       const url = this.getRoute(route, params).href
       const request: RequestInit = { headers, method, body: body ? JSON.stringify(body) : undefined }
 
-      if (this.cache.exists(request)) {
-        this.logger.trace('from-cache', request)
-        return this.cache.get(request)
-      }
-
       this.logger.trace(route, request, headers)
       const response = await fetch(url, request)
       this.logger.trace(response)
@@ -126,7 +114,6 @@ export abstract class Resource {
       }
 
       const buffer = await response.buffer()
-      await this.cache.cache(request, buffer)
       this.logger.trace('to-cache', request)
       return buffer
     } catch (error) {
