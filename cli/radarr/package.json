@@ -1,6 +1,6 @@
 {
   "name": "@nativecode/radarr-cli",
-  "version": "1.3.0-next.2",
+  "version": "1.3.0-next.3",
   "bin": {
     "radarr-cli": "bin/index.js"
   },
@@ -14,8 +14,8 @@
     "watch": "tsc --project tsconfig.json --watch"
   },
   "dependencies": {
-    "@nativecode/media-cli": "^0.3.0-next.2",
-    "@nativecode/radarr": "^4.2.0-next.2",
+    "@nativecode/media-cli": "^0.3.0-next.3",
+    "@nativecode/radarr": "^4.2.0-next.3",
     "@nofrills/fs": "~11.0.0",
     "@nofrills/lincoln-debug": "~11.0.0",
     "yargs": "^15.3.0",
