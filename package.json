@@ -29,25 +29,6 @@
     "upgrade": "cli-tasks upgrade",
     "watch": "cli-tasks watch"
   },
-  "nyc": {
-    "all": true,
-    "exclude": [
-      "node_modules",
-      "*/*/specs/**/*.spec.ts",
-      "**/index.ts"
-    ],
-    "extension": [
-      ".ts"
-    ],
-    "include": [
-      "*/*/src/**/*.ts"
-    ],
-    "instrument": true,
-    "report-dir": ".cache/coverage",
-    "reporter": "text",
-    "sourceMap": true,
-    "temp-directory": ".cache/nyc"
-  },
   "dependencies": {
     "chunk-text": "~1.0.5"
   },

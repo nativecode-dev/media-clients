@@ -24,12 +24,12 @@
   "ci:publish:prerelease": [
     "[ci:configure]",
     "[ci:test]",
-    ".citools/lerna-publish prerelease"
+    "@.citools/lerna-publish prerelease"
   ],
   "ci:publish:release": [
     "[ci:configure]",
     "[ci:test]",
-    ".citools/lerna-publish release"
+    "@.citools/lerna-publish release"
   ],
   "ci:test": [
     "[ci:build]",
