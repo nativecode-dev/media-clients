@@ -10,10 +10,10 @@ import { Resource } from '../src/Resource'
 import { ResourceParamType } from '../src/ResourceParamType'
 
 interface Employee {
+  email: string
   id: number
   name: string
   username: string
-  email: string
 }
 
 class RestApiResource extends Resource {
@@ -33,7 +33,11 @@ class RestApiResource extends Resource {
 describe('when using Resource type', () => {
   const sut: RestApiResource = new RestApiResource()
 
-  step('should GET all employees', async () => {
+  step('should create instance', () => {
+    expect(sut).to.not.be.undefined
+  })
+
+  xstep('should GET all employees', async () => {
     const employees = await sut.all()
     expect(employees).not.empty
   }).timeout(5000)
