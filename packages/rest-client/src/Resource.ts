@@ -79,11 +79,7 @@ export abstract class Resource {
     return btoa(value)
   }
 
-  protected async blob(
-    route: string,
-    method: string,
-    params: ResourceParams,
-  ): Promise<ArrayBuffer | SharedArrayBuffer> {
+  protected async blob(route: string, method: string, params: ResourceParams): Promise<ArrayBuffer | SharedArrayBuffer> {
     const buffer = await this.response(route, method, params)
     return Uint8Array.from(buffer).buffer
   }
