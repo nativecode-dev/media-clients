@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://git.nativecode.net/nativecode/media-clients/compare/@nativecode/rest-client@3.0.0-next.3...@nativecode/rest-client@3.0.0) (2020-03-11)
+
+**Note:** Version bump only for package @nativecode/rest-client
+
+
+
+
+
 ## [2.4.1](https://git.nativecode.net/nativecode/media-clients/compare/@nativecode/rest-client@2.4.1-next.1...@nativecode/rest-client@2.4.1) (2020-02-15)
 
 **Note:** Version bump only for package @nativecode/rest-client
