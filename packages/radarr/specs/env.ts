@@ -14,6 +14,5 @@ function endpoint(): string {
   return 'localhost'
 }
 
-export const APIKEY: string =
-  process.env.RADARR_TEST_APIKEY || process.env.RADARR_APIKEY || '46aa7e39bff545b0af772eaa0338f098'
+export const APIKEY: string = process.env.RADARR_TEST_APIKEY || process.env.RADARR_APIKEY || '46aa7e39bff545b0af772eaa0338f098'
 export const ENDPOINT = endpoint()
