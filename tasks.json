@@ -19,7 +19,7 @@
   "ci:publish:canary": [
     "[ci:configure]",
     "[ci:test]",
-    ".citools/lerna-publish canary"
+    "@.citools/lerna-publish canary"
   ],
   "ci:publish:prerelease": [
     "[ci:configure]",
