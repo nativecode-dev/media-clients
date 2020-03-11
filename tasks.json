@@ -58,8 +58,7 @@
     "[source:lint]"
   ],
   "source:format": [
-    "npx -q -p json-sort-cli jsonsort *.json",
-    "npx -q -p json-sort-cli jsonsort {cli,packages}/*/*.json",
+    "cli-tasks sort \"**/*.json\"",
     "@prettier --loglevel silent --write \"*/*/{specs,src}/**/*.ts\""
   ],
   "source:lint": [
