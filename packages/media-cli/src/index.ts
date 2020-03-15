@@ -1,7 +1,5 @@
-export * from './commands/configure'
-export * from './options/global'
+export * from './Commands'
+export * from './CommandOptions'
 
-export * from './config'
-export * from './filters'
-export * from './identifiers'
-export * from './output'
+export * from './Config'
+export * from './Configuration'

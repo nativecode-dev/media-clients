@@ -1,16 +1,22 @@
 import yargsui from 'yargs-interactive'
 
-import { Arguments, CommandModule } from 'yargs'
+import { Arguments } from 'yargs'
 
-import { Global } from '../options/global'
-import { ConfigPath, SaveConfig } from '../config'
+import { BaseCommand } from './BaseCommand'
+import { Global } from '../CommandOptions/Global'
+import { ConfigPath, SaveConfig } from '../Config'
 
-export class ConfigureCommand implements CommandModule<{}, Global> {
-  constructor(private readonly configname: string) {}
+export class ConfigureCommand extends BaseCommand<Global> {
+  constructor(private readonly configname: string) {
+    super()
+  }
 
+  aliases = []
+  builder = {}
   command = 'configure'
   describe = 'configure options'
-  handler = async (args: Arguments<Global>) => {
+
+  async handler(args: Arguments<Global>) {
     const results = await Promise.resolve(
       yargsui().interactive({
         interactive: {
