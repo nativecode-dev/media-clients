@@ -12,7 +12,7 @@ import { IndexerResource } from './Resources/IndexerResource'
 import { CalendarResource } from './Resources/CalendarResource'
 import { DiskspaceResource } from './Resources/DiskspaceResource'
 import { ParsedEpisodeInfoResource } from './Resources/ParsedEpisodeInfoResource'
-import { RootfolderResource } from '../../sonarr/src/Resources'
+import { RootfolderResource } from './Resources/RootfolderResource'
 
 const DefaultRadarrOptions: Partial<RadarrOptions> = {
   host: 'localhost',
