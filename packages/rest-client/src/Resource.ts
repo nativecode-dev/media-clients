@@ -129,7 +129,7 @@ export abstract class Resource {
 
   private getRoute(route: string, params: ResourceParams = []): URL {
     const routeUrl = params
-      .filter(param => param.type === ResourceParamType.RouteParameter)
+      .filter((param) => param.type === ResourceParamType.RouteParameter)
       .reduce((result, param) => {
         const regex = new RegExp(`{:${param.key}}`)
         return result.replace(regex, param.value)
@@ -138,8 +138,8 @@ export abstract class Resource {
     const url = new URL(routeUrl)
 
     url.search = params
-      .filter(param => param.type === ResourceParamType.Query)
-      .filter(param => param.value)
+      .filter((param) => param.type === ResourceParamType.Query)
+      .filter((param) => param.value)
       .reduce<string[]>((result, param) => {
         result.push(`${param.key}=${param.value}`)
         return result
@@ -161,7 +161,7 @@ export abstract class Resource {
 
   private headers(params: ResourceParams = []): Headers {
     const headers = new Headers()
-    params.map(param => headers.set(param.key, param.value))
+    params.map((param) => headers.set(param.key, param.value))
 
     return this.options.headers.reduce((headers, current) => {
       headers.append(current.name, current.value)

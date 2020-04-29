@@ -1,5 +1,2 @@
-export * from './Commands'
-export * from './CommandOptions'
-
-export * from './Config'
-export * from './Configuration'
+export * from './BaseCommand'
+export * from './Global'

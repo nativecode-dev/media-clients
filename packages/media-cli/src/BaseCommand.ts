@@ -1,6 +1,6 @@
 import { CommandModule, CommandBuilder, Arguments } from 'yargs'
 
-import { Global } from '../CommandOptions/Global'
+import { Global } from './Global'
 
 export abstract class BaseCommand<T extends Global> implements CommandModule<{}, T> {
   abstract aliases: string[]
