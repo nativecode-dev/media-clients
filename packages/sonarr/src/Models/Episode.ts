@@ -1,8 +1,10 @@
 import { RestResource } from './RestResource'
 import { EpisodeDetails } from './EpisodeDetails'
+import { EpisodeFile } from './EpisodeFile'
 
 export interface Episode extends RestResource {
   seriesId: number
+  episodeFile: EpisodeFile
   episodeFileId: number
   seasonNumber: number
   episodeNumber: number

@@ -40,6 +40,7 @@
   "types": "lib/index.d.ts",
   "dependencies": {
     "@nativecode/rest-client": "^3.0.0",
+    "@nnode/common": "^0.3.2",
     "@nofrills/fs": "~11.0.0",
     "@nofrills/lincoln-debug": "~11.0.0",
     "compare-versions": "^3.6.0",

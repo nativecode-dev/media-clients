@@ -1,8 +1,10 @@
 import merge from 'deepmerge'
 
 import { URL } from 'url'
+import { Throttle } from '@nnode/common'
 import { Lincoln, CreateLogger } from '@nofrills/lincoln-debug'
 
+import { Movie, Profile } from './Models'
 import { RadarrOptions } from './RadarrOptions'
 import { MovieResource } from './Resources/MovieResource'
 import { SystemResource } from './Resources/SystemResource'
@@ -42,6 +44,40 @@ export class RadarrClient {
     this.movie = new MovieResource(url, this.options.apikey, this.log)
     this.profile = new ProfileResource(url, this.options.apikey, this.log)
     this.system = new SystemResource(url, this.options.apikey, this.log)
+  }
+
+  async unmonitor(dryrun: boolean): Promise<Movie[]> {
+    const movies = await this.movie.list()
+    const profiles = await this.profile.list()
+
+    const completed = movies
+      .filter((movie) => movie.downloaded && movie.hasFile && movie.monitored)
+      .filter((movie) => {
+        const profile = this.getProfile(profiles, movie)
+        return profile.cutoff.id === movie.movieFile.quality.quality.id
+      })
+
+    if (dryrun) {
+      return completed
+    }
+
+    return Throttle(
+      completed.map((movie) => async () => {
+        const source = await this.movie.id(movie.id)
+        source.monitored = false
+        return this.movie.update(source)
+      }),
+    )
+  }
+
+  private getProfile(profiles: Profile[], movie: Movie): Profile {
+    const profile = profiles.find((profile) => profile.id === movie.profileId)
+
+    if (profile) {
+      return profile
+    }
+
+    throw new Error(`profile ${movie.profileId} not found`)
   }
 
   private url() {
