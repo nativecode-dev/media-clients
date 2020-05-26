@@ -85,7 +85,7 @@ export class SonarrClient {
   }
 
   private getSeriesCompleted(series: SeriesInfo) {
-    series.series.seasons.
+    const monitored = series.series.seasons.filter((season) => season.monitored)
   }
 
   private async getSeriesSeasons(series: Series): Promise<SeriesInfo> {
