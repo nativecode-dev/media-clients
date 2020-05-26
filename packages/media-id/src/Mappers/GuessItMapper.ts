@@ -4,7 +4,7 @@ import { fs } from '@nofrills/fs'
 
 import { GuessItInfo } from './GuessItInfo'
 
-export async function GuessItMapper(filename: string, url: string = 'https://guessit.nativecode.com'): Promise<GuessItInfo> {
+export async function GuessItMapper(filename: string, url: string): Promise<GuessItInfo> {
   const response = await fetch(`${url}/?filename=${filename}`)
   const json: GuessItInfo = await response.json()
 
