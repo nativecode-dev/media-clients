@@ -30,6 +30,9 @@
     "watch": "cli-tasks watch"
   },
   "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^3.7.0",
+    "@typescript-eslint/eslint-plugin-tslint": "^3.7.0",
+    "@typescript-eslint/parser": "^3.7.0",
     "chunk-text": "^1.0.5"
   },
   "devDependencies": {
