@@ -29,7 +29,7 @@ merge:
   <<: *testsetup
   stage: merge
   script:
-    - npm test
+    - npm build
   except:
     - tags
   only:
