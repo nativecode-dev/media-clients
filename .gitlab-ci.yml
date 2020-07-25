@@ -29,7 +29,9 @@ merge:
   <<: *testsetup
   stage: merge
   script:
-    - npm test
+    - npm build
+  except:
+    - tags
   only:
     - merge_request
 
@@ -42,6 +44,7 @@ test:
     - develop
     - master
     - /feature\/*/
+    - tags
 
 canary:
   <<: *testsetup
@@ -51,21 +54,26 @@ canary:
   except:
     - develop
     - master
+    - tags
   only:
     - /feature\/*/
 
 prerelease:
   <<: *testsetup
   stage: prerelease
-  only:
-    - develop
   script:
     - npm run pre-release
+  except:
+    - tags
+  only:
+    - develop
 
 release:
   <<: *testsetup
   stage: release
-  only:
-    - master
   script:
     - npm run release
+  except:
+    - tags
+  only:
+    - master
