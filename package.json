@@ -54,9 +54,6 @@
     "rimraf": "^3.0.2",
     "source-map-support": "^0.5.19",
     "ts-node": "^8.10.2",
-    "tslint": "^6.1.2",
-    "tslint-config-standard": "^9.0.0",
-    "tslint-no-unused-expression-chai": "^0.1.4",
     "typescript": "^3.9.7"
   }
 }
