@@ -16,16 +16,16 @@
   "dependencies": {
     "@nativecode/media-cli": "^0.3.0",
     "@nativecode/sonarr": "^5.2.0",
-    "@nofrills/fs": "~11.0.0",
-    "@nofrills/lincoln-debug": "~11.0.0",
-    "@nofrills/types": "^10.0.2",
-    "yargs": "^15.3.0",
+    "@nofrills/fs": "^12.0.0",
+    "@nofrills/lincoln-debug": "^11.0.1",
+    "@nofrills/types": "^10.0.3",
+    "yargs": "^15.4.1",
     "yargs-interactive": "^3.0.0"
   },
   "devDependencies": {
-    "@types/node": "^13.9.0",
-    "@types/yargs": "^15.0.4",
-    "@types/yargs-interactive": "^2.1.0",
-    "typescript": "^3.8.3"
+    "@types/node": "^14.0.26",
+    "@types/yargs": "^15.0.5",
+    "@types/yargs-interactive": "^2.1.1",
+    "typescript": "^3.9.7"
   }
 }
