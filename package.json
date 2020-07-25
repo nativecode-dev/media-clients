@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@nofrills/fs": "^12.0.0",
-    "@nofrills/tasks": "next",
+    "@nofrills/tasks": "^11.1.0",
     "@types/chai": "^4.2.12",
     "@types/chai-as-promised": "^7.1.3",
     "@types/chunk-text": "^1.0.0",
