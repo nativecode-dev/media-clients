@@ -72,7 +72,7 @@ describe('when using PlexCloud', () => {
       expect(resources.MediaContainer.Device).to.not.be.empty
     })
 
-    xit('should list libraries', async () => {
+    it('should list libraries', async () => {
       // TODO: Currently returns 404 during my tests due to lack of sync - MP
       const libraries = await plex.libraries.list(token)
       console.log(JSON.stringify(libraries))

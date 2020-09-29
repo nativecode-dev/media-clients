@@ -65,7 +65,7 @@ export class FindCommand implements CommandModule<{}, FindOptions> {
     const radarr = client(args)
     const movies = await radarr.movie.list()
 
-    const results = movies.filter(movie => {
+    const results = movies.filter((movie) => {
       const instance: any = movie
       const property = instance[args.property]
       const operator = OPERATORS[args.operator]

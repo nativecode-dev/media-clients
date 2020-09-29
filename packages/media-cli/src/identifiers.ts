@@ -8,7 +8,7 @@ export function ExtractImdbIds(value: string): string[] {
   const matches = PATTERN_IMDBID.exec(value)
 
   if (matches && matches.length) {
-    matches.map(match => console.log(match))
+    matches.map((match) => console.log(match))
   }
 
   return []
