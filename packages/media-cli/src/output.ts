@@ -11,12 +11,12 @@ export type ObjectFilter = (name: string) => boolean
 
 export const DefaultObjectFilter = () => true
 
-function createTable<T extends any>(value: T, compact: boolean, filter?: ObjectFilter): Table.Table {
+function createTable(value: any, compact: boolean, filter?: ObjectFilter): Table.Table {
   const table = new Table({ style: { compact } })
 
   const rows = Object.keys(value)
     .filter(filter || DefaultObjectFilter)
-    .map(key => {
+    .map((key) => {
       const instance: any = {}
       const property = value[key]
       instance[key] = property

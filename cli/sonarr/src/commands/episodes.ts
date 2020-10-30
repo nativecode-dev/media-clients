@@ -17,8 +17,8 @@ export class EpisodesCommand implements CommandModule<{}, EpisodeOptions> {
     const sonarr = client(args)
     const id = parseInt(args.showId, 0)
     const episodes = await sonarr.episodes.list(id)
-    const seasons = args.seasons.map(season => parseInt(season, 0))
-    const filtered = episodes.filter(episode => seasons.includes(episode.seasonNumber))
+    const seasons = args.seasons.map((season) => parseInt(season, 0))
+    const filtered = episodes.filter((episode) => seasons.includes(episode.seasonNumber))
     Output(args, filtered, 'episodes', args.compact, ListPropertyFilter)
   }
 }

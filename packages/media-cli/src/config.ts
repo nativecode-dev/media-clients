@@ -11,7 +11,7 @@ function UserConfigPath(configname: string): string {
 
 export async function ConfigPath(configname: string): Promise<string> {
   const paths = [EtcConfigPath(configname), UserConfigPath(configname)]
-  const tasks = paths.map(async path => ((await fs.exists(path)) ? path : null))
+  const tasks = paths.map(async (path) => ((await fs.exists(path)) ? path : null))
   const found = await Promise.all(tasks)
 
   return found.reduce<string>((previous, current) => {

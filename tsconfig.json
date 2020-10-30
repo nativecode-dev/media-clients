@@ -1,17 +1,3 @@
 {
-  "extends": "./tsconfig.settings",
-  "include": [
-    "packages/*/src/**/*.ts"
-  ],
-  "references": [
-    {
-      "path": "packages/radarr"
-    },
-    {
-      "path": "packages/rest-client"
-    },
-    {
-      "path": "packages/sonarr"
-    }
-  ]
+  "extends": "./tsconfig.settings.json"
 }

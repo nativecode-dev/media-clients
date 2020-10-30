@@ -17,7 +17,7 @@ function selectMovie(movies: Movie[]) {
       default: true,
     },
     movie: {
-      choices: movies.map(movie => movie.title),
+      choices: movies.map((movie) => movie.title),
       describe: 'select movie',
       prompt: 'always',
       type: 'list',
@@ -48,7 +48,7 @@ export class SelectCommand implements CommandModule<{}, SelectOptions> {
     const movies = await radarr.movie.list()
 
     const selectedMovieAnswer = await selectMovie(movies)
-    const selectedMovie = movies.find(movie => movie.title === selectedMovieAnswer.movie)
+    const selectedMovie = movies.find((movie) => movie.title === selectedMovieAnswer.movie)
 
     if (selectedMovie) {
       const movie = await radarr.movie.id(selectedMovie.id)

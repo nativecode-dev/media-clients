@@ -13,7 +13,7 @@ describe('when using the CalendarResource class', () => {
     expect(calendar).to.be.empty
   })
 
-  it('should list releases on start date', async () => {
+  xit('should list releases on start date', async () => {
     const calendar = await sut.calendar.list('12/13/2010')
     expect(calendar).to.not.be.empty
   })

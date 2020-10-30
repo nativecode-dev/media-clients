@@ -58,11 +58,11 @@
     "[source:lint]"
   ],
   "source:format": [
-    "cli-tasks sort \"**/*.json\"",
+    "#cli-tasks sort \"**/*.json\"",
     "@prettier --loglevel silent --write \"*/*/{specs,src}/**/*.ts\""
   ],
   "source:lint": [
-    "tslint --project tsconfig.json --config tslint.json"
+    "#eslint --project tsconfig.json --config tslint.json"
   ],
   "test": [
     "[build:compile]",

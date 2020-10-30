@@ -29,9 +29,6 @@ export class SystemResource extends RestResource {
   }
 
   private clean(version: string) {
-    return version
-      .split('.')
-      .slice(0, 2)
-      .join('.')
+    return version.split('.').slice(0, 2).join('.')
   }
 }
