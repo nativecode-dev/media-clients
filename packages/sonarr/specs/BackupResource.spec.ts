@@ -22,7 +22,7 @@ describe('when using BackupResource', () => {
 
   xstep('should delete all existing backups', () => {
     const limit = plimit(1)
-    const promises = backups.map(backup => limit(() => sut.backup.remove(backup.id)))
+    const promises = backups.map((backup) => limit(() => sut.backup.remove(backup.id)))
     expect(Promise.all(promises)).to.eventually.be.fulfilled
   })
 })

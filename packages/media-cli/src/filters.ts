@@ -27,7 +27,7 @@ export type FilterCompare = <T>(comparison: T, value: T) => boolean
 export type FilterConverter = (value: string) => any
 export type FilterFunction = (value: string) => boolean
 
-const DefaultConverter: FilterConverter = value => value
+const DefaultConverter: FilterConverter = (value) => value
 
 export function CreateFilter(filter: string, converter: FilterConverter = DefaultConverter): FilterFunction {
   const statement = getStatement(filter)
@@ -51,5 +51,5 @@ export function CreateFilter(filter: string, converter: FilterConverter = Defaul
 }
 
 export function CreateIntFilter(filter: string): FilterFunction {
-  return CreateFilter(filter, value => parseInt(value, 0))
+  return CreateFilter(filter, (value) => parseInt(value, 0))
 }

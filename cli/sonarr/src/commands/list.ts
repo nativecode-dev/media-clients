@@ -21,10 +21,10 @@ export class ListCommand implements CommandModule<{}, ListOptions> {
     const sonarr = client(args)
 
     if (args.ids && args.ids.length > 0) {
-      const ids = args.ids.map(arg => parseInt(arg, 0))
-      const tasks = ids.map(id => sonarr.series.id(id))
+      const ids = args.ids.map((arg) => parseInt(arg, 0))
+      const tasks = ids.map((id) => sonarr.series.id(id))
       const shows = await Promise.all(tasks)
-      const seasons = shows.map(result => result.seasons)
+      const seasons = shows.map((result) => result.seasons)
       Output(args, seasons, 'seasons', args.compact, ListPropertyFilter)
     } else {
       const shows = await sonarr.series.list()
