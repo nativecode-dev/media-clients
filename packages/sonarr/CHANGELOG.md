@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0](https://git.nativecode.net/nativecode/media-clients/compare/@nativecode/sonarr@5.3.0-next.1...@nativecode/sonarr@5.3.0) (2020-10-30)
+
+**Note:** Version bump only for package @nativecode/sonarr
+
+
+
+
+
 # [5.2.0](https://git.nativecode.net/nativecode/media-clients/compare/@nativecode/sonarr@5.2.0-next.7...@nativecode/sonarr@5.2.0) (2020-03-11)
 
 **Note:** Version bump only for package @nativecode/sonarr
