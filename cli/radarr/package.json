@@ -18,13 +18,13 @@
     "@nativecode/radarr": "^4.3.0-next.0",
     "@nofrills/fs": "^12.0.0",
     "@nofrills/lincoln-debug": "^11.0.1",
-    "yargs": "^16.0.3",
+    "yargs": "^16.1.0",
     "yargs-interactive": "^3.0.0"
   },
   "devDependencies": {
-    "@types/node": "^14.11.2",
-    "@types/yargs": "^15.0.7",
+    "@types/node": "^14.14.6",
+    "@types/yargs": "^15.0.9",
     "@types/yargs-interactive": "^2.1.1",
-    "typescript": "^4.0.3"
+    "typescript": "^4.0.5"
   }
 }
