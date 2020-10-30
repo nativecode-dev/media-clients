@@ -42,6 +42,10 @@ export class PlexClient {
       { name: 'X-Plex-Version', value: this.options.app.version },
     ]
 
+    if (this.options.token) {
+      headers.push({ name: 'X-Plex-Token', value: this.options.token })
+    }
+
     const url = this.url()
     const resoptions = { headers }
 
