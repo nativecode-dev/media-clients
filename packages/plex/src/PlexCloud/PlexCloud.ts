@@ -6,7 +6,6 @@ import { ResourceHeader } from '@nativecode/rest-client'
 
 import { AccountResource } from '../PlexClient'
 import { SystemResource } from './Resources/SystemResource'
-import { LibraryResource } from './Resources/LibraryResource'
 import { PlexClientOptions } from '../PlexClient/PlexClientOptions'
 
 const packageInfo = require('../../package.json')
@@ -23,7 +22,6 @@ export class PlexCloud {
 
   readonly options: PlexClientOptions
   readonly accounts: AccountResource
-  readonly libraries: LibraryResource
   readonly system: SystemResource
 
   constructor(options: Partial<PlexClientOptions> = {}, logger?: Lincoln) {
@@ -40,7 +38,6 @@ export class PlexCloud {
     const resoptions = { headers }
 
     this.accounts = new AccountResource(url, this.log, resoptions)
-    this.libraries = new LibraryResource(url, this.log, resoptions)
     this.system = new SystemResource(url, this.log, resoptions)
 
     this.log.trace(this.options)
