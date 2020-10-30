@@ -8,6 +8,6 @@ export function GetMovieById(client: RadarrClient, id: string): Promise<Movie> {
   return client.movie.id(parseInt(id, 0))
 }
 
-export default function(args: Global): RadarrClient {
+export default function (args: Global): RadarrClient {
   return new RadarrClient({ apikey: args.apikey, host: args.endpoint })
 }

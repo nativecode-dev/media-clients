@@ -21,7 +21,7 @@ function filter(args: Arguments<ListOptions>, movies: Movie[]): Movie[] {
   if (args.year) {
     const year = args.year
 
-    movies = movies.filter(movie => {
+    movies = movies.filter((movie) => {
       const intFilter = CreateIntFilter(year)
       return intFilter(movie.year.toString())
     })
@@ -36,7 +36,7 @@ function filter(args: Arguments<ListOptions>, movies: Movie[]): Movie[] {
 }
 
 function map(movies: Movie[]): MovieDisplay[] {
-  return movies.map(movie => ({
+  return movies.map((movie) => ({
     id: movie.id,
     imdb: movie.imdbId,
     tmdb: movie.tmdbId,
