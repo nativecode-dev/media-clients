@@ -89,6 +89,7 @@ if (!process.env.CI) {
       it('should get list of libraries', async () => {
         const libraries = await plex.libraries.list(token)
         expect(libraries.MediaContainer.Directory).to.not.be.empty
+        console.log(libraries.MediaContainer)
       })
 
       it('should get list of onDeck', async () => {

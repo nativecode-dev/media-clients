@@ -1,4 +1,3 @@
-export * from '../MediaTypes'
 export * from './Models'
 export * from './Resources'
 export * from './Responses'
