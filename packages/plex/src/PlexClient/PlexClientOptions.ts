@@ -4,4 +4,5 @@ export interface PlexClientOptions extends PlexOptions {
   host: string
   port: number
   secure: boolean
+  token?: string
 }
