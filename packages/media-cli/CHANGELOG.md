@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://git.nativecode.net/nativecode/media-clients/compare/@nativecode/media-cli@0.4.0-next.1...@nativecode/media-cli@0.4.0) (2020-10-30)
+
+**Note:** Version bump only for package @nativecode/media-cli
+
+
+
+
+
 # [0.3.0](https://git.nativecode.net/nativecode/media-clients/compare/@nativecode/media-cli@0.3.0-next.5...@nativecode/media-cli@0.3.0) (2020-03-11)
 
 **Note:** Version bump only for package @nativecode/media-cli
