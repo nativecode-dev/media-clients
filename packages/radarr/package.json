@@ -1,6 +1,6 @@
 {
   "name": "@nativecode/radarr",
-  "version": "4.3.1-next.1",
+  "version": "4.3.1-next.2",
   "description": "Radarr REST client",
   "license": "MIT",
   "private": false,
@@ -39,7 +39,7 @@
   },
   "types": "lib/index.d.ts",
   "dependencies": {
-    "@nativecode/rest-client": "^3.1.1-next.1",
+    "@nativecode/rest-client": "^3.1.1-next.2",
     "@nofrills/fs": "^12.0.0",
     "@nofrills/lincoln-debug": "^11.0.1",
     "compare-versions": "^3.6.0",
