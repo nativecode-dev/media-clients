@@ -9,5 +9,5 @@ export interface PlexOptions {
     name: string
     version: string
   }
-  auth?: PlexOptionsAuth
+  auth?: Partial<PlexOptionsAuth>
 }
