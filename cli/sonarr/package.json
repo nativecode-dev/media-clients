@@ -14,7 +14,7 @@
     "watch": "tsc --project tsconfig.json --watch"
   },
   "dependencies": {
-    "@nativecode/media-cli": "^0.4.1-next.3",
+    "@nativecode/media-cli": "^2021.0.0",
     "@nativecode/sonarr": "^2021.0.1-next.0",
     "@nofrills/fs": "^12.0.0",
     "@nofrills/lincoln-debug": "^11.0.1",

@@ -38,7 +38,7 @@
   },
   "types": "lib/index.d.ts",
   "dependencies": {
-    "@nativecode/rest-client": "^3.1.1-next.4",
+    "@nativecode/rest-client": "^2021.0.0",
     "@nofrills/lincoln-debug": "^11.0.1",
     "xml2json": "^0.12.0"
   },
