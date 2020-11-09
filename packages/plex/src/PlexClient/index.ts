@@ -2,5 +2,5 @@ export * from './Models'
 export * from './Resources'
 export * from './Responses'
 
-export * from '../PlexClient'
-export * from '../PlexResource'
+export * from './PlexClient'
+export * from './PlexClientOptions'
