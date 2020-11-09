@@ -1,3 +1,8 @@
+export interface PlexOptionsApp {
+  name: string
+  version: string
+}
+
 export interface PlexOptionsAuth {
   token: string
   password: string
@@ -5,9 +10,6 @@ export interface PlexOptionsAuth {
 }
 
 export interface PlexOptions {
-  app: {
-    name: string
-    version: string
-  }
+  app: PlexOptionsApp
   auth?: Partial<PlexOptionsAuth>
 }
