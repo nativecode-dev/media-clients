@@ -1,11 +1,13 @@
+export interface PlexOptionsAuth {
+  token: string
+  password: string
+  username: string
+}
+
 export interface PlexOptions {
   app: {
     name: string
     version: string
   }
-  auth: {
-    token?: string
-    password: string
-    username: string
-  }
+  auth?: PlexOptionsAuth
 }
