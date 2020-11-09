@@ -34,6 +34,10 @@ export class PlexCloud {
       { name: 'X-Plex-Version', value: this.options.app.version },
     ]
 
+    if (this.options.auth?.token) {
+      headers.push({ name: 'X-Plex-Token', value: this.options.auth.token })
+    }
+
     const url = new URL('https://plex.tv')
     const resoptions = { headers }
 
