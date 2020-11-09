@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2021.0.1](https://git.nativecode.net/nativecode/media-clients/compare/v2021.0.1-next.1...v2021.0.1) (2020-11-09)
+
+**Note:** Version bump only for package @nativecode/sonarr
+
+
+
+
+
 # 2021.0.0 (2020-11-09)
 
 
