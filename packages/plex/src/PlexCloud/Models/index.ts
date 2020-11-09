@@ -1,3 +1,5 @@
+export * from './Connection'
+export * from './Device'
 export * from './Roles'
 export * from './Server'
 export * from './Subscription'
