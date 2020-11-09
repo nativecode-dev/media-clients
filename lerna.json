@@ -27,5 +27,5 @@
     "cli/*",
     "packages/*"
   ],
-  "version": "2021.0.2-next.1"
+  "version": "2021.0.2-next.2"
 }
