@@ -34,7 +34,7 @@ export class PlexClient {
 
   constructor(options: Partial<PlexClientOptions> = {}, logger?: Lincoln) {
     this.log = logger ? logger.extend('plexclient') : CreateLogger('plexclient')
-    this.options = merge.all<PlexClientOptions>([DefaultPlexOptions, options])
+    this.options = merge.all<PlexClientOptions>([{}, DefaultPlexOptions, options])
 
     const headers: ResourceHeader[] = [
       { name: 'X-Plex-Client-Identifier', value: this.options.app.name },
