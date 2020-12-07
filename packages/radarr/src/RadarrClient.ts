@@ -11,6 +11,7 @@ import { HistoryResource } from './Resources/HistoryResource'
 import { IndexerResource } from './Resources/IndexerResource'
 import { CalendarResource } from './Resources/CalendarResource'
 import { DiskspaceResource } from './Resources/DiskspaceResource'
+import { RootfolderResource } from './Resources/RootfolderResource'
 
 const DefaultRadarrOptions: Partial<RadarrOptions> = {
   host: 'localhost',
@@ -29,6 +30,7 @@ export class RadarrClient {
   readonly movie: MovieResource
   readonly profile: ProfileResource
   readonly system: SystemResource
+  readonly rootfolder: RootfolderResource
 
   constructor(options: Partial<RadarrOptions>, logger?: Lincoln) {
     this.log = logger ? logger.extend('radarr') : CreateLogger('radarr')
@@ -42,6 +44,7 @@ export class RadarrClient {
     this.movie = new MovieResource(url, this.options.apikey, this.log)
     this.profile = new ProfileResource(url, this.options.apikey, this.log)
     this.system = new SystemResource(url, this.options.apikey, this.log)
+    this.rootfolder = new RootfolderResource(url, this.options.apikey, this.log)
   }
 
   private url() {

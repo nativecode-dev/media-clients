@@ -18,6 +18,7 @@ import { DiskspaceResource } from './Resources/DiskspaceResource'
 import { EpisodeFileResource } from './Resources/EpisodeFileResource'
 import { WantedMissingResource } from './Resources/WantedMissingResource'
 import { ParsedEpisodeInfoResource } from './Resources/ParsedEpisodeInfoResource'
+import { RootfolderResource } from './Resources/RootfolderResource'
 
 const DefaultSonarrOptions: Partial<SonarrOptions> = {
   host: 'localhost',
@@ -43,6 +44,7 @@ export class SonarrClient {
   public readonly series: SeriesResource
   public readonly system: SystemResource
   public readonly wanted: WantedMissingResource
+  public readonly rootfolder: RootfolderResource
 
   constructor(options: Partial<SonarrOptions>, logger?: Lincoln) {
     this.log = logger ? logger.extend('sonarr') : CreateLogger('sonarr')
@@ -63,6 +65,7 @@ export class SonarrClient {
     this.series = new SeriesResource(url, this.options.apikey, this.log)
     this.system = new SystemResource(url, this.options.apikey, this.log)
     this.wanted = new WantedMissingResource(url, this.options.apikey, this.log)
+    this.rootfolder = new RootfolderResource(url, this.options.apikey, this.log)
   }
 
   private url() {
