@@ -22,6 +22,14 @@ export class SeriesResource extends RestResource {
     return this.http_get<Series[]>('series')
   }
 
+  lookup(term: string): Promise<Series[]> {
+    return this.http_get('series/lookup', {
+      key: 'term',
+      type: ResourceParamType.Query,
+      value: term,
+    })
+  }
+
   update(series: Series): Promise<Series> {
     return this.http_put('series', series, {
       key: 'id',
